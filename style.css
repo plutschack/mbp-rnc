@@ -1,3 +1,28 @@
+.background {
+    background-color: black;
+    z-index: -2;
+}
+html,
+body {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+}
+.cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 100px;
+    overflow: hidden;
+    text-align: center;
+}
+.cell-text {
+    font-size: clamp(0.5rem, 5vw, 5vh);
+    font-family: "Montserrat", sans-serif;
+    color: #f58f1d;
+    line-height: 1;
+    white-space: nowrap;
+}
 #h\.2e4f24c300e74fdc_8::before {
     position: absolute;
     top: 0;
