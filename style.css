@@ -1,7 +1,7 @@
 .QTKDff {
-    white-space: normal;
-    overflow: visible;
-    text-overflow: unset;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
 }
 .htnAL {
     height: 28pt;
