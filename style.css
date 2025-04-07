@@ -3,6 +3,7 @@
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     max-width: 100% !important;
+    font-size: clamp(1rem, 2vw, 1.5rem);
 }
 .htnAL {
     height: 28pt;
