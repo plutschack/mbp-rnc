@@ -1,36 +1,55 @@
-.background {
-    background-color: black;
-    z-index: -2;
-}
 html,
 body {
+    height: 100%;
     margin: 0;
     padding: 0;
-    height: 100%;
-    width: 100%;
     font-family: "Montserrat", sans-serif;
-    background: black;
+    background-color: black;
     color: #f58f1d;
 }
 
 table {
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+}
+
+.background {
+    table-layout: fixed;
+}
+
+.margin-cell {
+    width: 5%;
+}
+
+.content-cell {
+    width: 90%;
+    padding: 2em;
+}
+
+.inner-table {
     width: 100%;
     height: 100%;
     table-layout: fixed;
-    border-collapse: collapse;
+}
+
+.padding-cell {
+    width: 5%;
 }
 
 .cell {
     text-align: center;
     vertical-align: middle;
+    width: 100%;
     height: 100%;
+    padding: 1em;
+    border-bottom: 1px solid #f58f1d;
 }
 
 .cell-text {
-    display: inline-block;
-    font-size: 10px;
+    font-size: 10px; /* JS will override this */
+    line-height: 1.2;
     white-space: nowrap;
-    line-height: 1.1;
 }
 #h\.2e4f24c300e74fdc_8::before {
     position: absolute;

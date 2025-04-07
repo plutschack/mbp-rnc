@@ -5,50 +5,42 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Responsive Page</title>
 
-        <!-- Google Fonts: Montserrat -->
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap" rel="stylesheet" />
-
-        <!-- Your CSS -->
         <link rel="stylesheet" href="style.css" />
-
-        <!-- Optional: favicon -->
         <link rel="icon" type="image/png" href="favicon.png" />
-
-        <!-- Your JS -->
         <script src="script.js" defer></script>
     </head>
 
     <body>
-        <table width="100%" height="100%" class="background">
-            <tr style="background-color: black">
-                <td rowspan="83" colspan="1">margin</td>
-                <td colspan="21">margin</td>
-                <td rowspan="83" colspan="1">margin</td>
-            </tr>
-            <tr style="background-color: black">
-                <td colspan="19" style="border: 1px solid #f58f1d">
-                    <table align="center" style="margin-left: auto; margin-right: auto; width: 100%">
+        <table class="background">
+            <tr>
+                <td class="margin-cell"></td>
+                <td class="content-cell">
+                    <table class="inner-table">
                         <tr>
-                            <!-- Row 1 -->
-                            <td class="cell" colspan="19" style="border: 1px solid #f58f1d">
+                            <td class="padding-cell"></td>
+                            <td class="cell">
                                 <span class="cell-text">MBP<br />R&amp;C</span>
                             </td>
+                            <td class="padding-cell"></td>
                         </tr>
                         <tr>
-                            <!-- Row 2 -->
-                            <td rowspan="14" colspan="2" style="border: 1px solid #f58f1d">padding</td>
-                            <td colspan="15" style="border-top: 1px solid white; border-bottom: 1px solid #f58f1d">padding</td>
-                            <td rowspan="14" colspan="2" style="border: 1px solid #f58f1d">padding</td>
-                        </tr>
-                        <tr></tr>
-                        <tr>
-                            <!-- Row 3 -->
-                            <td colspan="15" class="cell" style="border-bottom: 1px solid #f58f1d">
+                            <td class="padding-cell"></td>
+                            <td class="cell">
                                 <span class="cell-text">Content</span>
                             </td>
+                            <td class="padding-cell"></td>
+                        </tr>
+                        <tr>
+                            <td class="padding-cell"></td>
+                            <td class="cell">
+                                <span class="cell-text">[Add your text here]</span>
+                            </td>
+                            <td class="padding-cell"></td>
                         </tr>
                     </table>
                 </td>
+                <td class="margin-cell"></td>
             </tr>
         </table>
     </body>
