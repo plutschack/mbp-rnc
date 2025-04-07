@@ -1,9 +1,11 @@
 .QTKDff {
+    disply: inline-block !important;
     white-space: nowrap !important;
+    width: auto !important;
+    max-width: none !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     max-width: 100% !important;
-    font-size: clamp(1rem, 2vw, 1.5rem) !important;
 }
 .htnAL {
     height: 28pt;
