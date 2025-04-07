@@ -26,7 +26,7 @@ function fitTextToCell(selector) {
 }
 
 function resizeHandler() {
-    fitTextToCell(".cell-text");
+    fitTextToCell(".logo-text");
 }
 
 window.addEventListener("load", resizeHandler);
