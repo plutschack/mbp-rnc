@@ -47,9 +47,9 @@ table {
 }
 
 .cell-text {
-    font-size: 10px; /* JS will override this */
-    line-height: 1.2;
-    white-space: nowrap;
+    display: inline-block;
+    line-height: 1.1;
+    white-space: normal;
 }
 #h\.2e4f24c300e74fdc_8::before {
     position: absolute;
