@@ -3,7 +3,7 @@
     white-space: nowrap !important;
     width: auto !important;
     max-width: none !important;
-    overflow: hidden !important;
+    overflow: visible !important;
     text-overflow: ellipsis !important;
     max-width: 100% !important;
 }
