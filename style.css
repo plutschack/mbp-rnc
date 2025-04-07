@@ -1,3 +1,14 @@
+#h\.2e4f24c300e74fdc_8::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none; /* ensures it's not clickable */
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M10 80 C 40 10, 65 10, 95 80' stroke='orange' fill='none' stroke-width='2'/></svg>")
+        no-repeat center/cover;
+}
 .QTKDff {
     display: inline-block !important;
     white-space: nowrap !important;
