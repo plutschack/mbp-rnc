@@ -6,7 +6,7 @@ function fitTextToCell(selector) {
         if (!parent) return;
 
         const maxWidth = parent.clientWidth * 0.9;
-        const maxHeight = parent.clientHeight * 0.9;
+        const maxHeight = parent.clientHeight * 1.5;
 
         // Allow multi-line growth
         el.style.whiteSpace = "normal";
@@ -16,7 +16,7 @@ function fitTextToCell(selector) {
 
         let fontSize = 10;
 
-        while (el.scrollWidth <= maxWidth && el.scrollHeight <= maxHeight && fontSize < 1000) {
+        while (el.scrollWidth <= maxWidth && el.scrollHeight <= maxHeight && fontSize < 1500) {
             fontSize += 1;
             el.style.fontSize = fontSize + "px";
         }

@@ -22,6 +22,10 @@ table {
     width: 5%;
 }
 
+.logo-cell {
+    height: 30vh;
+}
+
 .content-cell {
     width: 90%;
     padding: 2em;
