@@ -129,7 +129,7 @@ table {
 
 @media (min-width: 768px) {
     .cell-text {
-        font-size: 3vw;
+        font-size: 5vw;
     }
 
     p.right {
