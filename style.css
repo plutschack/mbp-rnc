@@ -130,13 +130,11 @@ table {
 .right {
     text-align: right;
     white-space: normal;
-    right: 0%;
 }
 
 .left {
     text-align: left;
     white-space: normal;
-    left: 0%;
 }
 
 .center {
@@ -144,8 +142,24 @@ table {
     white-space: normal;
 }
 
-.neon-glow-button {
+.neon-glow-button.right {
     position: relative;
+    z-index: 2;
+    display: inline-block;
+    border: none;
+    margin-right: 1vw;
+    color: #fff;
+    padding: 1vw 2vw;
+    font-size: 2vw;
+    background-color: black;
+    cursor: pointer;
+    box-shadow: 0 0 1vw #f58f1d;
+    transition: all 0.3s ease;
+}
+
+.neon-glow-button.left {
+    position: relative;
+    z-index: 2;
     display: inline-block;
     border: none;
     margin-right: 1vw;
