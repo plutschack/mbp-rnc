@@ -66,6 +66,8 @@ table {
     color: white;
     display: inline-block;
     line-height: 1.1;
+    z-index: 1;
+    position: relative;
     white-space: normal;
     font-size: 10px;
 }
