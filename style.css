@@ -68,14 +68,30 @@ table {
     background-color: black;
 }
 
-.cell-text {
+.cell-text.container {
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+.cell-text.shaped {
+    float: left;
+    height: 100vh;
+    width: 40vw;
+    float: right;
+    background: black url(../images/eiffel.jpg) center top no-repeat;
+    background-size: cover;
+}
+
+.cell-text.right {
     color: white;
     display: inline-block;
+    text-align: right;
     line-height: 1.1;
     z-index: 1;
     position: relative;
     white-space: normal;
-    font-size: 10px;
+    font-size: 5vw;
 }
 
 .logo-text {
@@ -83,4 +99,37 @@ table {
     line-height: 1.1;
     white-space: normal;
     font-size: 10px;
+}
+
+.neon-glow-button.right {
+    border: none;
+    position: absolute;
+    left: 70%;
+    color: #fff;
+    padding: 1vw 2vw;
+    font-size: 2vw;
+    background-color: black;
+    cursor: pointer;
+    box-shadow: 0 0 1vw #f58f1d;
+    transition: all 0.3s ease;
+}
+
+.neon-glow-button:hover {
+    box-shadow: 0 0 2vw #f58f1d;
+}
+
+.neon-glow-button:focus {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 1vw #f58f1d;
+    }
+    50% {
+        box-shadow: 0 0 1vw #f58f1d;
+    }
+    100% {
+        box-shadow: 0 0 1vw #f58f1d;
+    }
 }
