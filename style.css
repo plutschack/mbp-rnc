@@ -49,7 +49,7 @@ table {
 }
 
 .padding-cell {
-    width: 5%;
+    width: 7%;
 }
 
 .cell {
@@ -61,7 +61,7 @@ table {
 }
 
 .background-container {
-    position: absolute;
+    position: relative;
     width: 100%;
     aspect-ratio: 1 / 2;
     height: auto;
@@ -79,6 +79,18 @@ table {
     background-color: black;
 }
 
+.shape-floater {
+    float: left;
+    shape-outside: polygon(1% 0%, 100% 0%, 100% 58%, 75% 53%, 61% 49%, 44% 43%, 31% 37%, 21% 31%, 10% 20%);
+    clip-path: polygon(1% 0%, 100% 0%, 100% 58%, 75% 53%, 61% 49%, 44% 43%, 31% 37%, 21% 31%, 10% 20%);
+    width: 100%;
+    -webkit-shape-outside: polygon(1% 0%, 100% 0%, 100% 58%, 75% 53%, 61% 49%, 44% 43%, 31% 37%, 21% 31%, 10% 20%);
+    -webkit-clip-path: polygon(1% 0%, 100% 0%, 100% 58%, 75% 53%, 61% 49%, 44% 43%, 31% 37%, 21% 31%, 10% 20%);
+    background: white;
+    aspect-ratio: 1 / 2;
+    height: auto;
+}
+
 .cell-text.container {
     overflow: hidden;
     height: 100vh;
@@ -86,21 +98,19 @@ table {
 }
 
 .cell-text.shaped {
-    float: left;
-    height: 100vh;
-    width: 40vw;
-    float: right;
-    background: black url(../images/eiffel.jpg) center top no-repeat;
-    background-size: cover;
+    width: 100%;
+    aspect-ratio: 1 / 2;
+    height: auto;
+    background: white;
+    z-index: 1;
+    shape-outside: polygon(1% 0%, 100% 0%, 100% 58%, 75% 53%, 61% 49%, 44% 43%, 31% 37%, 21% 31%, 10% 20%);
 }
 
 .cell-text.right {
     color: white;
-    display: inline-block;
     text-align: right;
-    line-height: 1.1;
+    line-height: 1.4;
     z-index: 1;
-    position: relative;
     white-space: normal;
     font-size: 5vw;
 }
