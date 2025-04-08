@@ -90,7 +90,7 @@ table {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: transparent;
+    background: white;
     opacity: 0.5;
     position: relative;
     z-index: 1;
@@ -104,7 +104,7 @@ table {
     float: right;
     width: 100%;
     height: 100vh;
-    background: transparent;
+    background: white;
     opacity: 0.5;
     position: relative;
     z-index: 1;
@@ -126,22 +126,65 @@ table {
     display: block;
     font-size: 5vw;
 }
-p.right {
-    min-height: 50vh;
+
+@media (min-width: 768px) {
+    .cell-text {
+        font-size: 3vw;
+    }
+
+    p.right {
+        padding-top: 10vh;
+        vertical-align: middle;
+        min-height: 25vh;
+    }
+
+    p.left {
+        padding-top: 10vh;
+        vertical-align: middle;
+        min-height: 25vh;
+    }
+
+    .right {
+        text-align: right;
+        vertical-align: middle;
+        white-space: normal;
+    }
+
+    .left {
+        text-align: left;
+        vertical-align: middle;
+        white-space: normal;
+    }
 }
 
-p.left {
-    min-height: 50vh;
-}
+@media (max-width: 768px) {
+    .cell-text {
+        font-size: 3vw;
+    }
 
-.right {
-    text-align: right;
-    white-space: normal;
-}
+    p.right {
+        padding-top: 10vh;
+        vertical-align: middle;
+        min-height: 35vh;
+    }
 
-.left {
-    text-align: left;
-    white-space: normal;
+    p.left {
+        padding-top: 10vh;
+        vertical-align: middle;
+        min-height: 40vh;
+    }
+
+    .right {
+        text-align: right;
+        vertical-align: middle;
+        white-space: normal;
+    }
+
+    .left {
+        text-align: left;
+        vertical-align: middle;
+        white-space: normal;
+    }
 }
 
 .center {
