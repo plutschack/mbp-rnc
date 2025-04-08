@@ -38,12 +38,35 @@ table {
 }
 
 .cell {
-    text-align: center;
-    vertical-align: middle;
+    position: relative;
     width: 100%;
     height: 100%;
-    padding: 1em;
-    border-bottom: 1px solid #f58f1d;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.background-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.line-art-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.cell-text {
+    color: white;
+    display: inline-block;
+    line-height: 1.1;
+    white-space: normal;
+    font-size: 10px;
 }
 
 .logo-text {
