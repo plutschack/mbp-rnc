@@ -75,7 +75,7 @@ table {
     height: 100%;
     z-index: 0;
     pointer-events: none;
-    background-color: black;
+    background-color: transparent;
 }
 
 .cell-text.container {
@@ -92,7 +92,7 @@ table {
     width: 100%;
     aspect-ratio: 1 / 2;
     height: auto;
-    background: white;
+    background: transparent;
     opacity: 0.5;
     z-index: 1;
     shape-outside: polygon(0% 0%, 0% 42%, 29% 48%, 52% 55%, 73% 64%, 92% 79%, 100% 100%, 100% 58%, 85% 55%, 60% 49%, 36% 40%, 17% 29%, 7% 18%);
@@ -127,7 +127,6 @@ table {
 
 .neon-glow-button.right {
     border: none;
-    position: absolute;
     left: 70%;
     color: #fff;
     padding: 1vw 2vw;
