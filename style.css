@@ -124,7 +124,7 @@ table {
     position: relative;
     z-index: 2;
     display: block;
-    font-size: 5vw;
+    font-size: clamp(1.2rem, 2.5vh + 1vw, 3.5rem);
 }
 
 @media (min-width: 768px) {
@@ -136,6 +136,7 @@ table {
         padding-top: 10vh;
         vertical-align: middle;
         min-height: 25vh;
+        max-height: 40vh;
     }
 
     p.left {
