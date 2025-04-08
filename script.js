@@ -2,7 +2,7 @@ function fitTextToCell(selector) {
     const elements = document.querySelectorAll(selector);
 
     elements.forEach((el) => {
-        const parent = el.closest(".cell");
+        const parent = el.closest(".logo-cell");
         if (!parent) return;
 
         const maxWidth = parent.clientWidth * 0.9;
