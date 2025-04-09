@@ -251,9 +251,9 @@ table {
 
     p.right,
     p.left {
-        padding-top: 15vh;
-        min-height: 70vh;
-        max-height: 85vh;
+        padding-top: 40vh;
+        min-height: 95vh;
+        max-height: 97vh;
     }
 
     .neon-glow-button.right,
