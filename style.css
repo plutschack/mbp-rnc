@@ -179,7 +179,7 @@ table {
     }
 }
 
-/* TOMATO Medium devices (landscape tablets and landscape phones, 768px and up) */
+/* TOMATO Medium devices (landscape phones, 768px and up) */
 @media only screen and (min-width: 768px) {
     .cell-text {
         font-size: 4vw;
@@ -200,7 +200,7 @@ table {
     }
 }
 
-/* Large devices (laptops/desktops, 992px and up) */
+/* CHARTREUSE Large devices (portrait phone, 992px and up) */
 @media only screen and (min-width: 992px) {
     .cell-text {
         font-size: 5vw;
@@ -221,7 +221,7 @@ table {
     }
 }
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* FUCHSCIA Extra large devices (Portrait Tablet, 1250px and up) */
 @media only screen and (min-width: 1250px) {
     .cell-text {
         font-size: 4vw;
@@ -242,8 +242,8 @@ table {
     }
 }
 
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1450px) {
+/* WHITE Extra large devices (large laptops landscape tablet, 1450px and up) */
+@media only screen and (min-width: 1468px) {
     .cell-text {
         font-size: 4vw;
         color: white;
@@ -263,6 +263,7 @@ table {
     }
 }
 
+/* WHITE Landscape tables?*/
 @media only screen and (orientation: landscape) {
     body {
         font-size: 2vw;
@@ -279,6 +280,7 @@ table {
     }
 }
 
+/* HOTPINK portrait tablet) */
 @media only screen and (orientation: portrait) {
     body {
         font-size: 2vw;
