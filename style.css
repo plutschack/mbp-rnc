@@ -129,12 +129,14 @@ table {
 
 .right {
     text-align: right;
+    padding-left: 5vw;
     vertical-align: middle;
     white-space: normal;
 }
 
 .left {
     text-align: left;
+    padding-right: 5vw;
     vertical-align: middle;
     white-space: normal;
 }
@@ -229,15 +231,21 @@ table {
         color: fuchsia;
     }
 
-    p.right,
-    p.left {
+    p.right {
         padding-top: 12vh;
+        min-height: 70vh;
+        max-height: 85vh;
+    }
+
+    p.left {
+        padding-top: 50vh;
         min-height: 70vh;
         max-height: 85vh;
     }
 
     .neon-glow-button.right,
     .neon-glow-button.left {
+        margin-top: 4vh;
         font-size: 1.8vw;
         padding: 0.8vw 1.8vw;
     }
@@ -276,8 +284,6 @@ table {
 
     p.right,
     p.left {
-        padding-top: 12vh;
-        padding-left: 5vw;
         min-height: 60vh;
     }
 }
@@ -285,7 +291,7 @@ table {
 /* HOTPINK portrait tablet) */
 @media only screen and (orientation: portrait) {
     body {
-        font-size: 2vw;
+        font-size: 4vh;
         color: hotpink;
     }
 
@@ -293,10 +299,16 @@ table {
         font-size: 4vw;
     }
 
-    p.right,
+    p.right {
+        padding-top: 25vh;
+        min-height: 70vh;
+        max-height: 85vh;
+    }
+
     p.left {
-        padding-top: 8vh;
-        min-height: 60vh;
+        padding-top: 45vh;
+        min-height: 70vh;
+        max-height: 85vh;
     }
 }
 
