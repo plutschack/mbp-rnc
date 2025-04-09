@@ -127,65 +127,112 @@ table {
     font-size: clamp(1.2rem, 2.5vh + 1vw, 3.5rem);
 }
 
-@media (min-width: 768px) {
+@media only screen and (max-width: 600px) {
     .cell-text {
-        font-size: 5vw;
+        font-size: 3.5vw;
     }
 
-    p.right {
-        padding-top: 10vh;
-        vertical-align: middle;
-        min-height: 65vh;
-        max-height: 90vh;
-    }
-
+    p.right,
     p.left {
-        padding-top: 10vh;
-        vertical-align: middle;
-        min-height: 65vh;
-        max-height: 90vh;
+        padding-top: 5vh;
+        min-height: 80vh;
     }
 
-    .right {
-        text-align: right;
-        vertical-align: middle;
-        white-space: normal;
-    }
-
-    .left {
-        text-align: left;
-        vertical-align: middle;
-        white-space: normal;
+    .neon-glow-button.right,
+    .neon-glow-button.left {
+        font-size: 3.5vw;
+        padding: 2vw 4vw;
     }
 }
 
-@media (max-width: 768px) {
+@media only screen and (min-width: 600px) {
     .cell-text {
         font-size: 3vw;
     }
 
-    p.right {
-        padding-top: 10vh;
-        vertical-align: middle;
-        min-height: 85vh;
+    p.right,
+    p.left {
+        padding-top: 6vh;
+        min-height: 75vh;
     }
 
+    .neon-glow-button.right,
+    .neon-glow-button.left {
+        font-size: 3vw;
+        padding: 2vw 3.5vw;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .cell-text {
+        font-size: 4vw;
+    }
+
+    p.right,
+    p.left {
+        padding-top: 8vh;
+        min-height: 65vh;
+        max-height: 90vh;
+    }
+
+    .neon-glow-button.right,
+    .neon-glow-button.left {
+        font-size: 2.5vw;
+        padding: 1.5vw 3vw;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .cell-text {
+        font-size: 5vw;
+    }
+
+    p.right,
     p.left {
         padding-top: 10vh;
-        vertical-align: middle;
-        min-height: 85vh;
+        min-height: 65vh;
+        max-height: 90vh;
     }
 
-    .right {
-        text-align: right;
-        vertical-align: middle;
-        white-space: normal;
+    .neon-glow-button.right,
+    .neon-glow-button.left {
+        font-size: 2vw;
+        padding: 1vw 2vw;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .cell-text {
+        font-size: 4vw;
     }
 
-    .left {
-        text-align: left;
-        vertical-align: middle;
-        white-space: normal;
+    p.right,
+    p.left {
+        padding-top: 12vh;
+        min-height: 70vh;
+        max-height: 85vh;
+    }
+
+    .neon-glow-button.right,
+    .neon-glow-button.left {
+        font-size: 1.8vw;
+        padding: 0.8vw 1.8vw;
+    }
+}
+
+@media only screen and (orientation: landscape) {
+    body {
+        font-size: 2vw;
+    }
+
+    .cell-text {
+        font-size: 4vw;
+    }
+
+    p.right,
+    p.left {
+        padding-top: 8vh;
+        min-height: 60vh;
     }
 }
 
@@ -194,22 +241,7 @@ table {
     white-space: normal;
 }
 
-.neon-glow-button.right {
-    position: relative;
-    z-index: 2;
-    display: inline-block;
-    border: none;
-    margin-right: 1vw;
-    color: #fff;
-    padding: 1vw 2vw;
-    font-size: 2vw;
-    background-color: black;
-    cursor: pointer;
-    box-shadow: 0 0 1vw #f58f1d;
-    transition: all 0.3s ease;
-}
-
-.neon-glow-button.left {
+.neon-glow-button {
     position: relative;
     z-index: 2;
     display: inline-block;
