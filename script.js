@@ -24,3 +24,10 @@ function fitTextToCell(selector) {
         el.style.fontSize = fontSize - 1 + "px";
     });
 }
+
+function resizeHandler() {
+    fitTextToCell(".logo-text");
+}
+
+window.addEventListener("load", resizeHandler);
+window.addEventListener("resize", resizeHandler);
