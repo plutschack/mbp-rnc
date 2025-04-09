@@ -139,7 +139,7 @@ table {
     white-space: normal;
 }
 
-/* Extra small devices (phones, 600px and down) */
+/* ACQUA Extra small devices (phones portrait, 600px and down) */
 @media only screen and (max-width: 600px) {
     .cell-text {
         font-size: 3.5vw;
@@ -159,7 +159,7 @@ table {
     }
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
+/* ORANGE Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
     .cell-text {
         font-size: 3vw;
@@ -179,7 +179,7 @@ table {
     }
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
+/* TOMATO Medium devices (landscape tablets and landscape phones, 768px and up) */
 @media only screen and (min-width: 768px) {
     .cell-text {
         font-size: 4vw;
@@ -222,7 +222,7 @@ table {
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1250px) {
     .cell-text {
         font-size: 4vw;
         color: fuchsia;
@@ -242,9 +242,47 @@ table {
     }
 }
 
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1450px) {
+    .cell-text {
+        font-size: 4vw;
+        color: white;
+    }
+
+    p.right,
+    p.left {
+        padding-top: 12vh;
+        min-height: 70vh;
+        max-height: 85vh;
+    }
+
+    .neon-glow-button.right,
+    .neon-glow-button.left {
+        font-size: 1.8vw;
+        padding: 0.8vw 1.8vw;
+    }
+}
+
 @media only screen and (orientation: landscape) {
     body {
         font-size: 2vw;
+    }
+
+    .cell-text {
+        font-size: 4vw;
+    }
+
+    p.right,
+    p.left {
+        padding-top: 8vh;
+        min-height: 60vh;
+    }
+}
+
+@media only screen and (orientation: portrait) {
+    body {
+        font-size: 2vw;
+        color: hotpink;
     }
 
     .cell-text {
