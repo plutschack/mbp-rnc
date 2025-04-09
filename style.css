@@ -139,9 +139,11 @@ table {
     white-space: normal;
 }
 
+/* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .cell-text {
         font-size: 3.5vw;
+        color: aqua;
     }
 
     p.right,
@@ -157,9 +159,11 @@ table {
     }
 }
 
+/* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
     .cell-text {
         font-size: 3vw;
+        color: #f58f1d;
     }
 
     p.right,
@@ -175,9 +179,11 @@ table {
     }
 }
 
+/* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
     .cell-text {
         font-size: 4vw;
+        color: tomato;
     }
 
     p.right,
@@ -194,9 +200,11 @@ table {
     }
 }
 
+/* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
     .cell-text {
         font-size: 5vw;
+        color: chartreuse;
     }
 
     p.right,
@@ -213,9 +221,11 @@ table {
     }
 }
 
+/* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
     .cell-text {
         font-size: 4vw;
+        color: fuchsia;
     }
 
     p.right,
