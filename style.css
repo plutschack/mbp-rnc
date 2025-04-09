@@ -177,6 +177,7 @@ table {
 
     .neon-glow-button.right,
     .neon-glow-button.left {
+        margin-top: 3vh;
         font-size: 3vw;
         padding: 2vw 3.5vw;
     }
@@ -266,8 +267,13 @@ table {
         color: white;
     }
 
-    p.right,
+    p.right {
+        min-height: 40vh;
+        max-height: 100vh;
+    }
+
     p.left {
+        padding-top: 15vh;
         min-height: 40vh;
         max-height: 100vh;
     }
