@@ -189,15 +189,23 @@ table {
         color: tomato;
     }
 
-    p.right,
     p.left {
-        padding-top: 8vh;
+        padding-top: 12vh;
+        padding-right: 5vw;
+        min-height: 65vh;
+        max-height: 90vh;
+    }
+
+    p.right {
+        padding-left: 5vw;
+        padding-top: 12vh;
         min-height: 65vh;
         max-height: 90vh;
     }
 
     .neon-glow-button.right,
     .neon-glow-button.left {
+        margin-top: 7vh;
         font-size: 2.5vw;
         padding: 1.5vw 3vw;
     }
@@ -224,7 +232,7 @@ table {
     }
 }
 
-/* FUCHSCIA Extra large devices (Portrait Tablet, 1250px and up) */
+/* FUCHSIA Extra large devices (Portrait Tablet, 1250px and up) */
 @media only screen and (min-width: 1250px) {
     .cell-text {
         font-size: 4vw;
