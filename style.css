@@ -127,6 +127,18 @@ table {
     font-size: clamp(1.2rem, 2.5vh + 1vw, 3.5rem);
 }
 
+.right {
+    text-align: right;
+    vertical-align: middle;
+    white-space: normal;
+}
+
+.left {
+    text-align: left;
+    vertical-align: middle;
+    white-space: normal;
+}
+
 @media only screen and (max-width: 600px) {
     .cell-text {
         font-size: 3.5vw;
