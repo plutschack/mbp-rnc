@@ -94,10 +94,10 @@ table {
     opacity: 0.5;
     position: relative;
     z-index: 1;
-    shape-outside: polygon(50% 100%, 100% 100%, 60.61% 97%, 39.39% 83.67%, 24.24% 67.35%, 12.1% 46.94%, 3.03% 22.45%, 0% 0%, 0% 100%);
-    -webkit-shape-outside: polygon(50% 100%, 100% 100%, 60.61% 97%, 39.39% 83.67%, 24.24% 67.35%, 12.1% 46.94%, 3.03% 22.45%, 0% 0%, 0% 100%);
-    clip-path: polygon(50% 100%, 100% 100%, 60.61% 97%, 39.39% 83.67%, 24.24% 67.35%, 12.1% 46.94%, 3.03% 22.45%, 0% 0%, 0% 100%);
-    -webkit-clip-path: polygon(50% 100%, 100% 100%, 60.61% 97%, 39.39% 83.67%, 24.24% 67.35%, 12.1% 46.94%, 3.03% 22.45%, 0% 0%, 0% 100%);
+    shape-outside: polygon(50% 100%, 100% 100%, 62.61% 96%, 42.39% 83.67%, 26.24% 67.35%, 14.1% 46.94%, 5.03% 22.45%, 0% 0%, 0% 100%);
+    -webkit-shape-outside: polygon(50% 100%, 100% 100%, 62.61% 96%, 42.39% 83.67%, 26.24% 67.35%, 14.1% 46.94%, 5.03% 22.45%, 0% 0%, 0% 100%);
+    clip-path: polygon(50% 100%, 100% 100%, 62.61% 96%, 42.39% 83.67%, 26.24% 67.35%, 14.1% 46.94%, 5.03% 22.45%, 0% 0%, 0% 100%);
+    -webkit-clip-path: polygon(50% 100%, 100% 100%, 62.61% 96%, 42.39% 83.67%, 26.24% 67.35%, 14.1% 46.94%, 5.03% 22.45%, 0% 0%, 0% 100%);
 }
 
 .shape-floater.bottom {
@@ -108,10 +108,10 @@ table {
     opacity: 0.5;
     position: relative;
     z-index: 1;
-    shape-outside: polygon(52.53% 0%, 0% 0%, 44.36% 4%, 66.66% 22%, 82.83% 42%, 93.94% 68%, 100% 100%, 100% 0%);
-    -webkit-shape-: polygon(52.53% 0%, 0% 0%, 44.36% 4%, 66.66% 22%, 82.83% 42%, 93.94% 68%, 100% 100%, 100% 0%);
-    clip-path: polygon(52.53% 0%, 0% 0%, 44.36% 4%, 66.66% 22%, 82.83% 42%, 93.94% 68%, 100% 100%, 100% 0%);
-    -webkit-clip-path: polygon(52.53% 0%, 0% 0%, 44.36% 4%, 66.66% 22%, 82.83% 42%, 93.94% 68%, 100% 100%, 100% 0%);
+    shape-outside: polygon(0% 0%, 41.36% 4%, 65.66% 22%, 81.83% 42%, 93.94% 68%, 100% 100%, 100% 0%);
+    -webkit-shape-: polygon(0% 0%, 41.36% 4%, 65.66% 22%, 81.83% 42%, 93.94% 68%, 100% 100%, 100% 0%);
+    clip-path: polygon(0% 0%, 41.36% 4%, 65.66% 22%, 81.83% 42%, 93.94% 68%, 100% 100%, 100% 0%);
+    -webkit-clip-path: polygon(0% 0%, 41.36% 4%, 65.66% 22%, 81.83% 42%, 93.94% 68%, 100% 100%, 100% 0%);
 }
 
 .cell-text {
@@ -154,7 +154,8 @@ table {
 
     .neon-glow-button.right,
     .neon-glow-button.left {
-        font-size: 3.5vw;
+        margin-top: 1vh;
+        font-size: 3vw;
         padding: 2vw 4vw;
     }
 }
@@ -245,20 +246,19 @@ table {
 /* WHITE Extra large devices (large laptops landscape tablet, 1450px and up) */
 @media only screen and (min-width: 1468px) {
     .cell-text {
-        font-size: 4vw;
+        font-size: 4.5vw;
         color: white;
     }
 
     p.right,
     p.left {
-        padding-top: 40vh;
-        min-height: 95vh;
-        max-height: 97vh;
+        min-height: 40vh;
+        max-height: 100vh;
     }
 
     .neon-glow-button.right,
     .neon-glow-button.left {
-        margin-top: 4vh;
+        margin-top: 5vh;
         font-size: 1.8vw;
         padding: 0.8vw 1.8vw;
     }
@@ -276,7 +276,8 @@ table {
 
     p.right,
     p.left {
-        padding-top: 8vh;
+        padding-top: 12vh;
+        padding-left: 5vw;
         min-height: 60vh;
     }
 }
