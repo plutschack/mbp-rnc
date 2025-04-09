@@ -280,9 +280,9 @@ table {
 
     .neon-glow-button.right,
     .neon-glow-button.left {
-        margin-top: 5vh;
+        margin-top: 7vh;
         font-size: 1.8vw;
-        padding: 0.8vw 1.8vw;
+        padding: 0.8vh 1.8vw;
     }
 }
 
