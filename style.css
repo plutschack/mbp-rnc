@@ -315,7 +315,7 @@ table {
         --nav-icon-right: -41vw;
         --nav-menu-bottom: 37vh;
         --nav-menu-right: -41vw;
-        --nav-background-bottom: 0vh;
+        --nav-background-bottom: 1vh;
         --nav-background-right: -25vw;
     }
 
@@ -368,7 +368,7 @@ table {
 
     #menu-background {
         position: fixed;
-        width: 50vw;
+        width: 70vw;
         height: 50vw;
         opacity: 0;
         transition: opacity 0.1s ease;
