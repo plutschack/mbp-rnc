@@ -284,6 +284,18 @@ table {
         font-size: 1.8vw;
         padding: 0.8vh 1.8vw;
     }
+
+    .rotating-image {
+        position: fixed;
+        bottom: 1vh;
+        right: 1vh;
+        width: 5vw;
+        height: 5vw;
+        z-index: 1000;
+        transition: transform 0.1s linear;
+        will-change: transform;
+        transform-origin: center center;
+    }
 }
 
 /* WHITE Landscape tablets and laptops*/

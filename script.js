@@ -31,3 +31,10 @@ function resizeHandler() {
 
 window.addEventListener("load", resizeHandler);
 window.addEventListener("resize", resizeHandler);
+
+window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY;
+    const rotation = scrollY % 360; // degrees
+    const image = document.querySelector(".rotating-image");
+    image.style.transform = `rotate(${rotation}deg)`;
+});
