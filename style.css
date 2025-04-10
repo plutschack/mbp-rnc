@@ -311,10 +311,10 @@ table {
 /* WHITE Extra large devices (large laptops landscape tablet, 1450px and up) */
 @media only screen and (min-width: 1468px) {
     :root {
-        --nav-icon-bottom: 27vh;
-        --nav-icon-right: -42vw;
-        --nav-menu-bottom: 25vh;
-        --nav-menu-right: -35vw;
+        --nav-icon-bottom: 40vh;
+        --nav-icon-right: -41vw;
+        --nav-menu-bottom: 37vh;
+        --nav-menu-right: -41vw;
     }
 
     .cell-text {
