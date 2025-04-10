@@ -32,9 +32,46 @@ function resizeHandler() {
 window.addEventListener("load", resizeHandler);
 window.addEventListener("resize", resizeHandler);
 
+const orbitGroup = document.getElementById("orbit-group");
+
 window.addEventListener("scroll", () => {
-    const scrollY = window.scrollY;
-    const rotation = scrollY % 360; // degrees
-    const image = document.querySelector(".rotating-image");
-    image.style.transform = `rotate(${rotation}deg)`;
+    const rotation = (window.scrollY * 0.7) % 360;
+    orbitGroup.setAttribute("transform", `rotate(${rotation} 50 50)`);
+});
+
+const orbitDot = document.getElementById("orbit-group");
+const path = document.getElementById("orbit-path");
+const pathLength = path.getTotalLength();
+
+let animationFrame;
+let progress = 0;
+let animating = false;
+
+document.getElementById("nav-icon").addEventListener("click", () => {
+    if (animating) return;
+    animating = true;
+    progress = 0;
+
+    const animate = () => {
+        progress += 0.01;
+        if (progress >= 1) {
+            progress = 1;
+            animating = false;
+        }
+
+        const point = path.getPointAtLength(pathLength * progress);
+        orbitDot.setAttribute("cx", point.x);
+        orbitDot.setAttribute("cy", point.y);
+
+        if (progress < 1) {
+            animationFrame = requestAnimationFrame(animate);
+        } else {
+            // Trigger fade-in menu
+            document.querySelectorAll(".menu-item").forEach((item, i) => {
+                setTimeout(() => item.classList.add("visible"), i * 100);
+            });
+        }
+    };
+
+    animate();
 });
