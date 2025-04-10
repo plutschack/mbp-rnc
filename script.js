@@ -46,14 +46,21 @@ const pathLength = path.getTotalLength();
 const clickArea = document.getElementById("click-area");
 const navMenu = document.getElementById("nav-menu");
 const menuItems = navMenu.querySelectorAll(".menu-item");
-const baseOffsetX = -110;
-const baseOffsetY = -55;
-
 let animating = false;
 let menuOpen = false;
 
 function positionMenuItems() {
-    const arcRadius = 320;
+    // Read the values from CSS custom properties
+    const arcRadiusStr = getCSSVariable("--arc-radius");
+    const baseOffsetXStr = getCSSVariable("--base-offset-x");
+    const baseOffsetYStr = getCSSVariable("--base-offset-y");
+
+    // Convert string values (like "320px" or "calc(100vw * 0.4)") to a number in pixels.
+    // For simplicity, assume the values are in pixels. (If using calc() with vw, the browser will resolve it.)
+    const arcRadius = parseFloat(arcRadiusStr);
+    const baseOffsetX = parseFloat(baseOffsetXStr);
+    const baseOffsetY = parseFloat(baseOffsetYStr);
+
     const centerAngle = -180;
     const arcSpan = 120;
     const step = arcSpan / (menuItems.length - 1);
@@ -87,7 +94,13 @@ function animateOrbit(callback) {
 clickArea.addEventListener("click", (e) => {
     e.stopPropagation();
 
-    if (animating || menuOpen) return;
+    if (animating) return;
+
+    if (menuOpen) {
+        menuItems.forEach((item) => item.classList.remove("visible"));
+        menuOpen = false;
+        return;
+    }
 
     animating = true;
     menuOpen = true;
@@ -105,3 +118,7 @@ document.addEventListener("click", (e) => {
         menuOpen = false;
     }
 });
+
+function getCSSVariable(variableName) {
+    return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
+}

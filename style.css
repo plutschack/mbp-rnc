@@ -143,6 +143,12 @@ table {
 
 /* ACQUA Extra small devices (phones portrait, 600px and down) */
 @media only screen and (max-width: 600px) {
+    :root {
+        --arc-radius: calc(100vw * 0.4);
+        --base-offset-x: -10px;
+        --base-offset-y: 10px;
+    }
+
     .cell-text {
         font-size: 3.5vw;
         color: aqua;
@@ -166,7 +172,7 @@ table {
         bottom: 25.5vh;
         right: 2.5vh;
         width: 15vw;
-        height: 15vw;
+        height: auto;
         z-index: 1000;
         transition: transform 0.1s linear;
         will-change: transform;
@@ -310,6 +316,12 @@ table {
 
 /* WHITE Extra large devices (large laptops landscape tablet, 1450px and up) */
 @media only screen and (min-width: 1468px) {
+    :root {
+        --arc-radius: 320px;
+        --base-offset-x: -15px;
+        --base-offset-y: 15px;
+    }
+
     .cell-text {
         font-size: 4.5vw;
         color: white;
@@ -347,6 +359,10 @@ table {
 
     #nav-menu {
         position: fixed;
+        background-color: black;
+        border-radius: 50%;
+        width: 5vw;
+        height: 5vw;
         bottom: 25.5vh;
         right: 2.5vh;
         pointer-events: auto;
@@ -355,7 +371,6 @@ table {
 
     .menu-item {
         position: absolute;
-        background-color: black;
         color: white;
         opacity: 0;
         transition: opacity 0.1s ease;
