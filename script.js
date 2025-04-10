@@ -47,7 +47,7 @@ let animationFrame;
 let progress = 0;
 let animating = false;
 
-document.getElementById("nav-icon").addEventListener("click", () => {
+document.getElementById("click-area").addEventListener("click", () => {
     if (animating) return;
     animating = true;
     progress = 0;
