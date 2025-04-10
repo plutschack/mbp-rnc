@@ -301,7 +301,7 @@ table {
         position: fixed;
         bottom: 25.5vh;
         right: 2.5vh;
-        pointer-events: none;
+        pointer-events: auto;
         z-index: 999;
     }
 
