@@ -50,28 +50,22 @@ let animating = false;
 document.getElementById("click-area").addEventListener("click", () => {
     if (animating) return;
     animating = true;
-    progress = 0;
 
+    // Instantly fade in menu (feels more responsive)
+    document.querySelectorAll(".menu-item").forEach((item) => item.classList.add("visible"));
+
+    // Animate orbit separately
+    let progress = 0;
     const animate = () => {
-        progress += 0.01;
+        progress += 0.05;
         if (progress >= 1) {
-            progress = 1;
             animating = false;
+            return;
         }
-
         const point = path.getPointAtLength(pathLength * progress);
         orbitDot.setAttribute("cx", point.x);
         orbitDot.setAttribute("cy", point.y);
-
-        if (progress < 1) {
-            animationFrame = requestAnimationFrame(animate);
-        } else {
-            // Trigger fade-in menu
-            document.querySelectorAll(".menu-item").forEach((item, i) => {
-                setTimeout(() => item.classList.add("visible"), i * 5);
-            });
-        }
+        requestAnimationFrame(animate);
     };
-
     animate();
 });
