@@ -46,6 +46,8 @@ const pathLength = path.getTotalLength();
 const clickArea = document.getElementById("click-area");
 const navMenu = document.getElementById("nav-menu");
 const menuItems = navMenu.querySelectorAll(".menu-item");
+const menuBackground = document.getElementById("menu-background");
+
 let animating = false;
 let menuOpen = false;
 
@@ -97,12 +99,14 @@ clickArea.addEventListener("click", (e) => {
 
     if (menuOpen) {
         menuItems.forEach((item) => item.classList.remove("visible"));
+        document.getElementById("menu-background").classList.remove("visible");
         menuOpen = false;
         return;
     }
 
     animating = true;
     menuOpen = true;
+    document.getElementById("menu-background").classList.add("visible");
 
     positionMenuItems();
     menuItems.forEach((item) => item.classList.add("visible"));
@@ -113,7 +117,7 @@ document.addEventListener("click", (e) => {
     const navIcon = document.getElementById("nav-icon");
 
     if (!navIcon.contains(e.target) && !navMenu.contains(e.target)) {
-        menuItems.forEach((item) => item.classList.remove("visible"));
+        document.getElementById("menu-background").classList.remove("visible");
         menuOpen = false;
     }
 });

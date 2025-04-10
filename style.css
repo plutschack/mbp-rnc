@@ -315,6 +315,8 @@ table {
         --nav-icon-right: -41vw;
         --nav-menu-bottom: 37vh;
         --nav-menu-right: -41vw;
+        --nav-background-bottom: 0vh;
+        --nav-background-right: -25vw;
     }
 
     .cell-text {
@@ -354,7 +356,7 @@ table {
 
     #nav-menu {
         position: fixed;
-        background-color: black;
+        background-color: transparent;
         border-radius: 50%;
         width: 5vw;
         height: 5vw;
@@ -362,6 +364,23 @@ table {
         right: var(--nav-menu-right);
         pointer-events: auto;
         z-index: 999;
+    }
+
+    #menu-background {
+        position: fixed;
+        width: 50vw;
+        height: 50vw;
+        opacity: 0;
+        transition: opacity 0.1s ease;
+        bottom: var(--nav-background-bottom);
+        right: var(--nav-background-right);
+        z-index: 990;
+        transition: transform 0.1s linear;
+        will-change: transform;
+    }
+
+    #menu-background.visible {
+        opacity: 1;
     }
 
     .menu-item {
