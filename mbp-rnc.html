@@ -19,12 +19,12 @@
     <body>
         <body>
             <!-- Navigation icon -->
-            <svg id="nav-icon" viewBox="-10 0 110 100" xmlns="http://www.w3.org/2000/svg">
+            <svg id="nav-icon">
                 <!-- Outer circle -->
-                <circle cx="50" cy="50" r="48" stroke="#f58f1d" stroke-width="0.5" fill="none" />
+                <circle id="outer-circle" cx="50" cy="50" r="48" stroke="#f58f1d" stroke-width="0.5" fill="none" />
               
                 <!-- Center dot -->
-                <circle cx="50" cy="50" r="10" fill="#f58f1d" />
+                <circle id="center-dot" cx="50" cy="50" r="10" fill="#f58f1d" />
                 <!-- Click hit area (slightly larger than center dot, smaller than orbit circle) -->
                 <circle
                 id="click-area"
@@ -41,7 +41,7 @@
                 <g id="orbit-group">
                   <circle cx="50" cy="2" r="4" fill="#f58f1d" />
                 </g>
-              </svg>
+            </svg>
 
               <div id="nav-menu">
                 <div class="menu-item">Contact</div>

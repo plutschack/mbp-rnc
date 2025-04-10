@@ -51,12 +51,10 @@ let menuOpen = false;
 
 function positionMenuItems() {
     // Read the values from CSS custom properties
-    const arcRadiusStr = getCSSVariable("--arc-radius");
-    const baseOffsetXStr = getCSSVariable("--base-offset-x");
-    const baseOffsetYStr = getCSSVariable("--base-offset-y");
+    const arcRadiusStr = 320;
+    const baseOffsetXStr = -900;
+    const baseOffsetYStr = -50;
 
-    // Convert string values (like "320px" or "calc(100vw * 0.4)") to a number in pixels.
-    // For simplicity, assume the values are in pixels. (If using calc() with vw, the browser will resolve it.)
     const arcRadius = parseFloat(arcRadiusStr);
     const baseOffsetX = parseFloat(baseOffsetXStr);
     const baseOffsetY = parseFloat(baseOffsetYStr);
@@ -64,8 +62,9 @@ function positionMenuItems() {
     const centerAngle = -180;
     const arcSpan = 120;
     const step = arcSpan / (menuItems.length - 1);
+    const reversedItems = Array.from(menuItems).reverse();
 
-    menuItems.forEach((item, i) => {
+    reversedItems.forEach((item, i) => {
         const angleDeg = centerAngle - arcSpan / 2 + step * i;
         const angleRad = angleDeg * (Math.PI / 180);
         const x = arcRadius * Math.cos(angleRad);
@@ -122,3 +121,50 @@ document.addEventListener("click", (e) => {
 function getCSSVariable(variableName) {
     return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
 }
+
+//----------menu arc----------//
+function drawArc(arcRadius, arcSpan, centerAngle) {
+    // The center of your nav icon’s SVG is defined by the circles at (50,50).
+    const cx = 50;
+    const cy = 50;
+
+    // Calculate start and end angles from the center angle and arc span.
+    const startAngle = centerAngle - arcSpan / 2; // e.g. -180 - 60 = -240
+    const endAngle = centerAngle + arcSpan / 2; // e.g. -180 + 60 = -120
+
+    // Helper to convert degrees to radians.
+    const degToRad = (deg) => (deg * Math.PI) / 180;
+
+    // Compute the start and end points, in SVG coordinates.
+    const startX = cx + arcRadius * Math.cos(degToRad(startAngle));
+    const startY = cy + arcRadius * Math.sin(degToRad(startAngle));
+    const endX = cx + arcRadius * Math.cos(degToRad(endAngle));
+    const endY = cy + arcRadius * Math.sin(degToRad(endAngle));
+
+    // The largeArcFlag is 1 if the arc span is more than 180°, else 0.
+    const largeArcFlag = arcSpan > 180 ? 1 : 0;
+    // The sweep flag: 1 draws the arc clockwise.
+    const sweepFlag = 1;
+
+    // Build the SVG path data for an arc.
+    // Format: M (startX,startY) A (arcRadius,arcRadius) 0 (largeArcFlag) (sweepFlag) (endX,endY)
+    const pathData = `M ${startX} ${startY} A ${arcRadius} ${arcRadius} 0 ${largeArcFlag} ${sweepFlag} ${endX} ${endY}`;
+
+    // Try to get the path element with id="arc-path". If it doesn’t exist, create it.
+    let arcPath = document.getElementById("arc-path");
+    if (!arcPath) {
+        const svg = document.getElementById("nav-icon"); // our SVG container
+        arcPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        arcPath.setAttribute("id", "arc-path");
+        // Set some default styling for visibility.
+        arcPath.setAttribute("stroke", "white");
+        arcPath.setAttribute("stroke-width", "2");
+        arcPath.setAttribute("fill", "none");
+        svg.appendChild(arcPath);
+    }
+    arcPath.setAttribute("d", pathData);
+}
+
+// Example usage:
+// Draw an arc with a radius of 40 (which fits the viewBox), an arc span of 120°, and centered at -180°.
+drawArc(320, 120, -180);
