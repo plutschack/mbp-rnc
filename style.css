@@ -160,6 +160,54 @@ table {
         font-size: 3vw;
         padding: 2vw 4vw;
     }
+
+    #nav-icon {
+        position: fixed;
+        bottom: 25.5vh;
+        right: 2.5vh;
+        width: 5vw;
+        height: 5vw;
+        z-index: 1000;
+        transition: transform 0.1s linear;
+        will-change: transform;
+        transform-origin: center center;
+    }
+
+    #nav-menu {
+        position: fixed;
+        bottom: 25.5vh;
+        right: 2.5vh;
+        pointer-events: auto;
+        z-index: 999;
+    }
+
+    .menu-item {
+        position: absolute;
+        background-color: black;
+        color: white;
+        opacity: 0;
+        transition: opacity 0.1s ease;
+        pointer-events: auto;
+        white-space: nowrap;
+    }
+
+    .menu-item.visible {
+        opacity: 1;
+    }
+
+    /* Example placement along arc (tweak as needed) */
+    .menu-item:nth-child(1) {
+        transform: translate(-3vw, -10vh);
+    }
+    .menu-item:nth-child(2) {
+        transform: translate(-6vw, -7vh);
+    }
+    .menu-item:nth-child(3) {
+        transform: translate(-8vw, -3vh);
+    }
+    .menu-item:nth-child(4) {
+        transform: translate(-9vw, 2vh);
+    }
 }
 
 /* ORANGE Small devices (portrait tablets and large phones, 600px and up) */
@@ -307,8 +355,12 @@ table {
 
     .menu-item {
         position: absolute;
+        background-color: black;
+        color: white;
         opacity: 0;
-        transition: opacity 0.2s ease-in-out;
+        transition: opacity 0.1s ease;
+        pointer-events: auto;
+        white-space: nowrap;
     }
 
     .menu-item.visible {
