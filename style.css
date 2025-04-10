@@ -165,8 +165,8 @@ table {
         position: fixed;
         bottom: 25.5vh;
         right: 2.5vh;
-        width: 5vw;
-        height: 5vw;
+        width: 15vw;
+        height: 15vw;
         z-index: 1000;
         transition: transform 0.1s linear;
         will-change: transform;
