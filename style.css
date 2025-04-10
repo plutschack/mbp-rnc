@@ -308,7 +308,7 @@ table {
     .menu-item {
         position: absolute;
         opacity: 0;
-        transition: opacity 0.4s ease;
+        transition: opacity 0.2s ease-in-out;
     }
 
     .menu-item.visible {

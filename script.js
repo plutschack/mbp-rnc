@@ -68,7 +68,7 @@ document.getElementById("click-area").addEventListener("click", () => {
         } else {
             // Trigger fade-in menu
             document.querySelectorAll(".menu-item").forEach((item, i) => {
-                setTimeout(() => item.classList.add("visible"), i * 100);
+                setTimeout(() => item.classList.add("visible"), i * 5);
             });
         }
     };
