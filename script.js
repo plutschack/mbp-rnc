@@ -54,8 +54,8 @@ let menuOpen = false;
 function positionMenuItems() {
     // Read the values from CSS custom properties
     const arcRadiusStr = 320;
-    const baseOffsetXStr = -900;
-    const baseOffsetYStr = -50;
+    const baseOffsetXStr = window.innerWidth * 0;
+    const baseOffsetYStr = window.innerWidth * 0;
 
     const arcRadius = parseFloat(arcRadiusStr);
     const baseOffsetX = parseFloat(baseOffsetXStr);

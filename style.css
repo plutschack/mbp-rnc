@@ -342,12 +342,43 @@ table {
         padding: 0.8vh 1.8vw;
     }
 
+    .fixed-container {
+        position: fixed; /* or absolute, if relative to a specific container */
+        top: 50%; /* vertical center of viewport */
+        left: 50%; /* horizontal center of viewport */
+        pointer-events: none; /* pass through clicks */
+        background-color: aqua;
+        width: 30vw;
+        height: 30vw;
+        transform: translate(-50%, -50%); /* exact centering */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .circle {
+        position: absolute;
+        top: 50%; /* center vertically inside container */
+        left: 50%; /* center horizontally inside container */
+        transform: translate(-50%, -50%); /* exact centering */
+        pointer-events: auto; /* allow interaction if needed */
+    }
+
+    #menu-container {
+        bottom: 0vh;
+        right: 0vh;
+        z-index: 900;
+    }
+
+    #nav-menu,
+    #nav-icon,
+    #menu-background {
+        z-index: 1000;
+    }
+
     #nav-icon {
-        position: fixed;
         width: 50vw;
         height: auto;
-        bottom: var(--nav-icon-bottom);
-        right: var(--nav-icon-right);
         z-index: 1000;
         transition: transform 0.1s linear;
         will-change: transform;
@@ -355,27 +386,20 @@ table {
     }
 
     #nav-menu {
-        position: fixed;
-        background-color: transparent;
-        border-radius: 50%;
         width: 5vw;
-        height: 5vw;
-        bottom: var(--nav-menu-bottom);
-        right: var(--nav-menu-right);
-        pointer-events: auto;
+        height: auto;
         z-index: 999;
+        background-color: transparent;
+        pointer-events: auto;
     }
 
     #menu-background {
-        position: fixed;
-        width: 70vw;
-        height: 50vw;
+        width: 50vw;
+        height: auto;
+        z-index: 990;
         opacity: 0;
         transition: opacity 0.1s ease;
-        bottom: var(--nav-background-bottom);
-        right: var(--nav-background-right);
-        z-index: 990;
-        transition: transform 0.1s linear;
+        transition: transform 0.1s ease;
         will-change: transform;
     }
 
