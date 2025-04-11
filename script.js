@@ -64,6 +64,7 @@ function positionMenuItems() {
     const centerAngle = 180;
     const arcSpan = 120;
     const step = arcSpan / (menuItems.length - 1);
+    const fontHeight = Math.sin(arcSpan / 4.1) + "px";
     const reversedItems = Array.from(menuItems).reverse();
 
     reversedItems.forEach((item, i) => {
@@ -72,6 +73,7 @@ function positionMenuItems() {
         const x = arcRadius * Math.cos(angleRad);
         const y = arcRadius * Math.sin(angleRad);
         item.style.transform = `translate(${x + baseOffsetX}px, ${y + baseOffsetY}px)`;
+        item.style.fontSize = fontHeight;
     });
 }
 
