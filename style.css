@@ -165,9 +165,7 @@ table {
         position: fixed; /* or absolute, if relative to a specific container */
         top: auto;
         left: auto;
-        pointer-events: none; /* pass through clicks */
         background-color: transparent;
-        opacity: 0.6;
         width: 30vw;
         height: 30vw;
         transform: none;
@@ -177,6 +175,7 @@ table {
         bottom: 20vh;
         right: -10vw;
         z-index: 900;
+        pointer-events: auto;
     }
 
     .circle {
@@ -184,7 +183,7 @@ table {
         top: 50%; /* center vertically inside container */
         left: 50%; /* center horizontally inside container */
         transform: translate(-50%, -50%); /* exact centering */
-        pointer-events: auto; /* allow interaction if needed */
+        pointer-events: auto !important; /* allow interaction if needed */
     }
 
     #nav-menu,
@@ -284,9 +283,7 @@ table {
         position: fixed; /* or absolute, if relative to a specific container */
         top: auto;
         left: auto;
-        pointer-events: none; /* pass through clicks */
         background-color: transparent;
-        opacity: 0.6;
         width: 30vw;
         height: 30vw;
         transform: none;
@@ -296,6 +293,7 @@ table {
         bottom: 20vh;
         right: -10vw;
         z-index: 900;
+        pointer-events: auto;
     }
 
     .circle {
@@ -303,7 +301,7 @@ table {
         top: 50%; /* center vertically inside container */
         left: 50%; /* center horizontally inside container */
         transform: translate(-50%, -50%); /* exact centering */
-        pointer-events: auto; /* allow interaction if needed */
+        pointer-events: auto !important; /* allow interaction if needed */
     }
 
     #nav-menu,
@@ -411,9 +409,7 @@ table {
         position: fixed; /* or absolute, if relative to a specific container */
         top: auto;
         left: auto;
-        pointer-events: none; /* pass through clicks */
         background-color: transparent;
-        opacity: 0.6;
         width: 30vw;
         height: 30vw;
         transform: none;
@@ -423,6 +419,7 @@ table {
         bottom: 20vh;
         right: -10vw;
         z-index: 900;
+        pointer-events: auto;
     }
 
     .circle {
@@ -430,7 +427,7 @@ table {
         top: 50%; /* center vertically inside container */
         left: 50%; /* center horizontally inside container */
         transform: translate(-50%, -50%); /* exact centering */
-        pointer-events: auto; /* allow interaction if needed */
+        pointer-events: auto !important; /* allow interaction if needed */
     }
 
     #nav-menu,
@@ -530,9 +527,7 @@ table {
         position: fixed; /* or absolute, if relative to a specific container */
         top: auto;
         left: auto;
-        pointer-events: none; /* pass through clicks */
         background-color: transparent;
-        opacity: 0.6;
         width: 30vw;
         height: 30vw;
         transform: none;
@@ -542,6 +537,7 @@ table {
         bottom: 20vh;
         right: -10vw;
         z-index: 900;
+        pointer-events: auto;
     }
 
     .circle {
@@ -549,7 +545,7 @@ table {
         top: 50%; /* center vertically inside container */
         left: 50%; /* center horizontally inside container */
         transform: translate(-50%, -50%); /* exact centering */
-        pointer-events: auto; /* allow interaction if needed */
+        pointer-events: auto !important; /* allow interaction if needed */
     }
 
     #nav-menu,
@@ -655,9 +651,7 @@ table {
         position: fixed; /* or absolute, if relative to a specific container */
         top: auto;
         left: auto;
-        pointer-events: none; /* pass through clicks */
         background-color: transparent;
-        opacity: 0.6;
         width: 30vw;
         height: 30vw;
         transform: none;
@@ -667,6 +661,7 @@ table {
         bottom: 20vh;
         right: -10vw;
         z-index: 900;
+        pointer-events: auto;
     }
 
     .circle {
@@ -674,7 +669,7 @@ table {
         top: 50%; /* center vertically inside container */
         left: 50%; /* center horizontally inside container */
         transform: translate(-50%, -50%); /* exact centering */
-        pointer-events: auto; /* allow interaction if needed */
+        pointer-events: auto !important; /* allow interaction if needed */
     }
 
     #nav-menu,
@@ -779,9 +774,7 @@ table {
         position: fixed; /* or absolute, if relative to a specific container */
         top: auto;
         left: auto;
-        pointer-events: none; /* pass through clicks */
         background-color: transparent;
-        opacity: 0.6;
         width: 30vw;
         height: 30vw;
         transform: none;
@@ -791,6 +784,7 @@ table {
         bottom: 20vh;
         right: -10vw;
         z-index: 900;
+        pointer-events: auto;
     }
 
     .circle {
@@ -798,7 +792,7 @@ table {
         top: 50%; /* center vertically inside container */
         left: 50%; /* center horizontally inside container */
         transform: translate(-50%, -50%); /* exact centering */
-        pointer-events: auto; /* allow interaction if needed */
+        pointer-events: auto !important; /* allow interaction if needed */
     }
 
     #nav-menu,
