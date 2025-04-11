@@ -1,3 +1,5 @@
+console.log("HELLO FROM MY SCRIPT!");
+
 function fitTextToCell(selector) {
     const elements = document.querySelectorAll(selector);
 
