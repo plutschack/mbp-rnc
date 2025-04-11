@@ -154,42 +154,55 @@ let menuOpen = false;
 
 function animateOrbit(callback) {
     let progress = 0;
+    console.log("animateOrbit started, progress=0, pathLength=", pathLength);
+
     const step = () => {
+        console.log("Frame start | progress =", progress);
         progress += 0.05;
         if (progress >= 1) {
             animating = false;
+            console.log("Orbit complete: progress >= 1. Calling callback if any...");
             callback?.();
             return;
         }
         const point = path.getPointAtLength(pathLength * progress);
+        console.log("Frame update | progress =", progress, "| x =", point.x, "| y =", point.y);
+
         orbitDot.setAttribute("cx", point.x);
         orbitDot.setAttribute("cy", point.y);
         requestAnimationFrame(step);
     };
     step();
-    console.log(progress, point.x, point.y);
 }
 
 clickArea.addEventListener("click", (e) => {
-    e.stopPropagation();
-    console.log("Clicked clickArea!");
+    console.log("clickArea was clicked!");
 
-    if (animating) return;
+    e.stopPropagation();
+
+    if (animating) {
+        console.log("…but animating=true, so ignoring click");
+        return;
+    }
 
     if (menuOpen) {
+        console.log("Menu is open, about to close it");
         menuItems.forEach((item) => item.classList.remove("visible"));
         document.getElementById("menu-background").classList.remove("visible");
         menuOpen = false;
         return;
     }
 
+    console.log("Opening menu + starting orbit animation");
     animating = true;
     menuOpen = true;
     document.getElementById("menu-background").classList.add("visible");
 
     positionMenuItems();
     menuItems.forEach((item) => item.classList.add("visible"));
-    animateOrbit();
+    animateOrbit(() => {
+        console.log("Orbit animation completed.");
+    });
 });
 
 document.addEventListener("click", (e) => {
