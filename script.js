@@ -80,6 +80,13 @@ function repositionNavIcon() {
     container.style.right = newRightPx + "px";
 }
 
+window.addEventListener("resize", resizeBackgroundCircle);
+window.addEventListener("resize", resizeNavIcon);
+window.addEventListener("resize", repositionNavIcon);
+resizeNavIcon();
+resizeBackgroundCircle();
+repositionNavIcon();
+
 function positionMenuItems() {
     // 1) Get the on-page center of the menu-background
     const mbRect = document.getElementById("menu-background").getBoundingClientRect();
@@ -125,13 +132,6 @@ function positionMenuItems() {
     });
 }
 
-window.addEventListener("resize", resizeBackgroundCircle);
-window.addEventListener("resize", resizeNavIcon);
-window.addEventListener("resize", repositionNavIcon);
-resizeNavIcon();
-resizeBackgroundCircle();
-repositionNavIcon();
-
 // Scroll rotation
 const orbitGroup = document.getElementById("orbit-group");
 
@@ -167,6 +167,7 @@ function animateOrbit(callback) {
         requestAnimationFrame(step);
     };
     step();
+    console.log(progress, point.x, point.y);
 }
 
 clickArea.addEventListener("click", (e) => {
