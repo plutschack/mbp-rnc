@@ -161,19 +161,22 @@ table {
         padding: 2vw 4vw;
     }
 
-    .fixed-container {
+    #menu-container.fixed-container {
         position: fixed; /* or absolute, if relative to a specific container */
-        top: 50%; /* vertical center of viewport */
-        left: 50%; /* horizontal center of viewport */
+        top: auto;
+        left: auto;
         pointer-events: none; /* pass through clicks */
-        background-color: aqua;
+        background-color: transparent;
         opacity: 0.6;
         width: 30vw;
         height: 30vw;
-        transform: translate(-50%, -50%); /* exact centering */
+        transform: none;
         display: flex;
         justify-content: center;
         align-items: center;
+        bottom: 20vh;
+        right: -10vw;
+        z-index: 900;
     }
 
     .circle {
@@ -184,12 +187,6 @@ table {
         pointer-events: auto; /* allow interaction if needed */
     }
 
-    #menu-container {
-        bottom: 0vh;
-        right: 0vh;
-        z-index: 900;
-    }
-
     #nav-menu,
     #nav-icon,
     #menu-background {
@@ -197,8 +194,6 @@ table {
     }
 
     #nav-icon {
-        width: 50vw;
-        height: auto;
         z-index: 1000;
         transition: transform 0.1s linear;
         will-change: transform;
@@ -224,7 +219,6 @@ table {
     }
 
     .menu-item {
-        position: absolute;
         color: white;
         opacity: 0;
         transition: opacity 0.1s ease;
@@ -285,19 +279,23 @@ table {
         font-size: 3vw;
         padding: 2vw 3.5vw;
     }
-    .fixed-container {
+
+    #menu-container.fixed-container {
         position: fixed; /* or absolute, if relative to a specific container */
-        top: 50%; /* vertical center of viewport */
-        left: 50%; /* horizontal center of viewport */
+        top: auto;
+        left: auto;
         pointer-events: none; /* pass through clicks */
-        background-color: aqua;
+        background-color: transparent;
         opacity: 0.6;
         width: 30vw;
         height: 30vw;
-        transform: translate(-50%, -50%); /* exact centering */
+        transform: none;
         display: flex;
         justify-content: center;
         align-items: center;
+        bottom: 20vh;
+        right: -10vw;
+        z-index: 900;
     }
 
     .circle {
@@ -308,12 +306,6 @@ table {
         pointer-events: auto; /* allow interaction if needed */
     }
 
-    #menu-container {
-        bottom: 0vh;
-        right: 0vh;
-        z-index: 900;
-    }
-
     #nav-menu,
     #nav-icon,
     #menu-background {
@@ -321,8 +313,6 @@ table {
     }
 
     #nav-icon {
-        width: 50vw;
-        height: auto;
         z-index: 1000;
         transition: transform 0.1s linear;
         will-change: transform;
@@ -348,7 +338,6 @@ table {
     }
 
     .menu-item {
-        position: absolute;
         color: white;
         opacity: 0;
         transition: opacity 0.1s ease;
@@ -417,19 +406,23 @@ table {
         font-size: 2.5vw;
         padding: 1.5vw 3vw;
     }
-    .fixed-container {
+
+    #menu-container.fixed-container {
         position: fixed; /* or absolute, if relative to a specific container */
-        top: 50%; /* vertical center of viewport */
-        left: 50%; /* horizontal center of viewport */
+        top: auto;
+        left: auto;
         pointer-events: none; /* pass through clicks */
-        background-color: aqua;
+        background-color: transparent;
         opacity: 0.6;
         width: 30vw;
         height: 30vw;
-        transform: translate(-50%, -50%); /* exact centering */
+        transform: none;
         display: flex;
         justify-content: center;
         align-items: center;
+        bottom: 20vh;
+        right: -10vw;
+        z-index: 900;
     }
 
     .circle {
@@ -440,12 +433,6 @@ table {
         pointer-events: auto; /* allow interaction if needed */
     }
 
-    #menu-container {
-        bottom: 0vh;
-        right: 0vh;
-        z-index: 900;
-    }
-
     #nav-menu,
     #nav-icon,
     #menu-background {
@@ -453,8 +440,6 @@ table {
     }
 
     #nav-icon {
-        width: 50vw;
-        height: auto;
         z-index: 1000;
         transition: transform 0.1s linear;
         will-change: transform;
@@ -480,7 +465,6 @@ table {
     }
 
     .menu-item {
-        position: absolute;
         color: white;
         opacity: 0;
         transition: opacity 0.1s ease;
@@ -542,19 +526,22 @@ table {
         padding: 1vw 2vw;
     }
 
-    .fixed-container {
+    #menu-container.fixed-container {
         position: fixed; /* or absolute, if relative to a specific container */
-        top: 50%; /* vertical center of viewport */
-        left: 50%; /* horizontal center of viewport */
+        top: auto;
+        left: auto;
         pointer-events: none; /* pass through clicks */
-        background-color: aqua;
+        background-color: transparent;
         opacity: 0.6;
         width: 30vw;
         height: 30vw;
-        transform: translate(-50%, -50%); /* exact centering */
+        transform: none;
         display: flex;
         justify-content: center;
         align-items: center;
+        bottom: 20vh;
+        right: -10vw;
+        z-index: 900;
     }
 
     .circle {
@@ -565,12 +552,6 @@ table {
         pointer-events: auto; /* allow interaction if needed */
     }
 
-    #menu-container {
-        bottom: 0vh;
-        right: 0vh;
-        z-index: 900;
-    }
-
     #nav-menu,
     #nav-icon,
     #menu-background {
@@ -578,8 +559,6 @@ table {
     }
 
     #nav-icon {
-        width: 50vw;
-        height: auto;
         z-index: 1000;
         transition: transform 0.1s linear;
         will-change: transform;
@@ -605,7 +584,6 @@ table {
     }
 
     .menu-item {
-        position: absolute;
         color: white;
         opacity: 0;
         transition: opacity 0.1s ease;
@@ -672,19 +650,23 @@ table {
         font-size: 1.8vw;
         padding: 0.8vw 1.8vw;
     }
-    .fixed-container {
+
+    #menu-container.fixed-container {
         position: fixed; /* or absolute, if relative to a specific container */
-        top: 50%; /* vertical center of viewport */
-        left: 50%; /* horizontal center of viewport */
+        top: auto;
+        left: auto;
         pointer-events: none; /* pass through clicks */
-        background-color: aqua;
+        background-color: transparent;
         opacity: 0.6;
         width: 30vw;
         height: 30vw;
-        transform: translate(-50%, -50%); /* exact centering */
+        transform: none;
         display: flex;
         justify-content: center;
         align-items: center;
+        bottom: 20vh;
+        right: -10vw;
+        z-index: 900;
     }
 
     .circle {
@@ -695,12 +677,6 @@ table {
         pointer-events: auto; /* allow interaction if needed */
     }
 
-    #menu-container {
-        bottom: 0vh;
-        right: 0vh;
-        z-index: 900;
-    }
-
     #nav-menu,
     #nav-icon,
     #menu-background {
@@ -708,8 +684,6 @@ table {
     }
 
     #nav-icon {
-        width: 50vw;
-        height: auto;
         z-index: 1000;
         transition: transform 0.1s linear;
         will-change: transform;
@@ -735,7 +709,6 @@ table {
     }
 
     .menu-item {
-        position: absolute;
         color: white;
         opacity: 0;
         transition: opacity 0.1s ease;
@@ -807,7 +780,7 @@ table {
         top: auto;
         left: auto;
         pointer-events: none; /* pass through clicks */
-        background-color: aqua;
+        background-color: transparent;
         opacity: 0.6;
         width: 30vw;
         height: 30vw;

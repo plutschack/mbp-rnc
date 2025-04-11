@@ -108,12 +108,43 @@ function resizeBackgroundCircle() {
 }
 
 function resizeNavIcon() {
-    const circRadH = window.innerHeight * 0.13;
-    const circRadW = window.innerWidth * 0.13;
+    const circRadH = window.innerHeight * 0.1;
+    const circRadW = window.innerWidth * 0.1;
+    const circRad = Math.min(circRadH, circRadW);
 
-    const circRad = circRadH < circRadW ? circRadH : circRadW;
     const circleElem = document.getElementById("nav-icon");
     circleElem.style.width = circRad + "px";
+}
+
+function repositionNavIcon() {
+    const circRadH = window.innerHeight * 0.13;
+    const circRadW = window.innerWidth * 0.13;
+    const circRad = Math.min(circRadH, circRadW);
+
+    const container = document.getElementById("menu-container");
+
+    // Get the computed 'right' value (may be "15vw", "200px", "", etc.)
+    const style = window.getComputedStyle(container);
+    let rightVal = style.right.trim();
+
+    // Convert from whatever to a pixel number:
+    let currentRightPx = 0;
+
+    if (rightVal.endsWith("px")) {
+        currentRightPx = parseFloat(rightVal) || 0;
+    } else if (rightVal.endsWith("vw")) {
+        const numericPart = parseFloat(rightVal) || 0;
+        // Convert that many vw to px
+        currentRightPx = (numericPart / 100) * window.innerWidth;
+    } else {
+        // If it's blank or some other unit, just parseFloat or default to 0
+        currentRightPx = parseFloat(rightVal) || 0;
+    }
+
+    // Now add circRad*5.5 (which is px)
+    const newRightPx = currentRightPx + circRad * 0.1;
+
+    container.style.right = newRightPx + "px";
 }
 
 function positionMenuItems() {
@@ -163,8 +194,10 @@ function positionMenuItems() {
 
 window.addEventListener("resize", resizeBackgroundCircle);
 window.addEventListener("resize", resizeNavIcon);
+window.addEventListener("resize", repositionNavIcon);
 resizeNavIcon();
 resizeBackgroundCircle();
+repositionNavIcon();
 
 function getCSSVariable(variableName) {
     return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();
