@@ -40,7 +40,7 @@ window.addEventListener("scroll", () => {
 });
 
 // Orbit animation and menu logic
-const orbitDot = document.getElementById("orbit-group");
+const orbitDot = document.querySelector("#orbit-group circle");
 const path = document.getElementById("orbit-path");
 const pathLength = path.getTotalLength();
 const clickArea = document.getElementById("click-area");
@@ -50,33 +50,6 @@ const menuBackground = document.getElementById("menu-background");
 
 let animating = false;
 let menuOpen = false;
-
-function positionMenuItems() {
-    // Read the values from CSS custom properties
-
-    const arcRadiusH = window.innerHeight * 0.3;
-    const arcRadiusW = window.innerWidth * 0.3;
-
-    const arcRadius = arcRadiusH < arcRadiusW ? arcRadiusH : arcRadiusW;
-
-    const baseOffsetX = window.innerWidth * 0;
-    const baseOffsetY = window.innerHeight * -0.04;
-
-    const centerAngle = 180;
-    const arcSpan = 120;
-    const step = arcSpan / (menuItems.length - 1);
-    const textHeight = (Math.sin(arcSpan) / 4.1) * arcRadius;
-    const reversedItems = Array.from(menuItems).reverse();
-
-    reversedItems.forEach((item, i) => {
-        const angleDeg = centerAngle - arcSpan / 2 + step * i;
-        const angleRad = angleDeg * (Math.PI / 180);
-        const x = arcRadius * Math.cos(angleRad);
-        const y = arcRadius * Math.sin(angleRad);
-        item.style.transform = `translate(${x + baseOffsetX}px, ${y + baseOffsetY}px)`;
-        item.style.fontSize = textHeight + "px";
-    });
-}
 
 function animateOrbit(callback) {
     let progress = 0;
@@ -124,6 +97,74 @@ document.addEventListener("click", (e) => {
         menuOpen = false;
     }
 });
+
+function resizeBackgroundCircle() {
+    const circRadH = window.innerHeight * 0.7;
+    const circRadW = window.innerWidth * 0.7;
+
+    const circRad = circRadH < circRadW ? circRadH : circRadW;
+    const circleElem = document.getElementById("menu-background");
+    circleElem.style.width = circRad + "px";
+}
+
+function resizeNavIcon() {
+    const circRadH = window.innerHeight * 0.13;
+    const circRadW = window.innerWidth * 0.13;
+
+    const circRad = circRadH < circRadW ? circRadH : circRadW;
+    const circleElem = document.getElementById("nav-icon");
+    circleElem.style.width = circRad + "px";
+}
+
+function positionMenuItems() {
+    // 1) Get the on-page center of the menu-background
+    const mbRect = document.getElementById("menu-background").getBoundingClientRect();
+    const mbCenterX = mbRect.left + mbRect.width / 2;
+    const mbCenterY = mbRect.top + mbRect.height / 2;
+
+    // 2) The parent container of .menu-item elements
+    const menuParent = document.getElementById("nav-menu");
+    const parentRect = menuParent.getBoundingClientRect();
+    const parentOriginX = parentRect.left;
+    const parentOriginY = parentRect.top;
+
+    // 3) The offset from the parent’s (0,0) to the background’s center
+    const offsetX = mbCenterX - parentOriginX;
+    const offsetY = mbCenterY - parentOriginY;
+
+    const arcRadiusH = (mbRect.height / 2) * 0.85;
+    const arcRadiusW = (mbRect.width / 2) * 0.85;
+
+    const arcRadius = Math.min(arcRadiusH, arcRadiusW);
+
+    const container = document.getElementById("menu-background");
+
+    const centerAngle = 180;
+    const arcSpan = 120;
+    const arcSpanRad = arcSpan * (Math.PI / 180);
+    const step = arcSpan / (menuItems.length - 1);
+    const textHeight = (Math.sin(arcSpanRad) / 8) * arcRadius;
+    const reversedItems = Array.from(menuItems).reverse();
+
+    reversedItems.forEach((item, i) => {
+        item.style.fontSize = textHeight + "px";
+        const angleDeg = centerAngle - arcSpan / 2 + step * i;
+        const angleRad = angleDeg * (Math.PI / 180);
+        const x = arcRadius * Math.cos(angleRad);
+        const y = arcRadius * Math.sin(angleRad);
+
+        const rect = item.getBoundingClientRect();
+        const halfW = rect.width / 2;
+        const halfH = rect.height / 2;
+
+        item.style.transform = `translate(${x + offsetX}px, ${y + offsetY - halfH}px)`;
+    });
+}
+
+window.addEventListener("resize", resizeBackgroundCircle);
+window.addEventListener("resize", resizeNavIcon);
+resizeNavIcon();
+resizeBackgroundCircle();
 
 function getCSSVariable(variableName) {
     return getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();

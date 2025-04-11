@@ -212,8 +212,6 @@ table {
     }
 
     #menu-background {
-        width: 50vw;
-        height: auto;
         z-index: 990;
         opacity: 0;
         transition: opacity 0.1s ease;
@@ -338,8 +336,6 @@ table {
     }
 
     #menu-background {
-        width: 50vw;
-        height: auto;
         z-index: 990;
         opacity: 0;
         transition: opacity 0.1s ease;
@@ -472,8 +468,6 @@ table {
     }
 
     #menu-background {
-        width: 50vw;
-        height: auto;
         z-index: 990;
         opacity: 0;
         transition: opacity 0.1s ease;
@@ -599,8 +593,6 @@ table {
     }
 
     #menu-background {
-        width: 50vw;
-        height: auto;
         z-index: 990;
         opacity: 0;
         transition: opacity 0.1s ease;
@@ -731,8 +723,6 @@ table {
     }
 
     #menu-background {
-        width: 50vw;
-        height: auto;
         z-index: 990;
         opacity: 0;
         transition: opacity 0.1s ease;
@@ -848,8 +838,6 @@ table {
     }
 
     #nav-icon {
-        width: 50vw;
-        height: auto;
         z-index: 1000;
         transition: transform 0.1s linear;
         will-change: transform;
@@ -863,8 +851,6 @@ table {
     }
 
     #menu-background {
-        width: 50vw;
-        height: auto;
         z-index: 990;
         opacity: 0;
         transition: opacity 0.1s ease;
@@ -877,7 +863,6 @@ table {
     }
 
     .menu-item {
-        position: absolute;
         color: white;
         opacity: 0;
         transition: opacity 0.1s ease;
