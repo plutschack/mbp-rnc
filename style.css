@@ -802,19 +802,22 @@ table {
         padding: 0.8vh 1.8vw;
     }
 
-    .fixed-container {
+    #menu-container.fixed-container {
         position: fixed; /* or absolute, if relative to a specific container */
-        top: 50%; /* vertical center of viewport */
-        left: 50%; /* horizontal center of viewport */
+        top: auto;
+        left: auto;
         pointer-events: none; /* pass through clicks */
         background-color: aqua;
         opacity: 0.6;
         width: 30vw;
         height: 30vw;
-        transform: translate(-50%, -50%); /* exact centering */
+        transform: none;
         display: flex;
         justify-content: center;
         align-items: center;
+        bottom: 20vh;
+        right: -10vw;
+        z-index: 900;
     }
 
     .circle {
@@ -823,12 +826,6 @@ table {
         left: 50%; /* center horizontally inside container */
         transform: translate(-50%, -50%); /* exact centering */
         pointer-events: auto; /* allow interaction if needed */
-    }
-
-    #menu-container {
-        bottom: 0vh;
-        right: 0vh;
-        z-index: 900;
     }
 
     #nav-menu,
