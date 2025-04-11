@@ -194,20 +194,6 @@ table {
     .menu-item.visible {
         opacity: 1;
     }
-
-    /* Example placement along arc (tweak as needed) */
-    .menu-item:nth-child(1) {
-        transform: translate(-3vw, -10vh);
-    }
-    .menu-item:nth-child(2) {
-        transform: translate(-6vw, -7vh);
-    }
-    .menu-item:nth-child(3) {
-        transform: translate(-8vw, -3vh);
-    }
-    .menu-item:nth-child(4) {
-        transform: translate(-9vw, 2vh);
-    }
 }
 
 /* ORANGE Small devices (portrait tablets and large phones, 600px and up) */
@@ -348,6 +334,7 @@ table {
         left: 50%; /* horizontal center of viewport */
         pointer-events: none; /* pass through clicks */
         background-color: aqua;
+        opacity: 0.6;
         width: 30vw;
         height: 30vw;
         transform: translate(-50%, -50%); /* exact centering */
@@ -386,8 +373,6 @@ table {
     }
 
     #nav-menu {
-        width: 5vw;
-        height: auto;
         z-index: 999;
         background-color: transparent;
         pointer-events: auto;
@@ -420,18 +405,33 @@ table {
         opacity: 1;
     }
 
-    /* Example placement along arc (tweak as needed) */
+    /* For minor tweaks of menu items*/
     .menu-item:nth-child(1) {
-        transform: translate(-3vw, -10vh);
+        transform: translate(0vw, 0vh);
     }
     .menu-item:nth-child(2) {
-        transform: translate(-6vw, -7vh);
+        transform: translate(0vw, 0vh);
     }
     .menu-item:nth-child(3) {
-        transform: translate(-8vw, -3vh);
+        transform: translate(0vw, 0vh);
     }
     .menu-item:nth-child(4) {
-        transform: translate(-9vw, 2vh);
+        transform: translate(0vw, 0vh);
+    }
+    .menu-item:nth-child(5) {
+        transform: translate(0vw, 0vh);
+    }
+    .menu-item:nth-child(6) {
+        transform: translate(0vw, 0vh);
+    }
+    .menu-item:nth-child(7) {
+        transform: translate(0vw, 0vh);
+    }
+    .menu-item:nth-child(8) {
+        transform: translate(0vw, 0vh);
+    }
+    .menu-item:nth-child(9) {
+        transform: translate(0vw, 0vh);
     }
 }
 

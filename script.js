@@ -55,13 +55,13 @@ function positionMenuItems() {
     // Read the values from CSS custom properties
     const arcRadiusStr = 320;
     const baseOffsetXStr = window.innerWidth * 0;
-    const baseOffsetYStr = window.innerWidth * 0;
+    const baseOffsetYStr = window.innerHeight * 0;
 
     const arcRadius = parseFloat(arcRadiusStr);
     const baseOffsetX = parseFloat(baseOffsetXStr);
     const baseOffsetY = parseFloat(baseOffsetYStr);
 
-    const centerAngle = -180;
+    const centerAngle = 180;
     const arcSpan = 120;
     const step = arcSpan / (menuItems.length - 1);
     const reversedItems = Array.from(menuItems).reverse();
