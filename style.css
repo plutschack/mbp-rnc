@@ -57,8 +57,8 @@ table {
 
 .background-container {
     position: relative;
-    width: 90vw;
-    height: 180vw;
+    width: 85vw;
+    height: 170vw;
 }
 
 .line-art-background {
@@ -67,7 +67,7 @@ table {
     left: 50%; /* center horizontally inside container */
     transform: translate(-50%, -50%); /* exact centering */
     width: 100%;
-    height: 180vw;
+    height: 170vw;
     z-index: 0;
     pointer-events: none;
     background: transparent;
@@ -83,8 +83,8 @@ table {
 .shape-floater.top {
     float: left;
     width: 100%;
-    height: 90vw;
-    background: white;
+    height: 50%;
+    background: transparent;
     opacity: 0.5;
     position: relative;
     z-index: 1;
@@ -96,8 +96,9 @@ table {
 
 .shape-floater.bottom {
     float: right;
+    width: 100%;
     height: 50%;
-    background: white;
+    background: transparent;
     opacity: 0.5;
     position: relative;
     z-index: 1;
@@ -122,6 +123,7 @@ table {
 
 .right {
     text-align: right;
+    padding-top: 15vh;
     padding-left: 5vw;
     vertical-align: middle;
     white-space: normal;
@@ -129,6 +131,7 @@ table {
 
 .left {
     text-align: left;
+    padding-top: 15vh;
     padding-right: 5vw;
     vertical-align: middle;
     white-space: normal;
@@ -258,17 +261,6 @@ table {
     .cell-text {
         font-size: 4.5vw;
         color: white;
-    }
-
-    p.right {
-        min-height: 40%;
-        max-height: 50%;
-    }
-
-    p.left {
-        padding-top: 15%;
-        min-height: 40%;
-        max-height: 50%;
     }
 
     .neon-glow-button.right,

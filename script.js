@@ -19,6 +19,72 @@ function resizeHandler() {
 window.addEventListener("load", resizeHandler);
 window.addEventListener("resize", resizeHandler);
 
+function adjustParagraphFontSizes() {
+    // Calculate polygon area using the shoelace formula.
+    function polygonArea(vertices) {
+        let area = 0;
+        const n = vertices.length;
+        for (let i = 0; i < n; i++) {
+            const [x_i, y_i] = vertices[i];
+            const [x_j, y_j] = vertices[(i + 1) % n]; // wrap-around
+            area += x_i * y_j - x_j * y_i;
+        }
+        return Math.abs(area) / 2;
+    }
+
+    // Define your polygon vertices (in percentage units)
+    const vertices = [
+        [50, 100],
+        [100, 100],
+        [62.61, 96],
+        [42.39, 83.67],
+        [26.24, 67.35],
+        [13.1, 48.94],
+        [4.03, 25.45],
+        [0, 0],
+        [0, 100]
+    ];
+
+    // Assume the container is 100 x 100 (percentage units)
+    const totalArea = 100 * 100; // 10,000 square units
+
+    // Calculate the polygon's area and the empty area
+    const polyArea = polygonArea(vertices);
+    const emptyArea = totalArea - polyArea;
+
+    // Get the p element you want to adjust
+    const pElement = document.querySelector(".right");
+    if (pElement) {
+        // Get the text content, including spaces, and count characters
+        const textContent = pElement.textContent;
+        const totalChars = textContent.length;
+
+        // Calculate the side length of a square representing the average empty area per char.
+        const result = Math.sqrt(emptyArea / totalChars);
+
+        // Option 1: Directly assign if you want to treat the result as pixels:
+        // pElement.style.fontSize = result + "px";
+
+        // Option 2: Convert result from the 100x100 system to pixels using the container's width:
+        const cellText = document.querySelector(".cell-text");
+        if (cellText) {
+            const containerWidthPx = cellText.offsetWidth;
+            const pixelConversionFactor = containerWidthPx / 100;
+            const pixelFontSize = result * pixelConversionFactor;
+            pElement.style.fontSize = pixelFontSize + "px";
+        }
+
+        console.log("Total Characters:", totalChars);
+        console.log("Polygon area:", polyArea);
+        console.log("Empty area:", emptyArea);
+        console.log("Computed font-size value (px):", pElement.style.fontSize);
+    }
+}
+
+// Run the function after page load and on window resize to adjust dynamically.
+window.addEventListener("load", adjustParagraphFontSizes);
+window.addEventListener("resize", adjustParagraphFontSizes);
+
 // ============================================================
 // RESIZING & POSITIONING FUNCTIONS
 // ============================================================
