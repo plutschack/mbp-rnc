@@ -136,285 +136,142 @@ table {
     white-space: normal;
 }
 
-/* AQUA Extra small devices (phones portrait, 600px and down) */
-@media only screen and (max-width: 600px) {
-    .cell-text {
-        color: white;
-    }
-
-    .neon-glow-button.right,
-    .neon-glow-button.left {
-        margin-top: 7vh;
-        padding: 0.8vh 1.8vw;
-    }
-
-    #menu-container.fixed-container {
-        position: fixed; /* or absolute, if relative to a specific container */
-        background-color: transparent;
-        top: 50%;
-        left: 50%;
-        width: 30vw;
-        height: 30vw;
-        transform: translate(-50%, -50%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 900;
-        pointer-events: auto;
-    }
-
-    .circle {
-        position: absolute;
-        top: 50%; /* center vertically inside container */
-        left: 50%; /* center horizontally inside container */
-        transform: translate(-50%, -50%); /* exact centering */
-        pointer-events: auto; /* allow interaction if needed */
-    }
-
-    #nav-icon {
-        width: 50vw;
-        height: auto;
-        z-index: 1000;
-        transition: transform 0.1s linear;
-        will-change: transform;
-        transform-origin: center center;
-    }
-
-    #outer-circle {
-        z-index: 999;
-        cx: 50;
-        cy: 50;
-        r: 48;
-        stroke: #f58f1d;
-        stroke-width: 1;
-        fill: none;
-    }
-
-    #center-dot {
-        z-index: 999;
-        cx: 50;
-        cy: 50;
-        r: 10;
-        fill: #f58f1d;
-    }
-
-    #click-area {
-        z-index: 1000;
-        cx: 50;
-        cy: 50;
-        r: 50;
-        fill: transparent;
-        cursor: pointer;
-    }
-
-    #orbit-path {
-        z-index: 999;
-        fill: none;
-        stroke: none;
-    }
-
-    #nav-menu {
-        z-index: 999;
-        background-color: transparent;
-        pointer-events: auto;
-    }
-
-    #menu-background {
-        z-index: 990;
-        width: 50vw;
-        height: auto;
-        opacity: 0;
-        transition: opacity 0.1s ease;
-        transition: transform 0.1s ease;
-        will-change: transform;
-    }
-
-    #menu-background.visible {
-        opacity: 1;
-    }
-
-    .menu-item {
-        position: absolute;
-        color: white;
-        opacity: 0;
-        transition: opacity 0.1s ease;
-        pointer-events: auto;
-        white-space: nowrap;
-    }
-
-    .menu-item.visible {
-        opacity: 1;
-    }
-
-    /* For minor tweaks of menu items*/
-    .menu-item:nth-child(1) {
-        transform: translate(0vw, 0vh);
-    }
-    .menu-item:nth-child(2) {
-        transform: translate(0vw, 0vh);
-    }
-    .menu-item:nth-child(3) {
-        transform: translate(0vw, 0vh);
-    }
-    .menu-item:nth-child(4) {
-        transform: translate(0vw, 0vh);
-    }
-    .menu-item:nth-child(5) {
-        transform: translate(0vw, 0vh);
-    }
-    .menu-item:nth-child(6) {
-        transform: translate(0vw, 0vh);
-    }
-    .menu-item:nth-child(7) {
-        transform: translate(0vw, 0vh);
-    }
-    .menu-item:nth-child(8) {
-        transform: translate(0vw, 0vh);
-    }
-    .menu-item:nth-child(9) {
-        transform: translate(0vw, 0vh);
-    }
+.cell-text {
+    color: white;
 }
 
-/* WHITE Extra large devices (large laptops landscape tablet, 1450px and up) */
-@media only screen and (min-width: 601px) {
-    .cell-text {
-        color: white;
-    }
+.neon-glow-button.right,
+.neon-glow-button.left {
+    margin-top: 7vh;
+    padding: 0.8vh 1.8vw;
+}
 
-    .neon-glow-button.right,
-    .neon-glow-button.left {
-        margin-top: 7vh;
-        padding: 0.8vh 1.8vw;
-    }
+#menu-container.fixed-container {
+    position: fixed; /* or absolute, if relative to a specific container */
+    background-color: transparent;
+    top: 50%;
+    left: 95vw;
+    width: 30vw;
+    height: 30vw;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 900;
+    pointer-events: auto;
+}
 
-    #menu-container.fixed-container {
-        position: fixed; /* or absolute, if relative to a specific container */
-        background-color: transparent;
-        top: 50%;
-        left: 95vw;
-        width: 30vw;
-        height: 30vw;
-        transform: translate(-50%, -50%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 900;
-        pointer-events: auto;
-    }
+.circle {
+    position: absolute;
+    top: 50%; /* center vertically inside container */
+    left: 50%; /* center horizontally inside container */
+    transform: translate(-50%, -50%); /* exact centering */
+    pointer-events: auto; /* allow interaction if needed */
+}
 
-    .circle {
-        position: absolute;
-        top: 50%; /* center vertically inside container */
-        left: 50%; /* center horizontally inside container */
-        transform: translate(-50%, -50%); /* exact centering */
-        pointer-events: auto; /* allow interaction if needed */
-    }
+#nav-icon {
+    width: 50vw;
+    height: auto;
+    z-index: 1000;
+    transition: transform 0.1s linear;
+    will-change: transform;
+    transform-origin: center center;
+}
 
-    #nav-icon {
-        width: 50vw;
-        height: auto;
-        z-index: 1000;
-        transition: transform 0.1s linear;
-        will-change: transform;
-        transform-origin: center center;
-    }
+#outer-circle {
+    z-index: 1000;
+    cx: 50;
+    cy: 50;
+    r: 48;
+    stroke: #f58f1d;
+    stroke-width: 1;
+    fill: none;
+}
 
-    #outer-circle {
-        z-index: 1000;
-        cx: 50;
-        cy: 50;
-        r: 48;
-        stroke: #f58f1d;
-        stroke-width: 1;
-        fill: none;
-    }
+#center-dot {
+    z-index: 1000;
+    cx: 50;
+    cy: 50;
+    r: 10;
+    fill: #f58f1d;
+    cursor: pointer;
+}
 
-    #center-dot {
-        z-index: 1000;
-        cx: 50;
-        cy: 50;
-        r: 10;
-        fill: #f58f1d;
-        cursor: pointer;
-    }
+#click-area {
+    z-index: 999;
+    cx: 50;
+    cy: 50;
+    r: 50;
+    fill: black;
+    cursor: pointer;
+}
 
-    #click-area {
-        z-index: 999;
-        cx: 50;
-        cy: 50;
-        r: 50;
-        fill: black;
-        cursor: pointer;
-    }
+#orbit-path {
+    z-index: 1000;
+    fill: none;
+    stroke: none;
+}
 
-    #orbit-path {
-        z-index: 1000;
-        fill: none;
-        stroke: none;
-    }
+#nav-menu {
+    z-index: 999;
+    background-color: transparent;
+    pointer-events: auto;
+}
 
-    #nav-menu {
-        z-index: 999;
-        background-color: transparent;
-        pointer-events: auto;
-    }
+#menu-background {
+    z-index: 990;
+    width: 50vw;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.1s ease;
+    transition: transform 0.1s ease;
+    will-change: transform;
+}
 
-    #menu-background {
-        z-index: 990;
-        width: 50vw;
-        height: auto;
-        opacity: 0;
-        transition: opacity 0.1s ease;
-        transition: transform 0.1s ease;
-        will-change: transform;
-    }
+#menu-background.visible {
+    opacity: 1;
+}
 
-    #menu-background.visible {
-        opacity: 1;
-    }
+.menu-item {
+    position: absolute;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.1s ease;
+    pointer-events: auto;
+    white-space: nowrap;
+}
 
-    .menu-item {
-        position: absolute;
-        color: white;
-        opacity: 0;
-        transition: opacity 0.1s ease;
-        pointer-events: auto;
-        white-space: nowrap;
-    }
+.menu-item.visible {
+    opacity: 1;
+}
 
-    .menu-item.visible {
-        opacity: 1;
-    }
-
-    /* For minor tweaks of menu items*/
-    .menu-item:nth-child(1) {
-        transform: translate(0vw, 0vh);
-    }
-    .menu-item:nth-child(2) {
-        transform: translate(0vw, 0vh);
-    }
-    .menu-item:nth-child(3) {
-        transform: translate(0vw, 0vh);
-    }
-    .menu-item:nth-child(4) {
-        transform: translate(0vw, 0vh);
-    }
-    .menu-item:nth-child(5) {
-        transform: translate(0vw, 0vh);
-    }
-    .menu-item:nth-child(6) {
-        transform: translate(0vw, 0vh);
-    }
-    .menu-item:nth-child(7) {
-        transform: translate(0vw, 0vh);
-    }
-    .menu-item:nth-child(8) {
-        transform: translate(0vw, 0vh);
-    }
-    .menu-item:nth-child(9) {
-        transform: translate(0vw, 0vh);
-    }
+/* For minor tweaks of menu items*/
+.menu-item:nth-child(1) {
+    transform: translate(0vw, 0vh);
+}
+.menu-item:nth-child(2) {
+    transform: translate(0vw, 0vh);
+}
+.menu-item:nth-child(3) {
+    transform: translate(0vw, 0vh);
+}
+.menu-item:nth-child(4) {
+    transform: translate(0vw, 0vh);
+}
+.menu-item:nth-child(5) {
+    transform: translate(0vw, 0vh);
+}
+.menu-item:nth-child(6) {
+    transform: translate(0vw, 0vh);
+}
+.menu-item:nth-child(7) {
+    transform: translate(0vw, 0vh);
+}
+.menu-item:nth-child(8) {
+    transform: translate(0vw, 0vh);
+}
+.menu-item:nth-child(9) {
+    transform: translate(0vw, 0vh);
 }
 
 .center {
