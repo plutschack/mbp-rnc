@@ -124,27 +124,11 @@ function resizeNavIcon() {
 }
 
 function repositionNavIcon() {
-    const circRad = 0.13 * Math.min(window.innerHeight, window.innerWidth);
+    const circRad = 0.1 * Math.min(window.innerHeight, window.innerWidth);
     const menuContainer = document.getElementById("menu-container");
-    if (!menuContainer) return;
-
-    // Get the computed 'right' value (could be in px, vw, or other units)
-    const style = window.getComputedStyle(menuContainer);
-    let rightVal = style.right.trim();
-    let currentRightPx = 0;
-
-    if (rightVal.endsWith("px")) {
-        currentRightPx = parseFloat(rightVal) || 0;
-    } else if (rightVal.endsWith("vw")) {
-        const vwValue = parseFloat(rightVal) || 0;
-        currentRightPx = (vwValue / 100) * window.innerWidth;
-    } else {
-        currentRightPx = parseFloat(rightVal) || 0;
+    if (menuContainer) {
+        menuContainer.style.left = circRad * 2.5 + window.innerWidth - circRad * 3.5 + "px";
     }
-
-    // Adjust position by a fraction of the radius.
-    const newRightPx = circRad * 2.1;
-    menuContainer.style.right = newRightPx + "px";
 }
 
 const clickArea = document.getElementById("click-area");
