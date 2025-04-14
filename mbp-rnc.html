@@ -12,7 +12,6 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="style.css" />
         <link rel="icon" type="image/png" href="/images/favicon_600.png" />
-        <link rel="apple-touch-icon" />
         <script src="script.js" defer></script>
     </head>
 
@@ -20,7 +19,7 @@
         <!--START SITE NAVIGATION SECTION-->
         <div class="fixed-container" id="menu-container" viewBox="0 0 100 100">
             <!--Menu Background-->
-            <div class="circle menu-background">
+            <div class="circle menu-background" id="menu-background-div">
                 <svg id="menu-background" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="50" fill="black" />
                 </svg>
@@ -28,27 +27,20 @@
 
             <!-- Navigation icon -->
             <div class="circle nav-icon">
-                <svg id="nav-icon" viewBox="0 0 100 100">
+                <svg id="nav-icon">
                     <!-- Menu background area (slightly larger than menu) -->
                     <!-- Outer circle -->
-                    <circle id="outer-circle" cx="50" cy="50" r="48" stroke="#f58f1d" stroke-width="1" fill="none" />
-
+                    <circle id="outer-circle"></circle>
                     <!-- Center dot -->
-                    <circle id="center-dot" cx="50" cy="50" r="10" fill="#f58f1d" />
+                    <circle id="center-dot"></circle>
                     <!-- Click hit area (slightly larger than center dot, smaller than orbit circle) -->
-                    <circle id="click-area" cx="50" cy="50" r="50" fill="transparent" style="cursor: pointer" />
+                    <circle id="click-area"></circle>
                     <!-- Arc path for orbiting (hidden) -->
-                    <path
-                        id="orbit-path"
-                        d="M50,2
-                    A48,48 0 1,1 50,98
-                    A48,48 0 1,1 50,2"
-                        fill="none"
-                        stroke="none" />
+                    <path id="orbit-path"></path>
 
                     <!-- Orbiting dot in a group for rotation -->
-                    <g id="orbit-group">
-                        <circle cx="50" cy="45.2" r="3" fill="pink" />
+                    <g id="orbit-group" transform="rotate(0 50 50)">
+                        <circle cx="50" cy="2" r="3" fill="#f58f1d"></circle>
                     </g>
                 </svg>
             </div>
