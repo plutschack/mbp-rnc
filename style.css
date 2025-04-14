@@ -19,7 +19,7 @@ table {
 }
 
 .margin-cell {
-    width: 5%;
+    width: 15vw;
 }
 
 .logo-cell {
@@ -47,10 +47,6 @@ table {
     table-layout: fixed;
 }
 
-.padding-cell {
-    width: 7%;
-}
-
 .cell {
     position: relative;
     height: auto;
@@ -61,8 +57,8 @@ table {
 
 .background-container {
     position: relative;
-    width: 70vw;
-    height: 140vh;
+    width: 100vw;
+    height: 200vh;
 }
 
 .line-art-background {
