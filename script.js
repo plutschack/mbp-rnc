@@ -1,5 +1,5 @@
 // Log script start
-console.log("HELLO FROM MY SCRIPT!");
+console.log("HELLO FROM MBP R&C!");
 
 // ============================================================
 // TEXT FITTING FUNCTIONS
@@ -131,6 +131,13 @@ function repositionNavIcon() {
     // Adjust position by a fraction of the radius.
     const newRightPx = currentRightPx + circRad * 0.1;
     menuContainer.style.right = newRightPx + "px";
+}
+
+const clickArea = document.getElementById("click-area");
+if (clickArea) {
+    const rect = clickArea.getBoundingClientRect();
+    const distanceFromRight = window.innerWidth - rect.right;
+    console.log("Distance from the right edge of the click-area to the right side of the screen:", distanceFromRight, "px");
 }
 
 // Attach resize events
