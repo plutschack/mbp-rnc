@@ -139,35 +139,26 @@ table {
 /* AQUA Extra small devices (phones portrait, 600px and down) */
 @media only screen and (max-width: 600px) {
     .cell-text {
-        font-size: 3.5vw;
-        color: aqua;
-    }
-
-    p.right,
-    p.left {
-        padding-top: 5vh;
-        min-height: 80vh;
+        color: white;
     }
 
     .neon-glow-button.right,
     .neon-glow-button.left {
-        margin-top: 3vh;
-        padding: 2vw 4vw;
+        margin-top: 7vh;
+        padding: 0.8vh 1.8vw;
     }
 
     #menu-container.fixed-container {
         position: fixed; /* or absolute, if relative to a specific container */
-        top: auto;
-        left: auto;
         background-color: transparent;
+        top: 50%;
+        left: 50%;
         width: 30vw;
         height: 30vw;
-        transform: none;
+        transform: translate(-50%, -50%);
         display: flex;
         justify-content: center;
         align-items: center;
-        bottom: 20vh;
-        right: -10vw;
         z-index: 900;
         pointer-events: auto;
     }
@@ -177,21 +168,49 @@ table {
         top: 50%; /* center vertically inside container */
         left: 50%; /* center horizontally inside container */
         transform: translate(-50%, -50%); /* exact centering */
-        pointer-events: auto !important; /* allow interaction if needed */
-    }
-
-    #nav-menu,
-    #nav-icon,
-    #menu-background {
-        z-index: 1000;
+        pointer-events: auto; /* allow interaction if needed */
     }
 
     #nav-icon {
         width: 50vw;
+        height: auto;
         z-index: 1000;
         transition: transform 0.1s linear;
         will-change: transform;
         transform-origin: center center;
+    }
+
+    #outer-circle {
+        z-index: 999;
+        cx: 50;
+        cy: 50;
+        r: 48;
+        stroke: #f58f1d;
+        stroke-width: 1;
+        fill: none;
+    }
+
+    #center-dot {
+        z-index: 999;
+        cx: 50;
+        cy: 50;
+        r: 10;
+        fill: #f58f1d;
+    }
+
+    #click-area {
+        z-index: 1000;
+        cx: 50;
+        cy: 50;
+        r: 50;
+        fill: transparent;
+        cursor: pointer;
+    }
+
+    #orbit-path {
+        z-index: 999;
+        fill: none;
+        stroke: none;
     }
 
     #nav-menu {
@@ -202,6 +221,8 @@ table {
 
     #menu-background {
         z-index: 990;
+        width: 50vw;
+        height: auto;
         opacity: 0;
         transition: opacity 0.1s ease;
         transition: transform 0.1s ease;
@@ -213,6 +234,7 @@ table {
     }
 
     .menu-item {
+        position: absolute;
         color: white;
         opacity: 0;
         transition: opacity 0.1s ease;
