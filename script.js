@@ -105,19 +105,19 @@ function resizeNavIcon() {
     const circRad = 0.1 * Math.min(window.innerHeight, window.innerWidth);
     const navIcon = document.getElementById("nav-icon");
     const marginCells = document.getElementsByClassName("margin-cell");
-    const contentCells = document.getElementsByClassName("content-cell");
+    const contentCells = document.getElementsByClassName("background-container");
 
     if (navIcon) {
         navIcon.style.width = circRad + "px";
         // Check if marginCells exists and then convert it to an array to iterate over it.
         if (marginCells) {
             Array.from(marginCells).forEach((cell) => {
-                cell.style.width = circRad * 1.1 + "px";
+                cell.style.width = circRad * 1.5 + "px";
             });
         }
         if (contentCells) {
             Array.from(contentCells).forEach((cell) => {
-                cell.style.width = window.innerWidth - circRad * 2.2 + "px";
+                cell.style.width = window.innerWidth - circRad * 3.5 + "px";
             });
         }
     }
