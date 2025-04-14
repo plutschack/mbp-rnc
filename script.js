@@ -6,29 +6,10 @@ console.log("HELLO FROM MY SCRIPT!");
 // ============================================================
 
 function fitTextToCell(selector) {
-    const elements = document.querySelectorAll(selector);
-    elements.forEach((el) => {
-        const parent = el.closest(".logo-cell");
-        if (!parent) return;
-
-        const maxWidth = parent.clientWidth * 0.9;
-        const maxHeight = parent.clientHeight * 1.5;
-
-        // Reset styles for calculation
-        el.style.whiteSpace = "normal";
-        el.style.display = "inline-block";
-        el.style.lineHeight = "1.1";
-        el.style.fontSize = "10px";
-
-        let fontSize = 10;
-        // Increase font size until the element's scroll dimensions exceed parent limits.
-        while (el.scrollWidth <= maxWidth && el.scrollHeight <= maxHeight && fontSize < 1500) {
-            fontSize += 1;
-            el.style.fontSize = fontSize + "px";
-        }
-        // Use the last valid font size
-        el.style.fontSize = fontSize - 1 + "px";
-    });
+    const logoText = document.getElementsByClassName("logo-text")[0];
+    if (!logoText) return;
+    const textSize = 0.85 * Math.min(window.innerHeight / 2, window.innerWidth / 3);
+    logoText.style.fontSize = textSize + "px";
 }
 
 function resizeHandler() {
