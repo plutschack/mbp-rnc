@@ -52,32 +52,35 @@ function adjustParagraphFontSizes() {
     const polyArea = polygonArea(vertices);
     const emptyArea = totalArea - polyArea;
 
-    // Get the p element you want to adjust
-    const pElement = document.querySelector(".right");
-    if (pElement) {
-        // Get the text content, including spaces, and count characters
-        const textContent = pElement.textContent;
-        const totalChars = textContent.length;
+    // Select all the elements you want to adjust
+    const rightParagraphs = document.querySelectorAll(".cell-text p.right");
+    const leftParagraphs = document.querySelectorAll(".cell-text p.left");
+    const neonButtons = document.querySelectorAll(".neon-glow-button");
 
-        // Calculate the side length of a square representing the average empty area per char.
+    if (rightParagraphs.length || leftParagraphs.length || neonButtons.length) {
+        // For demonstration, use the text from the first right paragraph for char count
+        const sampleText = (rightParagraphs[0] ? rightParagraphs[0].textContent : "") || "";
+        const totalChars = sampleText.length;
         const result = Math.sqrt(emptyArea / totalChars);
 
-        // Option 1: Directly assign if you want to treat the result as pixels:
-        // pElement.style.fontSize = result + "px";
-
-        // Option 2: Convert result from the 100x100 system to pixels using the container's width:
+        // Convert from the 100x100 system to pixels using a reference container.
         const cellText = document.querySelector(".cell-text");
         if (cellText) {
             const containerWidthPx = cellText.offsetWidth;
             const pixelConversionFactor = containerWidthPx / 100;
-            const pixelFontSize = result * pixelConversionFactor;
-            pElement.style.fontSize = pixelFontSize + "px";
-        }
+            const correctionFactor = 0.8;
+            const pixelFontSize = result * pixelConversionFactor * correctionFactor;
 
-        console.log("Total Characters:", totalChars);
-        console.log("Polygon area:", polyArea);
-        console.log("Empty area:", emptyArea);
-        console.log("Computed font-size value (px):", pElement.style.fontSize);
+            // Apply the computed font size to all matching elements.
+            rightParagraphs.forEach((el) => (el.style.fontSize = pixelFontSize + "px"));
+            leftParagraphs.forEach((el) => (el.style.fontSize = pixelFontSize + "px"));
+            neonButtons.forEach((el) => (el.style.fontSize = pixelFontSize + "px"));
+
+            console.log("Total Characters:", totalChars);
+            console.log("Polygon area:", polyArea);
+            console.log("Empty area:", emptyArea);
+            console.log("Computed font-size value (px):", pixelFontSize);
+        }
     }
 }
 

@@ -118,7 +118,6 @@ table {
     position: relative;
     z-index: 2;
     display: block;
-    font-size: clamp(1.2rem, 2.5vh + 1vw, 3.5rem);
 }
 
 .right {
@@ -153,7 +152,6 @@ table {
     .neon-glow-button.right,
     .neon-glow-button.left {
         margin-top: 3vh;
-        font-size: 3vw;
         padding: 2vw 4vw;
     }
 
@@ -259,14 +257,12 @@ table {
 /* WHITE Extra large devices (large laptops landscape tablet, 1450px and up) */
 @media only screen and (min-width: 1468px) {
     .cell-text {
-        font-size: 4.5vw;
         color: white;
     }
 
     .neon-glow-button.right,
     .neon-glow-button.left {
         margin-top: 7vh;
-        font-size: 1.8vw;
         padding: 0.8vh 1.8vw;
     }
 
@@ -398,46 +394,6 @@ table {
     }
 }
 
-/* WHITE Landscape tablets and laptops*/
-@media only screen and (orientation: landscape) {
-    body {
-        font-size: 2vw;
-    }
-
-    .cell-text {
-        font-size: 4vw;
-    }
-
-    p.right,
-    p.left {
-        min-height: 60vh;
-    }
-}
-
-/* HOTPINK portrait tablet) */
-@media only screen and (orientation: portrait) {
-    body {
-        font-size: 4vh;
-        color: hotpink;
-    }
-
-    .cell-text {
-        font-size: 4vw;
-    }
-
-    p.right {
-        padding-top: 25vh;
-        min-height: 70vh;
-        max-height: 85vh;
-    }
-
-    p.left {
-        padding-top: 45vh;
-        min-height: 70vh;
-        max-height: 85vh;
-    }
-}
-
 .center {
     text-align: center;
     white-space: normal;
@@ -451,7 +407,6 @@ table {
     margin-right: 1vw;
     color: #fff;
     padding: 1vw 2vw;
-    font-size: 2vw;
     background-color: black;
     cursor: pointer;
     box-shadow: 0 0 1vw #f58f1d;
