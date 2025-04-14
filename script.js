@@ -104,8 +104,22 @@ function resizeBackgroundCircle() {
 function resizeNavIcon() {
     const circRad = 0.1 * Math.min(window.innerHeight, window.innerWidth);
     const navIcon = document.getElementById("nav-icon");
+    const marginCells = document.getElementsByClassName("margin-cell");
+    const contentCells = document.getElementsByClassName("content-cell");
+
     if (navIcon) {
         navIcon.style.width = circRad + "px";
+        // Check if marginCells exists and then convert it to an array to iterate over it.
+        if (marginCells) {
+            Array.from(marginCells).forEach((cell) => {
+                cell.style.width = circRad * 1.1 + "px";
+            });
+        }
+        if (contentCells) {
+            Array.from(contentCells).forEach((cell) => {
+                cell.style.width = window.innerWidth - circRad * 2.2 + "px";
+            });
+        }
     }
 }
 
@@ -129,7 +143,7 @@ function repositionNavIcon() {
     }
 
     // Adjust position by a fraction of the radius.
-    const newRightPx = currentRightPx + circRad * 0.1;
+    const newRightPx = circRad * 2.1;
     menuContainer.style.right = newRightPx + "px";
 }
 
