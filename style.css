@@ -277,7 +277,7 @@ table {
 }
 
 /* WHITE Extra large devices (large laptops landscape tablet, 1450px and up) */
-@media only screen and (min-width: 1468px) {
+@media only screen and (min-width: 601px) {
     .cell-text {
         color: white;
     }
@@ -292,7 +292,7 @@ table {
         position: fixed; /* or absolute, if relative to a specific container */
         background-color: transparent;
         top: 50%;
-        left: 50%;
+        left: 95vw;
         width: 30vw;
         height: 30vw;
         transform: translate(-50%, -50%);
@@ -321,7 +321,7 @@ table {
     }
 
     #outer-circle {
-        z-index: 999;
+        z-index: 1000;
         cx: 50;
         cy: 50;
         r: 48;
@@ -331,24 +331,25 @@ table {
     }
 
     #center-dot {
-        z-index: 999;
+        z-index: 1000;
         cx: 50;
         cy: 50;
         r: 10;
         fill: #f58f1d;
+        cursor: pointer;
     }
 
     #click-area {
-        z-index: 1000;
+        z-index: 999;
         cx: 50;
         cy: 50;
         r: 50;
-        fill: transparent;
+        fill: black;
         cursor: pointer;
     }
 
     #orbit-path {
-        z-index: 999;
+        z-index: 1000;
         fill: none;
         stroke: none;
     }

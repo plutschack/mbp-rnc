@@ -199,7 +199,6 @@ const orbitGroup = document.getElementById("orbit-group");
 const orbitDot = document.querySelector("#orbit-group circle");
 const path = document.getElementById("orbit-path");
 const pathLength = path ? path.getTotalLength() : 0;
-const clickArea = document.getElementById("click-area");
 const navMenu = document.getElementById("nav-menu");
 const menuBackground = document.getElementById("menu-background");
 // Ensure menuItems is defined even if navMenu is missing
@@ -237,38 +236,45 @@ function animateOrbit(callback) {
 }
 
 // Set up clickArea event listeners for interaction
-if (clickArea) {
-    clickArea.addEventListener("mouseover", () => {
-        console.log("Mouse over circle!");
-    });
+// Set up event listeners for both #click-area and #center-dot so they trigger the same behavior.
+const clickableElements = document.querySelectorAll("#click-area, #center-dot");
 
-    clickArea.addEventListener("click", (e) => {
-        console.log("clickArea was clicked!");
-        e.stopPropagation();
+if (clickableElements.length) {
+    clickableElements.forEach((element) => {
+        // Mouseover for both clickable elements.
+        element.addEventListener("mouseover", () => {
+            console.log("Mouse over clickable element!");
+        });
 
-        if (menuOpen) {
-            console.log("Menu is open, closing it.");
-            menuItems.forEach((item) => item.classList.remove("visible"));
-            menuBackground.classList.remove("visible");
-            menuOpen = false;
-            animating = false;
-            return;
-        }
+        // Click listener for both clickable elements.
+        element.addEventListener("click", (e) => {
+            console.log("A clickable element was clicked!");
+            e.stopPropagation();
 
-        if (animating) {
-            console.log("…but animating is true, so ignoring click");
-            return;
-        }
+            if (menuOpen) {
+                console.log("Menu is open, closing it.");
+                menuItems.forEach((item) => item.classList.remove("visible"));
+                menuBackground.classList.remove("visible");
+                menuOpen = false;
+                animating = false;
+                return;
+            }
 
-        console.log("Opening menu and starting orbit animation.");
-        animating = true;
-        menuOpen = true;
-        menuBackground.classList.add("visible");
+            if (animating) {
+                console.log("…but animating is true, so ignoring click");
+                return;
+            }
 
-        positionMenuItems();
-        menuItems.forEach((item) => item.classList.add("visible"));
-        animateOrbit(() => {
-            console.log("Orbit animation completed.");
+            console.log("Opening menu and starting orbit animation.");
+            animating = true;
+            menuOpen = true;
+            menuBackground.classList.add("visible");
+
+            positionMenuItems();
+            menuItems.forEach((item) => item.classList.add("visible"));
+            animateOrbit(() => {
+                console.log("Orbit animation completed.");
+            });
         });
     });
 }
