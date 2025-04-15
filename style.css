@@ -236,6 +236,11 @@ table {
     opacity: 1;
 }
 
+.menu-item img {
+    height: 1em;
+    width: auto;
+}
+
 /* For minor tweaks of menu items*/
 .menu-item:nth-child(1) {
     transform: translate(0vw, 0vh);
@@ -262,7 +267,7 @@ table {
     transform: translate(0vw, 0vh);
 }
 .menu-item:nth-child(9) {
-    transform: translate(0vw, 0vh);
+    transform: translateX(0vw, 0vh);
 }
 
 .center {
