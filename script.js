@@ -10,6 +10,7 @@ function fitTextToCell() {
     if (!logoText) return;
     const textSize = 0.85 * Math.min(window.outerHeight / 2, window.outerWidth / 3);
     logoText.style.fontSize = textSize + "px";
+    logoText.classList.add("visible");
 }
 
 function fitSmallLogoTextToCell() {
@@ -21,7 +22,7 @@ function fitSmallLogoTextToCell() {
 }
 
 function resizeHandler() {
-    fitTextToCell(".logo-text");
+    fitTextToCell();
     fitSmallLogoTextToCell();
 }
 
@@ -113,18 +114,18 @@ window.addEventListener("resize", adjustParagraphFontSizes);
 
 // Select the small-logo-text element.
 // Select the small-logo-text element.
-const smallLogo = document.querySelector(".small-logo-cell");
+const largeLogo = document.querySelector(".logo-cell");
 const rightHeader = document.querySelector(".bread-crumb-cell");
 
-if (smallLogo) {
+if (largeLogo) {
     // Create an observer instance with a callback
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    console.log("Element is on the screen");
+                    console.log("Large logo is on the screen");
                 } else {
-                    console.log("Element is off the screen");
+                    console.log("Large logo is off the screen");
                 }
             });
         },
@@ -135,34 +136,32 @@ if (smallLogo) {
     );
 
     const totalScrollHeight = document.documentElement.scrollHeight;
+    const largeLogoScrollHeight = largeLogo.scrollHeight;
     console.log("Total scroll height in px:", totalScrollHeight);
-    console.log("Element scroll height in px:", smallLogo.scrollHeight);
+    console.log("Large logo scroll height in px:", largeLogoScrollHeight);
 
     window.addEventListener("scroll", () => {
         const currentScroll = window.scrollY;
         console.log("Current scroll position:", currentScroll);
     });
 
-    // Attach the scroll event listener
-    window.addEventListener("load", () => {
-        smallLogo.style.top = window.outerHeight * 0.01 + "px";
-        rightHeader.style.top = window.outerHeight * 0.15 + "px";
-    });
     window.addEventListener("scroll", () => {
         const currentScroll = window.scrollY;
         console.log("Current scroll position:", currentScroll);
         // Check the scroll position and update the 'top' CSS property accordingly.
-        if (currentScroll < 40) {
-            smallLogo.style.top = window.outerHeight * 0.01 + "px";
-            rightHeader.style.top = window.outerHeight * 0.15 + "px";
+        if (currentScroll < largeLogoScrollHeight) {
+            largeLogo.style.position = "sticky";
+            largeLogo.classList.remove("faded");
+            largeLogo.style.textAlign = "center";
+            largeLogo.style.verticalAlign = "middle";
         } else {
-            smallLogo.style.top = window.outerHeight * 0.25 + "px";
-            rightHeader.style.top = window.outerHeight * 0.55 + "px";
+            largeLogo.classList.remove("visible");
+            largeLogo.classList.add("faded");
         }
     });
 
     // Start observing the target element
-    observer.observe(smallLogo);
+    observer.observe(largeLogo);
 }
 
 function resizeBackgroundCircle() {
