@@ -4,7 +4,7 @@ console.log("HELLO FROM MBP R&C!");
 // At load time:
 let initialOuterHeight = window.outerHeight;
 let initialOuterWidth = window.outerWidth;
-const dimensionThreshold = 50; // For example, ignore changes smaller than 50px
+const dimensionThreshold = 150; // For example, ignore changes smaller than 50px
 
 function resizeHandler() {
     // Only recalc if the difference is significant.
