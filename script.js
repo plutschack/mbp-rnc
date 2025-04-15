@@ -13,9 +13,9 @@ function fitTextToCell() {
     logoText.style.fontSize = textSize + "px";
     logoText.classList.add("visible");
     if (window.outerHeight / 2 == Math.min(window.outerHeight / 2, window.outerWidth / 3)) {
-        logoPlaceholder.style.height = window.outerHeight;
+        logoPlaceholder.style.height = window.outerHeight + "px";
     } else {
-        logoPlaceholder.style.height = window.outerWidth / 3;
+        logoPlaceholder.style.height = (window.outerWidth * 2) / 3 + "px";
     }
 }
 
