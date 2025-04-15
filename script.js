@@ -26,30 +26,31 @@ function resizeHandler() {
 }
 
 let resizeScheduled = false;
-function scheduleResize() {
+window.addEventListener("resize", () => {
     if (!resizeScheduled) {
         resizeScheduled = true;
         requestAnimationFrame(() => {
+            // Your recalculation functions
             resizeHandler();
+            // Reset flag for next frame
             resizeScheduled = false;
         });
     }
-}
-
-// Standard window resize event with requestAnimationFrame
-window.addEventListener("resize", scheduleResize);
-
-// Also trigger on orientation change
-window.addEventListener("orientationchange", () => {
-    setTimeout(scheduleResize, 300);
 });
 
-// And on visualViewport events, if available
-if (window.visualViewport) {
-    window.visualViewport.addEventListener("resize", () => {
-        setTimeout(scheduleResize, 100);
-    });
-}
+window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(resizeHandler, 300);
+});
+
+window.addEventListener("orientationchange", () => {
+    // Optionally wait a little so the layout can settle
+    setTimeout(() => {
+        initialOuterHeight = window.outerHeight;
+        initialOuterWidth = window.outerWidth;
+        resizeHandler();
+    }, 300);
+});
 
 // ============================================================
 // TEXT FITTING FUNCTIONS
