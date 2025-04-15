@@ -8,7 +8,7 @@ console.log("HELLO FROM MBP R&C!");
 function fitTextToCell(selector) {
     const logoText = document.getElementsByClassName("logo-text")[0];
     if (!logoText) return;
-    const textSize = 0.85 * Math.min(window.innerHeight / 2, window.innerWidth / 3);
+    const textSize = 0.85 * Math.min(window.outerHeight / 2, window.outerWidth / 3);
     logoText.style.fontSize = textSize + "px";
 }
 
@@ -94,7 +94,7 @@ window.addEventListener("resize", adjustParagraphFontSizes);
 
 function resizeBackgroundCircle() {
     // Use 70% of the smaller viewport dimension for consistent scaling.
-    const circRad = 0.7 * Math.min(window.innerHeight, window.innerWidth);
+    const circRad = 0.7 * Math.min(window.outerHeight, window.outerWidth);
     const circleElem = document.getElementById("menu-background");
     if (circleElem) {
         circleElem.style.width = circRad + "px";
@@ -102,7 +102,7 @@ function resizeBackgroundCircle() {
 }
 
 function resizeNavIcon() {
-    const circRad = 0.1 * Math.min(window.innerHeight, window.innerWidth);
+    const circRad = 0.1 * Math.min(window.outerHeight, window.outerWidth);
     const navIcon = document.getElementById("nav-icon");
     const marginCells = document.getElementsByClassName("margin-cell");
     const contentCells = document.getElementsByClassName("background-container");
@@ -117,24 +117,24 @@ function resizeNavIcon() {
         }
         if (contentCells) {
             Array.from(contentCells).forEach((cell) => {
-                cell.style.width = window.innerWidth - circRad * 3.5 + "px";
+                cell.style.width = window.outerWidth - circRad * 3.5 + "px";
             });
         }
     }
 }
 
 function repositionNavIcon() {
-    const circRad = 0.1 * Math.min(window.innerHeight, window.innerWidth);
+    const circRad = 0.1 * Math.min(window.outerHeight, window.outerWidth);
     const menuContainer = document.getElementById("menu-container");
     if (menuContainer) {
-        menuContainer.style.left = circRad * 2.5 + window.innerWidth - circRad * 3.5 + "px";
+        menuContainer.style.left = circRad * 2.5 + window.outerWidth - circRad * 3.5 + "px";
     }
 }
 
 const clickArea = document.getElementById("click-area");
 if (clickArea) {
     const rect = clickArea.getBoundingClientRect();
-    const distanceFromRight = window.innerWidth - rect.right;
+    const distanceFromRight = window.outerWidth - rect.right;
     console.log("Distance from the right edge of the click-area to the right side of the screen:", distanceFromRight, "px");
 }
 
