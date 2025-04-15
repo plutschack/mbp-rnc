@@ -44,7 +44,7 @@ table {
 }
 
 .right-small-header {
-    text-align: right !important;
+    text-align: left !important;
     color: white;
 }
 
@@ -184,7 +184,6 @@ table {
 }
 
 #nav-icon {
-    width: 50vw;
     z-index: 1000;
     transition: transform 0.1s linear;
     will-change: transform;

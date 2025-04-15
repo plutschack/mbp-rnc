@@ -116,51 +116,54 @@ window.addEventListener("resize", adjustParagraphFontSizes);
 const smallLogo = document.querySelector(".small-logo-cell");
 const rightHeader = document.querySelector(".bread-crumb-cell");
 
-// Create an observer instance with a callback
-const observer = new IntersectionObserver(
-    (entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                console.log("Element is on the screen");
-            } else {
-                console.log("Element is off the screen");
-            }
-        });
-    },
-    {
-        // You can adjust the threshold as needed; a threshold of 0 means even a pixel visible counts.
-        threshold: [0]
-    }
-);
+if (smallLogo) {
+    // Create an observer instance with a callback
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    console.log("Element is on the screen");
+                } else {
+                    console.log("Element is off the screen");
+                }
+            });
+        },
+        {
+            // You can adjust the threshold as needed; a threshold of 0 means even a pixel visible counts.
+            threshold: [0]
+        }
+    );
 
-const totalScrollHeight = document.documentElement.scrollHeight;
-console.log("Total scroll height in px:", totalScrollHeight);
-console.log("Element scroll height in px:", smallLogo.scrollHeight);
-window.addEventListener("scroll", () => {
-    const currentScroll = window.scrollY;
-    console.log("Current scroll position:", currentScroll);
-});
+    const totalScrollHeight = document.documentElement.scrollHeight;
+    console.log("Total scroll height in px:", totalScrollHeight);
+    console.log("Element scroll height in px:", smallLogo.scrollHeight);
 
-// Attach the scroll event listener
-window.addEventListener("load", () => {
-    smallLogo.style.top = window.outerHeight * 0.01 + "px";
-    rightHeader.style.top = window.outerHeight * 0.15 + "px";
-});
-window.addEventListener("scroll", () => {
-    const currentScroll = window.scrollY;
-    console.log("Current scroll position:", currentScroll);
-    // Check the scroll position and update the 'top' CSS property accordingly.
-    if (currentScroll < 40) {
+    window.addEventListener("scroll", () => {
+        const currentScroll = window.scrollY;
+        console.log("Current scroll position:", currentScroll);
+    });
+
+    // Attach the scroll event listener
+    window.addEventListener("load", () => {
         smallLogo.style.top = window.outerHeight * 0.01 + "px";
         rightHeader.style.top = window.outerHeight * 0.15 + "px";
-    } else {
-        smallLogo.style.top = window.outerHeight * 0.25 + "px";
-        rightHeader.style.top = window.outerHeight * 0.55 + "px";
-    }
-});
+    });
+    window.addEventListener("scroll", () => {
+        const currentScroll = window.scrollY;
+        console.log("Current scroll position:", currentScroll);
+        // Check the scroll position and update the 'top' CSS property accordingly.
+        if (currentScroll < 40) {
+            smallLogo.style.top = window.outerHeight * 0.01 + "px";
+            rightHeader.style.top = window.outerHeight * 0.15 + "px";
+        } else {
+            smallLogo.style.top = window.outerHeight * 0.25 + "px";
+            rightHeader.style.top = window.outerHeight * 0.55 + "px";
+        }
+    });
 
-// Start observing the target element
-observer.observe(smallLogo);
+    // Start observing the target element
+    observer.observe(smallLogo);
+}
 
 function resizeBackgroundCircle() {
     // Use 70% of the smaller viewport dimension for consistent scaling.
