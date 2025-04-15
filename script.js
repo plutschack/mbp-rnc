@@ -4,7 +4,7 @@ console.log("HELLO FROM MBP R&C!");
 // At load time:
 let initialOuterHeight = window.outerHeight;
 let initialOuterWidth = window.outerWidth;
-const dimensionThreshold = 150; // For example, ignore changes smaller than 50px
+const dimensionThreshold = 50; // For example, ignore changes smaller than 50px
 
 function resizeHandler() {
     // Only recalc if the difference is significant.
@@ -24,6 +24,20 @@ function resizeHandler() {
         // ...and any other recalculations you need.
     }
 }
+
+let resizeScheduled = false;
+window.addEventListener("resize", () => {
+    if (!resizeScheduled) {
+        resizeScheduled = true;
+        requestAnimationFrame(() => {
+            // Your recalculation functions
+            resizeHandler();
+            // Reset flag for next frame
+            resizeScheduled = false;
+        });
+    }
+});
+
 window.addEventListener("resize", () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(resizeHandler, 300);
