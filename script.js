@@ -7,10 +7,16 @@ console.log("HELLO FROM MBP R&C!");
 // LARGE LOGO TEXT FITTING
 function fitTextToCell() {
     const logoText = document.getElementsByClassName("logo-text")[0];
+    const logoPlaceholder = document.getElementsByClassName("logo-placeholder")[0];
     if (!logoText) return;
     const textSize = 0.85 * Math.min(window.outerHeight / 2, window.outerWidth / 3);
     logoText.style.fontSize = textSize + "px";
     logoText.classList.add("visible");
+    if (window.outerHeight / 2 == Math.min(window.outerHeight / 2, window.outerWidth / 3)) {
+        logoPlaceholder.style.height = window.outerHeight;
+    } else {
+        logoPlaceholder.style.height = window.outerWidth / 3;
+    }
 }
 
 function fitSmallLogoTextToCell() {
