@@ -26,6 +26,24 @@ table {
     vertical-align: middle;
 }
 
+.fixed-header {
+}
+
+.small-logo-cell {
+    width: min-content;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.right-small-header {
+    text-align: right !important;
+    color: white;
+}
+
 .logo-text {
     display: inline-block;
     line-height: 1.1;
@@ -184,7 +202,7 @@ table {
     cx: 50;
     cy: 50;
     r: 10;
-    fill: #f58f1d;
+    fill: url(#grad3d);
     cursor: pointer;
 }
 

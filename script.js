@@ -4,17 +4,28 @@ console.log("HELLO FROM MBP R&C!");
 // ============================================================
 // TEXT FITTING FUNCTIONS
 // ============================================================
-
-function fitTextToCell(selector) {
+// LARGE LOGO TEXT FITTING
+function fitTextToCell() {
     const logoText = document.getElementsByClassName("logo-text")[0];
     if (!logoText) return;
     const textSize = 0.85 * Math.min(window.outerHeight / 2, window.outerWidth / 3);
     logoText.style.fontSize = textSize + "px";
 }
 
+function fitSmallLogoTextToCell() {
+    const logoText = document.getElementsByClassName("small-logo-text")[0];
+    if (!logoText) return;
+    const textSize = 0.15 * Math.min(window.outerHeight / 2, window.outerWidth / 3);
+    logoText.style.fontSize = textSize + "px";
+    logoText.style.paddingTop = 0.2 + "vh";
+}
+
 function resizeHandler() {
     fitTextToCell(".logo-text");
+    fitSmallLogoTextToCell();
 }
+
+// LARGE LOGO TEXT FITTING
 
 window.addEventListener("load", resizeHandler);
 window.addEventListener("resize", resizeHandler);
