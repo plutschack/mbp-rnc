@@ -15,7 +15,7 @@ function fitTextToCell() {
 function fitSmallLogoTextToCell() {
     const logoText = document.getElementsByClassName("small-logo-text")[0];
     if (!logoText) return;
-    const textSize = 0.15 * Math.min(window.outerHeight / 2, window.outerWidth / 3);
+    const textSize = 0.1 * Math.min(window.outerHeight / 2, window.outerWidth / 3);
     logoText.style.fontSize = textSize + "px";
     logoText.style.paddingTop = 0.2 + "vh";
 }
@@ -28,7 +28,15 @@ function resizeHandler() {
 // LARGE LOGO TEXT FITTING
 
 window.addEventListener("load", resizeHandler);
-window.addEventListener("resize", resizeHandler);
+let resizeTimeout;
+window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        resizeHandler();
+        adjustParagraphFontSizes();
+        // Other resize functions...
+    }, 100); // Adjust delay as needed
+});
 
 function adjustParagraphFontSizes() {
     // Calculate polygon area using the shoelace formula.
@@ -102,6 +110,53 @@ window.addEventListener("resize", adjustParagraphFontSizes);
 // ============================================================
 // RESIZING & POSITIONING FUNCTIONS
 // ============================================================
+
+// Select the small-logo-text element.
+// Select the small-logo-text element.
+const smallLogo = document.querySelector(".small-logo-cell");
+const rightHeader = document.querySelector(".bread-crumb-cell");
+
+// Create an observer instance with a callback
+const observer = new IntersectionObserver(
+    (entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                console.log("Element is on the screen");
+            } else {
+                console.log("Element is off the screen");
+            }
+        });
+    },
+    {
+        // You can adjust the threshold as needed; a threshold of 0 means even a pixel visible counts.
+        threshold: [0]
+    }
+);
+
+const totalScrollHeight = document.documentElement.scrollHeight;
+console.log("Total scroll height in px:", totalScrollHeight);
+console.log("Element scroll height in px:", smallLogo.scrollHeight);
+window.addEventListener("scroll", () => {
+    const currentScroll = window.scrollY;
+    console.log("Current scroll position:", currentScroll);
+});
+
+// Attach the scroll event listener
+window.addEventListener("scroll", () => {
+    const currentScroll = window.scrollY;
+    console.log("Current scroll position:", currentScroll);
+    // Check the scroll position and update the 'top' CSS property accordingly.
+    if (currentScroll < 40) {
+        smallLogo.style.top = window.outerHeight * 0.01 + "px";
+        rightHeader.style.top = window.outerHeight * 0.15 + "px";
+    } else {
+        smallLogo.style.top = window.outerHeight * 0.25 + "px";
+        rightHeader.style.top = window.outerHeight * 0.55 + "px";
+    }
+});
+
+// Start observing the target element
+observer.observe(smallLogo);
 
 function resizeBackgroundCircle() {
     // Use 70% of the smaller viewport dimension for consistent scaling.
@@ -313,9 +368,17 @@ document.addEventListener("click", (e) => {
 });
 
 // Rotate orbitGroup based on scroll position
+let ticking = false;
 window.addEventListener("scroll", () => {
-    if (orbitGroup) {
-        const rotation = (window.scrollY * 0.7) % 360;
-        orbitGroup.setAttribute("transform", `rotate(${rotation} 50 50)`);
+    if (!ticking) {
+        requestAnimationFrame(() => {
+            if (orbitGroup) {
+                // Use a stable innerWidth/innerHeight instead of outer dimensions if possible.
+                const rotation = (window.scrollY * 0.7) % 360;
+                orbitGroup.setAttribute("transform", `rotate(${rotation} 50 50)`);
+            }
+            ticking = false;
+        });
+        ticking = true;
     }
 });

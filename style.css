@@ -26,10 +26,8 @@ table {
     vertical-align: middle;
 }
 
-.fixed-header {
-}
-
 .small-logo-cell {
+    position: fixed;
     width: min-content;
     display: inline-block;
     margin: 0;
@@ -37,6 +35,12 @@ table {
     border: 0;
     text-align: center;
     vertical-align: middle;
+    left: 92vw;
+}
+
+.bread-crumb-cell {
+    position: fixed;
+    right: 1vw;
 }
 
 .right-small-header {
