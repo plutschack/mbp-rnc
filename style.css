@@ -203,9 +203,14 @@ table {
 
 #nav-icon {
     z-index: 1000;
-    transition: transform 0.1s linear;
+    opacity: 0.5;
+    transition: transform 0.3s linear;
     will-change: transform;
     transform-origin: center center;
+}
+
+#nav-icon:hover {
+    opacity: 1;
 }
 
 #outer-circle {
