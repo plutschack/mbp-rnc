@@ -190,8 +190,14 @@ function positionMenuItems() {
             // Adjust vertical centering of text
             const rect = item.getBoundingClientRect();
             const halfHeight = rect.height / 2;
-
-            item.style.transform = `translate(${x + offsetX}px, ${y + offsetY - halfHeight}px)`;
+            console.log("menu item", i);
+            if (i == 0) {
+                item.style.transform = `translate(${x + offsetX + -20}px, ${y + offsetY - halfHeight + 5}px)`;
+            } else if (i == 8) {
+                item.style.transform = `translate(${x + offsetX + 20}px, ${y + offsetY - halfHeight + -5}px)`;
+            } else {
+                item.style.transform = `translate(${x + offsetX}px, ${y + offsetY - halfHeight}px)`;
+            }
         });
 }
 
