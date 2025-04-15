@@ -142,6 +142,10 @@ window.addEventListener("scroll", () => {
 });
 
 // Attach the scroll event listener
+window.addEventListener("load", () => {
+    smallLogo.style.top = window.outerHeight * 0.01 + "px";
+    rightHeader.style.top = window.outerHeight * 0.15 + "px";
+});
 window.addEventListener("scroll", () => {
     const currentScroll = window.scrollY;
     console.log("Current scroll position:", currentScroll);
