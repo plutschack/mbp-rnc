@@ -172,7 +172,7 @@ if (largeLogo) {
 
 function resizeBackgroundCircle() {
     // Use 70% of the smaller viewport dimension for consistent scaling.
-    const circRad = 0.95 * window.outerHeight;
+    const circRad = 1.0 * window.outerHeight;
     const circleElem = document.getElementById("menu-background");
     if (circleElem) {
         circleElem.style.width = circRad + "px";
@@ -246,7 +246,7 @@ function positionMenuItems() {
     const offsetY = mbCenterY - menuRect.top;
 
     // Calculate the radius for placing items (85% of half the smaller dimension)
-    const arcRadius = (0.95 * mbRect.height) / 2;
+    const arcRadius = (0.9 * mbRect.height) / 2;
 
     // Configure arc display
     const centerAngle = 180;
