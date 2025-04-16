@@ -16,6 +16,7 @@ temp/*
 
 # Ignore ESLint configuration file
 eslint.config.mjs
+.eslintrc.json
 
 # Ignore package files (note: often these are tracked for reproducibility,
 # so only ignore if you have a specific reason)
