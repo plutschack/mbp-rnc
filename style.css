@@ -215,9 +215,6 @@ table {
 
 #outer-circle {
     z-index: 1000;
-    cx: 50;
-    cy: 50;
-    r: 48;
     stroke: #f58f1d;
     stroke-width: 1;
     fill: none;
@@ -225,18 +222,12 @@ table {
 
 #center-dot {
     z-index: 1000;
-    cx: 50;
-    cy: 50;
-    r: 10;
     fill: url(#grad3d);
     cursor: pointer;
 }
 
 #click-area {
     z-index: 999;
-    cx: 50;
-    cy: 50;
-    r: 50;
     fill: black;
     cursor: pointer;
 }
@@ -283,35 +274,6 @@ table {
 .menu-item img {
     height: 0.95em;
     width: auto;
-}
-
-/* For minor tweaks of menu items*/
-.menu-item:nth-child(1) {
-    transform: translate(0vw, 0vh);
-}
-.menu-item:nth-child(2) {
-    transform: translate(0vw, 0vh);
-}
-.menu-item:nth-child(3) {
-    transform: translate(0vw, 0vh);
-}
-.menu-item:nth-child(4) {
-    transform: translate(0vw, 0vh);
-}
-.menu-item:nth-child(5) {
-    transform: translate(0vw, 0vh);
-}
-.menu-item:nth-child(6) {
-    transform: translate(0vw, 0vh);
-}
-.menu-item:nth-child(7) {
-    transform: translate(0vw, 0vh);
-}
-.menu-item:nth-child(8) {
-    transform: translate(0vw, 0vh);
-}
-.menu-item:nth-child(9) {
-    transform: translateX(0vw, 0vh);
 }
 
 .center {

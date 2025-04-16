@@ -83,10 +83,16 @@ function fitTextToCell() {
 
 function fitSmallLogoTextToCell() {
     const logoText = document.getElementsByClassName("small-logo-text")[0];
+    const logoPlaceholder = document.getElementsByClassName("small-logo-placeholder")[0];
     if (!logoText) return;
     const textSize = 0.1 * Math.min(initialOuterHeight / 2, initialOuterWidth / 3);
     logoText.style.fontSize = textSize + "px";
-    logoText.style.paddingTop = 0.2 + "vh";
+    logoText.style.top = initialOuterHeight * 0.05 + "px";
+    if (initialOuterHeight / 2 == Math.min(initialOuterHeight / 2, initialOuterWidth / 3)) {
+        logoPlaceholder.style.height = initialOuterHeight * 0.1 + "px";
+    } else {
+        logoPlaceholder.style.height = ((initialOuterWidth * 2) / 3) * 0.1 + "px";
+    }
 }
 
 function adjustParagraphFontSizes() {
