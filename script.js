@@ -96,7 +96,7 @@ function fitSmallLogoTextToCell() {
 }
 
 function adjustParagraphFontSizes() {
-    // Calculate polygon area using the shoelace formula.
+    // Helper function: Calculate polygon area using the shoelace formula.
     function polygonArea(vertices) {
         let area = 0;
         const n = vertices.length;
@@ -108,8 +108,10 @@ function adjustParagraphFontSizes() {
         return Math.abs(area) / 2;
     }
 
-    // Define your polygon vertices (in percentage units)
-    const vertices = [
+    // Define two sets of normalized vertices (0–100 units)
+    // for the floating shapes.
+    // "topPolygon" corresponds to the shape that occupies the top region.
+    const topPolygon = [
         [50, 100],
         [100, 100],
         [62.61, 96],
@@ -120,51 +122,83 @@ function adjustParagraphFontSizes() {
         [0, 0],
         [0, 100]
     ];
+    // "bottomPolygon" corresponds to the shape that occupies the bottom region.
+    const bottomPolygon = [
+        [0, 0],
+        [41.36, 4],
+        [65.66, 22],
+        [81.83, 42],
+        [93.94, 68],
+        [100, 100],
+        [100, 0]
+    ];
 
     // Get container dimensions from the background container element.
     const backgroundContainer = document.querySelector(".background-container");
     const containerHeight = backgroundContainer.offsetHeight;
     const containerWidth = backgroundContainer.offsetWidth;
-    const totalArea = containerHeight * containerWidth; // in px²
 
-    // Calculate the polygon's area (converting from normalized area to pixel area)
-    const polyArea = polygonArea(vertices) * (totalArea / 10000);
-    const emptyArea = totalArea - polyArea;
+    // Split the container vertically into two regions:
+    // Top half for p.right and bottom half for p.left.
+    const topRegionArea = containerWidth * (containerHeight / 2);
+    const bottomRegionArea = containerWidth * (containerHeight / 2);
 
-    // Select all paragraphs (both right and left) and neon buttons
+    // Convert the normalized polygon areas to pixel areas.
+    // The normalized full area is 100 * 100 = 10000.
+    const topPolygonArea = polygonArea(topPolygon) * (topRegionArea / 10000);
+    const bottomPolygonArea = polygonArea(bottomPolygon) * (bottomRegionArea / 10000);
+
+    // Calculate the available (empty) area in each region.
+    const availableTopArea = topRegionArea - topPolygonArea;
+    const availableBottomArea = bottomRegionArea - bottomPolygonArea;
+
+    // Get all paragraphs for each region (all elements with the classes "p.right" and "p.left")
     const rightParagraphs = document.querySelectorAll("p.right");
     const leftParagraphs = document.querySelectorAll("p.left");
-    const neonButtons = document.querySelectorAll(".neon-glow-button");
 
-    // Combine all paragraph elements to determine the longest text
-    const allParagraphs = [...rightParagraphs, ...leftParagraphs];
-    let longestText = "";
-    allParagraphs.forEach((el) => {
-        if (el.textContent.length > longestText.length) {
-            longestText = el.textContent;
-        }
+    // Sum up the text lengths for each region.
+    let totalRightChars = 0;
+    rightParagraphs.forEach((el) => {
+        totalRightChars += el.textContent.length;
     });
-    const totalChars = longestText.length;
 
-    if (totalChars > 0 && (rightParagraphs.length || leftParagraphs.length || neonButtons.length)) {
-        // Calculate font size based on the empty area and the length of the longest text.
-        // (2 * totalChars) adjusts the result; tweak the divisor as needed.
-        const result = Math.sqrt(emptyArea / (2 * totalChars));
+    let totalLeftChars = 0;
+    leftParagraphs.forEach((el) => {
+        totalLeftChars += el.textContent.length;
+    });
 
-        // Use the result (times a correction factor if necessary) as the pixel font size.
-        const correctionFactor = 1.0;
-        const pixelFontSize = result * correctionFactor;
+    // Compute candidate font sizes for each region using the formula:
+    // fontSize = sqrt(availableArea / (2 * totalChars))
+    // (Adjust the divisor as needed to suit your design.)
+    const fontSizeRight = totalRightChars > 0 ? Math.sqrt(availableTopArea / (totalRightChars / 2)) : Infinity;
+    const fontSizeLeft = totalLeftChars > 0 ? Math.sqrt(availableBottomArea / (totalLeftChars / 2)) : Infinity;
 
-        // Apply the computed font size to all matching elements.
-        rightParagraphs.forEach((el) => (el.style.fontSize = pixelFontSize + "px"));
-        leftParagraphs.forEach((el) => (el.style.fontSize = pixelFontSize + "px"));
-        neonButtons.forEach((el) => (el.style.fontSize = pixelFontSize + "px"));
+    // Choose a unified font size (for consistency) as the minimum of the two candidates.
+    const unifiedFontSize = Math.min(fontSizeRight, fontSizeLeft);
 
-        console.log("Longest text character count:", totalChars);
-        console.log("Polygon area (px²):", polyArea);
-        console.log("Empty area (px²):", emptyArea);
-        console.log("Computed font-size value (px):", pixelFontSize);
-    }
+    // Apply the unified font size to every p.right and p.left element…
+    rightParagraphs.forEach((el) => {
+        el.style.fontSize = unifiedFontSize + "px";
+    });
+    leftParagraphs.forEach((el) => {
+        el.style.fontSize = unifiedFontSize + "px";
+    });
+
+    // … and also apply to all neon-glow-button elements.
+    const neonButtons = document.querySelectorAll(".neon-glow-button");
+    neonButtons.forEach((el) => {
+        el.style.fontSize = unifiedFontSize + "px";
+    });
+
+    // Log debug information.
+    console.log("Top region area (px²):", topRegionArea);
+    console.log("Top polygon area (px²):", topPolygonArea);
+    console.log("Available top area (px²):", availableTopArea);
+    console.log("Bottom region area (px²):", bottomRegionArea);
+    console.log("Bottom polygon area (px²):", bottomPolygonArea);
+    console.log("Available bottom area (px²):", availableBottomArea);
+    console.log("Candidate font sizes: p.right =", fontSizeRight, ", p.left =", fontSizeLeft);
+    console.log("Unified font size (px):", unifiedFontSize);
 }
 
 // ============================================================

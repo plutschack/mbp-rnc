@@ -154,7 +154,7 @@ table {
 
 .right {
     text-align: right;
-    padding-top: 15vh;
+    padding-top: 10vh;
     padding-left: 5vw;
     vertical-align: middle;
     white-space: normal;
@@ -162,14 +162,10 @@ table {
 
 .left {
     text-align: left;
-    padding-top: 15vh;
+    padding-top: 10vh;
     padding-right: 5vw;
     vertical-align: middle;
     white-space: normal;
-}
-
-.cell-text {
-    color: white;
 }
 
 .neon-glow-button.right,
