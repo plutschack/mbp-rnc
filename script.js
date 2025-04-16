@@ -5,7 +5,7 @@ console.log("HELLO FROM MBP R&C!");
 // Run initial resize functions
 let initialOuterHeight = window.outerHeight;
 let initialOuterWidth = window.outerWidth;
-const dimensionThreshold = 150; // Ignore changes smaller than 150px
+const dimensionThreshold = 75; // Ignore changes smaller than 75px
 
 resizeNavIcon();
 repositionNavIcon();
@@ -22,11 +22,11 @@ function resizeHandler() {
         initialOuterHeight = window.outerHeight;
         initialOuterWidth = window.outerWidth;
         // All functions which need recalculation
-        fitTextToCell();
-        fitSmallLogoTextToCell();
-        adjustParagraphFontSizes();
         resizeNavIcon();
         repositionNavIcon();
+        adjustParagraphFontSizes();
+        fitTextToCell();
+        fitSmallLogoTextToCell();
     }
 }
 
@@ -55,12 +55,13 @@ window.addEventListener("orientationchange", () => {
     setTimeout(() => {
         initialOuterHeight = window.outerHeight;
         initialOuterWidth = window.outerWidth;
-        resizeHandler();
+        resizeNavIcon();
+        repositionNavIcon();
+        adjustParagraphFontSizes();
+        fitTextToCell();
+        fitSmallLogoTextToCell();
     }, 300);
 });
-
-// Initial call on page load
-window.addEventListener("load", resizeHandler);
 
 // ============================================================
 // TEXT FITTING FUNCTIONS
@@ -263,6 +264,8 @@ if (clickArea) {
 // ============================================================
 
 function positionMenuItems() {
+    resizeBackgroundCircle();
+    const menuItems = document.querySelectorAll(".menu-item");
     const menuBackgroundElem = document.getElementById("menu-background");
     const navMenu = document.getElementById("nav-menu");
     if (!menuBackgroundElem || !navMenu) return;
