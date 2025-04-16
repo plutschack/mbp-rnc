@@ -5,14 +5,16 @@ console.log("HELLO FROM MBP R&C!");
 // Run initial resize functions
 let initialInnerHeight = window.innerHeight;
 let initialInnerWidth = window.innerWidth;
-const dimensionThreshold = 75; // Ignore changes smaller than 75px
+const dimensionThreshold = 150; // Ignore changes smaller than 75px
 
 resizeBackgroundContainer();
 resizeBackgroundCircle();
 resizeNavIcon();
 repositionNavIcon();
-//adjustParagraphFontSizes();
+setFloaterHeight();
+adjustParagraphFontSizes();
 fitTextToCell();
+setCellTextTop();
 fitSmallLogoTextToCell();
 
 // Consolidated resizeHandler: Only recalc if the difference is significant.
@@ -27,8 +29,10 @@ function resizeHandler() {
         resizeBackgroundContainer();
         resizeNavIcon();
         repositionNavIcon();
-        //adjustParagraphFontSizes();
+        setFloaterHeight();
+        adjustParagraphFontSizes();
         fitTextToCell();
+        setCellTextTop();
         fitSmallLogoTextToCell();
     }
 }
@@ -61,8 +65,10 @@ window.addEventListener("orientationchange", () => {
         resizeBackgroundContainer();
         resizeNavIcon();
         repositionNavIcon();
-        //adjustParagraphFontSizes();
+        setFloaterHeight();
+        adjustParagraphFontSizes();
         fitTextToCell();
+        setCellTextTop();
         fitSmallLogoTextToCell();
     }, 300);
 });
@@ -129,13 +135,138 @@ function setFloaterHeight() {
     });
 }
 
-setFloaterHeight();
+function setCellTextTop() {
+    const topFloaters = document.querySelectorAll(".floater-container-top");
+    const bottomFloaters = document.querySelectorAll(".floater-container-bottom");
+
+    Array.from(topFloaters).forEach((floater) => {
+        const floaterHeight = floater.offsetHeight;
+        console.log("⭐floater height:", floaterHeight);
+        const cellText = floater.querySelector(".cell-text");
+        if (cellText) {
+            cellText.style.top = (floaterHeight - cellText.offsetHeight) / 2 + "px";
+        }
+    });
+
+    Array.from(bottomFloaters).forEach((floater) => {
+        const floaterHeight = floater.offsetHeight;
+        console.log("⭐floater height:", floaterHeight);
+        const cellText = floater.querySelector(".cell-text");
+        if (cellText) {
+            cellText.style.top = (floaterHeight - cellText.offsetHeight) / 2 + "px";
+        }
+    });
+}
+
+function adjustParagraphFontSizes() {
+    let fontSizes = [];
+    const paragraphText = document.querySelectorAll(".cell-text p");
+    const buttons = document.querySelectorAll(".cell-text button");
+
+    // Helper function: Calculate polygon area using the shoelace formula.
+    function polygonArea(vertices) {
+        let area = 0;
+        const n = vertices.length;
+        for (let i = 0; i < n; i++) {
+            const [x_i, y_i] = vertices[i];
+            const [x_j, y_j] = vertices[(i + 1) % n]; // wrap-around
+            area += x_i * y_j - x_j * y_i;
+        }
+        return Math.abs(area) / 2;
+    }
+
+    // Define two sets of normalized vertices (in 0–100 coordinate space)
+    // for the top and bottom floats.
+    const topPolygon = [
+        [50, 100],
+        [100, 100],
+        [62.61, 96],
+        [42.39, 83.67],
+        [26.24, 67.35],
+        [13.1, 48.94],
+        [4.03, 25.45],
+        [0, 0],
+        [0, 100]
+    ];
+    const bottomPolygon = [
+        [0, 0],
+        [41.36, 4],
+        [65.66, 22],
+        [81.83, 42],
+        [93.94, 68],
+        [100, 100],
+        [100, 0]
+    ];
+
+    // Process every background container independently.
+    const containers = document.querySelectorAll(".background-container");
+    containers.forEach((container, containerIndex) => {
+        // Get container dimensions in pixels.
+        const containerHeight = container.offsetHeight;
+        const containerWidth = container.offsetWidth;
+
+        console.log("Container", containerIndex, "Dimensions (W x H):", containerWidth, "x", containerHeight);
+        // We assume a vertical division:
+        // Top half is the "region" for p.right elements,
+        // and bottom half for p.left elements.
+        const topRegionArea = containerWidth * (containerHeight / 2);
+        const bottomRegionArea = containerWidth * (containerHeight / 2);
+
+        // Convert each polygon’s normalized area (out of 100×100 = 10,000)
+        // into pixel areas for the corresponding region.
+        const topPolyArea = polygonArea(topPolygon) * (topRegionArea / 10000);
+        const bottomPolyArea = polygonArea(bottomPolygon) * (bottomRegionArea / 10000);
+
+        // Available empty area for each region.
+        const availableTopArea = topRegionArea - topPolyArea;
+        const availableBottomArea = bottomRegionArea - bottomPolyArea;
+        console.log("Top Area: ", availableTopArea, "Bottom Area: ", availableBottomArea);
+
+        // Get the cell-text container within this background container.
+        const cellText = container.querySelectorAll(".cell-text");
+        cellText.forEach((cell) => {
+            // Get all paragraphs with class "right" and "left" within this container.
+            const rightParagraph = cell.querySelector("p.right");
+            const leftParagraph = cell.querySelector("p.left");
+
+            // For each p.right, compute its candidate font size based on its own text length.
+            if (rightParagraph) {
+                const rightText = rightParagraph.textContent;
+                const rightCharCount = rightText.length;
+                console.log("Char Count: ", rightCharCount);
+                const rightSharedArea = availableTopArea / rightCharCount;
+                const rightSize = rightCharCount > 0 ? Math.sqrt(rightSharedArea) : 0;
+                fontSizes.push(rightSize);
+            }
+
+            // For each p.left, compute its candidate font size based on its own text length.
+            if (leftParagraph) {
+                const leftText = leftParagraph.textContent;
+                const leftCharCount = leftText.length;
+                console.log("Char Count: ", leftCharCount);
+                const leftSharedArea = availableBottomArea / leftCharCount;
+                const leftSize = leftCharCount > 0 ? Math.sqrt(leftSharedArea) : 0;
+                fontSizes.push(leftSize);
+            }
+        });
+    });
+
+    if (fontSizes.length > 0) {
+        const minFontSize = Math.min(...fontSizes);
+        console.log("Min unifiable font size:", minFontSize);
+        paragraphText.forEach((el) => {
+            el.style.fontSize = minFontSize + "px";
+        });
+        buttons.forEach((el) => {
+            el.style.fontSize = minFontSize + "px";
+        });
+    }
+}
 
 // ============================================================
 // RESIZING & POSITIONING FUNCTIONS
 // ============================================================
 
-// Select the small-logo-text element.
 // Select the small-logo-text element.
 const largeLogo = document.querySelector(".logo-cell");
 
