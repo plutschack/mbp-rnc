@@ -121,43 +121,49 @@ function adjustParagraphFontSizes() {
         [0, 100]
     ];
 
-    // Assume the container is 100 x 100 (percentage units)
+    // Get container dimensions from the background container element.
     const backgroundContainer = document.querySelector(".background-container");
     const containerHeight = backgroundContainer.offsetHeight;
     const containerWidth = backgroundContainer.offsetWidth;
-    const totalArea = containerHeight * containerWidth;
+    const totalArea = containerHeight * containerWidth; // in px²
 
-    // Calculate the polygon's area and the empty area
-    const polyArea = polygonArea(vertices);
+    // Calculate the polygon's area (converting from normalized area to pixel area)
+    const polyArea = polygonArea(vertices) * (totalArea / 10000);
     const emptyArea = totalArea - polyArea;
 
-    // Select all the elements you want to adjust
+    // Select all paragraphs (both right and left) and neon buttons
     const rightParagraphs = document.querySelectorAll("p.right");
     const leftParagraphs = document.querySelectorAll("p.left");
     const neonButtons = document.querySelectorAll(".neon-glow-button");
 
-    if (rightParagraphs.length || leftParagraphs.length || neonButtons.length) {
-        // For demonstration, use the text from the first right paragraph for char count
-        const sampleText = (rightParagraphs[0] ? rightParagraphs[0].textContent : "") || "";
-        const totalChars = sampleText.length;
-        const result = Math.sqrt(emptyArea / totalChars);
-
-        // Convert from the 100x100 system to pixels using a reference container.
-        const cellText = document.querySelector(".cell-text");
-        if (cellText) {
-            const correctionFactor = 0.7;
-            const pixelFontSize = result * correctionFactor;
-
-            // Apply the computed font size to all matching elements.
-            rightParagraphs.forEach((el) => (el.style.fontSize = pixelFontSize + "px"));
-            leftParagraphs.forEach((el) => (el.style.fontSize = pixelFontSize + "px"));
-            neonButtons.forEach((el) => (el.style.fontSize = pixelFontSize + "px"));
-
-            console.log("Total Characters:", totalChars);
-            console.log("Polygon area:", polyArea);
-            console.log("Empty area:", emptyArea);
-            console.log("Computed font-size value (px):", pixelFontSize);
+    // Combine all paragraph elements to determine the longest text
+    const allParagraphs = [...rightParagraphs, ...leftParagraphs];
+    let longestText = "";
+    allParagraphs.forEach((el) => {
+        if (el.textContent.length > longestText.length) {
+            longestText = el.textContent;
         }
+    });
+    const totalChars = longestText.length;
+
+    if (totalChars > 0 && (rightParagraphs.length || leftParagraphs.length || neonButtons.length)) {
+        // Calculate font size based on the empty area and the length of the longest text.
+        // (2 * totalChars) adjusts the result; tweak the divisor as needed.
+        const result = Math.sqrt(emptyArea / (2 * totalChars));
+
+        // Use the result (times a correction factor if necessary) as the pixel font size.
+        const correctionFactor = 1.0;
+        const pixelFontSize = result * correctionFactor;
+
+        // Apply the computed font size to all matching elements.
+        rightParagraphs.forEach((el) => (el.style.fontSize = pixelFontSize + "px"));
+        leftParagraphs.forEach((el) => (el.style.fontSize = pixelFontSize + "px"));
+        neonButtons.forEach((el) => (el.style.fontSize = pixelFontSize + "px"));
+
+        console.log("Longest text character count:", totalChars);
+        console.log("Polygon area (px²):", polyArea);
+        console.log("Empty area (px²):", emptyArea);
+        console.log("Computed font-size value (px):", pixelFontSize);
     }
 }
 
