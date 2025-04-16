@@ -2,55 +2,65 @@
 console.log("HELLO FROM MBP R&C!");
 
 // At load time:
+// Run initial resize functions
 let initialOuterHeight = window.outerHeight;
 let initialOuterWidth = window.outerWidth;
-const dimensionThreshold = 150; // For example, ignore changes smaller than 50px
+const dimensionThreshold = 150; // Ignore changes smaller than 150px
 
+resizeNavIcon();
+repositionNavIcon();
+adjustParagraphFontSizes();
+fitTextToCell();
+fitSmallLogoTextToCell();
+
+// Consolidated resizeHandler: Only recalc if the difference is significant.
 function resizeHandler() {
-    // Only recalc if the difference is significant.
     if (
         Math.abs(window.outerHeight - initialOuterHeight) > dimensionThreshold ||
         Math.abs(window.outerWidth - initialOuterWidth) > dimensionThreshold
     ) {
-        // Update the cached dimensions on an actual change (like orientation change)
         initialOuterHeight = window.outerHeight;
         initialOuterWidth = window.outerWidth;
+        // All functions which need recalculation
         fitTextToCell();
         fitSmallLogoTextToCell();
         adjustParagraphFontSizes();
-        resizeBackgroundCircle();
         resizeNavIcon();
         repositionNavIcon();
-        // ...and any other recalculations you need.
     }
 }
 
+// Remove duplicate listeners by combining them:
 let resizeScheduled = false;
+let resizeTimeout;
+
 window.addEventListener("resize", () => {
+    // Immediate update on the next available frame
     if (!resizeScheduled) {
         resizeScheduled = true;
         requestAnimationFrame(() => {
-            // Your recalculation functions
             resizeHandler();
-            // Reset flag for next frame
             resizeScheduled = false;
         });
     }
-});
-
-window.addEventListener("resize", () => {
+    // Debounced call (fires after 300ms inactivity)
     clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(resizeHandler, 300);
+    resizeTimeout = setTimeout(() => {
+        resizeHandler();
+    }, 300);
 });
 
+// Orientation change - allow layout to settle
 window.addEventListener("orientationchange", () => {
-    // Optionally wait a little so the layout can settle
     setTimeout(() => {
         initialOuterHeight = window.outerHeight;
         initialOuterWidth = window.outerWidth;
         resizeHandler();
     }, 300);
 });
+
+// Initial call on page load
+window.addEventListener("load", resizeHandler);
 
 // ============================================================
 // TEXT FITTING FUNCTIONS
@@ -77,24 +87,6 @@ function fitSmallLogoTextToCell() {
     logoText.style.fontSize = textSize + "px";
     logoText.style.paddingTop = 0.2 + "vh";
 }
-
-function resizeHandler() {
-    fitTextToCell();
-    fitSmallLogoTextToCell();
-}
-
-// LARGE LOGO TEXT FITTING
-
-window.addEventListener("load", resizeHandler);
-let resizeTimeout;
-window.addEventListener("resize", () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-        resizeHandler();
-        adjustParagraphFontSizes();
-        // Other resize functions...
-    }, 100); // Adjust delay as needed
-});
 
 function adjustParagraphFontSizes() {
     // Calculate polygon area using the shoelace formula.
@@ -161,10 +153,6 @@ function adjustParagraphFontSizes() {
     }
 }
 
-// Run the function after page load and on window resize to adjust dynamically.
-window.addEventListener("load", adjustParagraphFontSizes);
-window.addEventListener("resize", adjustParagraphFontSizes);
-
 // ============================================================
 // RESIZING & POSITIONING FUNCTIONS
 // ============================================================
@@ -206,11 +194,9 @@ if (largeLogo) {
         const currentScroll = window.scrollY;
         console.log("Current scroll position:", currentScroll);
         // Check the scroll position and update the 'top' CSS property accordingly.
-        if (currentScroll < largeLogoScrollHeight) {
-            largeLogo.style.position = "sticky";
+        if (currentScroll < largeLogoScrollHeight / 2) {
+            largeLogo.style.position = "fixed";
             largeLogo.classList.remove("faded");
-            largeLogo.style.textAlign = "center";
-            largeLogo.style.verticalAlign = "middle";
         } else {
             largeLogo.classList.remove("visible");
             largeLogo.classList.add("faded");
@@ -268,14 +254,9 @@ if (clickArea) {
 }
 
 // Attach resize events
-window.addEventListener("resize", resizeBackgroundCircle);
-window.addEventListener("resize", resizeNavIcon);
-window.addEventListener("resize", repositionNavIcon);
-
-// Run initial resize functions
-resizeNavIcon();
-resizeBackgroundCircle();
-repositionNavIcon();
+//window.addEventListener("resize", resizeBackgroundCircle);
+//window.addEventListener("resize", resizeNavIcon);
+//window.addEventListener("resize", repositionNavIcon);
 
 // ============================================================
 // MENU ITEM POSITIONING
