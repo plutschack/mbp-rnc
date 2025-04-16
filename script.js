@@ -122,9 +122,8 @@ function adjustParagraphFontSizes() {
         return Math.abs(area) / 2;
     }
 
-    // Define two sets of normalized vertices (0–100 units)
-    // for the floating shapes.
-    // "topPolygon" corresponds to the shape that occupies the top region.
+    // Define two sets of normalized vertices (in 0–100 coordinate space)
+    // for the top and bottom floats.
     const topPolygon = [
         [50, 100],
         [100, 100],
@@ -136,7 +135,6 @@ function adjustParagraphFontSizes() {
         [0, 0],
         [0, 100]
     ];
-    // "bottomPolygon" corresponds to the shape that occupies the bottom region.
     const bottomPolygon = [
         [0, 0],
         [41.36, 4],
@@ -147,72 +145,101 @@ function adjustParagraphFontSizes() {
         [100, 0]
     ];
 
-    // Get container dimensions from the background container element.
-    const backgroundContainer = document.querySelector(".background-container");
-    const containerHeight = backgroundContainer.offsetHeight;
-    const containerWidth = backgroundContainer.offsetWidth;
+    // Process every background container independently.
+    const containers = document.querySelectorAll(".background-container");
+    containers.forEach((container, containerIndex) => {
+        // Get container dimensions in pixels.
+        const containerHeight = container.offsetHeight;
+        const containerWidth = container.offsetWidth;
 
-    // Split the container vertically into two regions:
-    // Top half for p.right and bottom half for p.left.
-    const topRegionArea = containerWidth * (containerHeight / 2);
-    const bottomRegionArea = containerWidth * (containerHeight / 2);
+        // We assume a vertical division:
+        // Top half is the "region" for p.right elements,
+        // and bottom half for p.left elements.
+        const topRegionArea = containerWidth * (containerHeight / 2);
+        const bottomRegionArea = containerWidth * (containerHeight / 2);
 
-    // Convert the normalized polygon areas to pixel areas.
-    // The normalized full area is 100 * 100 = 10000.
-    const topPolygonArea = polygonArea(topPolygon) * (topRegionArea / 10000);
-    const bottomPolygonArea = polygonArea(bottomPolygon) * (bottomRegionArea / 10000);
+        // Convert each polygon’s normalized area (out of 100×100 = 10,000)
+        // into pixel areas for the corresponding region.
+        const topPolyArea = polygonArea(topPolygon) * (topRegionArea / 10000);
+        const bottomPolyArea = polygonArea(bottomPolygon) * (bottomRegionArea / 10000);
 
-    // Calculate the available (empty) area in each region.
-    const availableTopArea = topRegionArea - topPolygonArea;
-    const availableBottomArea = bottomRegionArea - bottomPolygonArea;
+        // Available empty area for each region.
+        const availableTopArea = topRegionArea - topPolyArea;
+        const availableBottomArea = bottomRegionArea - bottomPolyArea;
 
-    // Get all paragraphs for each region (all elements with the classes "p.right" and "p.left")
-    const rightParagraphs = document.querySelectorAll("p.right");
-    const leftParagraphs = document.querySelectorAll("p.left");
+        // Get the cell-text container within this background container.
+        const cellText = container.querySelector(".cell-text");
+        if (!cellText) return; // If not found, skip this container.
 
-    // Sum up the text lengths for each region.
-    let totalRightChars = 0;
-    rightParagraphs.forEach((el) => {
-        totalRightChars += el.textContent.length;
+        // Get all paragraphs with class "right" and "left" within this container.
+        const rightParagraphs = cellText.querySelectorAll("p.right");
+        const leftParagraphs = cellText.querySelectorAll("p.left");
+
+        // For each p.right, compute its candidate font size based on its own text length.
+        rightParagraphs.forEach((paragraph) => {
+            const text = paragraph.textContent;
+            const charCount = text.length;
+            // Assume that if there are multiple p.right elements in this container,
+            // they share the available top area equally.
+            const sharedArea = availableTopArea / rightParagraphs.length;
+            // Candidate font size formula; the divisor “2” is a heuristic.
+            const size = charCount > 0 ? Math.sqrt(sharedArea / charCount) : 0;
+            paragraph.style.fontSize = size + "px";
+            console.log(`Container ${containerIndex} - p.right: ${charCount} chars, size ${size}px`);
+        });
+
+        // For each p.left, compute its candidate font size using the available bottom area.
+        leftParagraphs.forEach((paragraph) => {
+            const text = paragraph.textContent;
+            const charCount = text.length;
+            const sharedArea = availableBottomArea / leftParagraphs.length;
+            const size = charCount > 0 ? Math.sqrt(sharedArea / charCount) : 0;
+            paragraph.style.fontSize = size + "px";
+            console.log(`Container ${containerIndex} - p.left: ${charCount} chars, size ${size}px`);
+        });
+
+        // Optionally, adjust neon-glow-buttons within this container.
+        // For example, you could set them to the average of the candidate sizes:
+        const neonButtons = cellText.querySelectorAll(".neon-glow-button");
+        if (neonButtons.length > 0) {
+            let totalSize = 0,
+                count = 0;
+            rightParagraphs.forEach((p) => {
+                totalSize += parseFloat(window.getComputedStyle(p).fontSize) || 0;
+                count++;
+            });
+            leftParagraphs.forEach((p) => {
+                totalSize += parseFloat(window.getComputedStyle(p).fontSize) || 0;
+                count++;
+            });
+            const avgSize = count > 0 ? totalSize / count : 0;
+            neonButtons.forEach((button) => {
+                button.style.fontSize = avgSize + "px";
+            });
+        }
+
+        // Log container-specific debug info.
+        console.log(
+            "Container",
+            containerIndex,
+            "Dimensions (W x H):",
+            containerWidth,
+            "x",
+            containerHeight,
+            "Top region area:",
+            topRegionArea,
+            "Top polygon area:",
+            topPolyArea,
+            "Available top area:",
+            availableTopArea,
+            "Bottom region area:",
+            bottomRegionArea,
+            "Bottom polygon area:",
+            bottomPolyArea,
+            "Available bottom area:",
+            availableBottomArea
+        );
     });
-
-    let totalLeftChars = 0;
-    leftParagraphs.forEach((el) => {
-        totalLeftChars += el.textContent.length;
-    });
-
-    // Compute candidate font sizes for each region using the formula:
-    // fontSize = sqrt(availableArea / (2 * totalChars))
-    // (Adjust the divisor as needed to suit your design.)
-    const fontSizeRight = totalRightChars > 0 ? Math.sqrt(availableTopArea / (totalRightChars / 2)) : Infinity;
-    const fontSizeLeft = totalLeftChars > 0 ? Math.sqrt(availableBottomArea / (totalLeftChars / 2)) : Infinity;
-
-    // Choose a unified font size (for consistency) as the minimum of the two candidates.
-    const unifiedFontSize = Math.min(fontSizeRight, fontSizeLeft);
-
-    // Apply the unified font size to every p.right and p.left element…
-    rightParagraphs.forEach((el) => {
-        el.style.fontSize = unifiedFontSize + "px";
-    });
-    leftParagraphs.forEach((el) => {
-        el.style.fontSize = unifiedFontSize + "px";
-    });
-
-    // … and also apply to all neon-glow-button elements.
-    const neonButtons = document.querySelectorAll(".neon-glow-button");
-    neonButtons.forEach((el) => {
-        el.style.fontSize = unifiedFontSize + "px";
-    });
-
-    // Log debug information.
-    console.log("Top region area (px²):", topRegionArea);
-    console.log("Top polygon area (px²):", topPolygonArea);
-    console.log("Available top area (px²):", availableTopArea);
-    console.log("Bottom region area (px²):", bottomRegionArea);
-    console.log("Bottom polygon area (px²):", bottomPolygonArea);
-    console.log("Available bottom area (px²):", availableBottomArea);
-    console.log("Candidate font sizes: p.right =", fontSizeRight, ", p.left =", fontSizeLeft);
-    console.log("Unified font size (px):", unifiedFontSize);
 }
 
 // ============================================================
