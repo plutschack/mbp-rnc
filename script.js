@@ -3,8 +3,8 @@ console.log("HELLO FROM MBP R&C!");
 
 // At load time:
 // Run initial resize functions
-let initialOuterHeight = window.outerHeight;
-let initialOuterWidth = window.outerWidth;
+let initialInnerHeight = window.innerHeight;
+let initialInnerWidth = window.innerWidth;
 const dimensionThreshold = 75; // Ignore changes smaller than 75px
 
 resizeNavIcon();
@@ -16,11 +16,11 @@ fitSmallLogoTextToCell();
 // Consolidated resizeHandler: Only recalc if the difference is significant.
 function resizeHandler() {
     if (
-        Math.abs(window.outerHeight - initialOuterHeight) > dimensionThreshold ||
-        Math.abs(window.outerWidth - initialOuterWidth) > dimensionThreshold
+        Math.abs(window.innerHeight - initialInnerHeight) > dimensionThreshold ||
+        Math.abs(window.innerWidth - initialInnerWidth) > dimensionThreshold
     ) {
-        initialOuterHeight = window.outerHeight;
-        initialOuterWidth = window.outerWidth;
+        initialInnerHeight = window.innerHeight;
+        initialInnerWidth = window.innerWidth;
         // All functions which need recalculation
         resizeNavIcon();
         repositionNavIcon();
@@ -53,8 +53,8 @@ window.addEventListener("resize", () => {
 // Orientation change - allow layout to settle
 window.addEventListener("orientationchange", () => {
     setTimeout(() => {
-        initialOuterHeight = window.outerHeight;
-        initialOuterWidth = window.outerWidth;
+        initialInnerHeight = window.innerHeight;
+        initialInnerWidth = window.innerWidth;
         resizeNavIcon();
         repositionNavIcon();
         adjustParagraphFontSizes();
@@ -71,13 +71,13 @@ function fitTextToCell() {
     const logoText = document.getElementsByClassName("logo-text")[0];
     const logoPlaceholder = document.getElementsByClassName("logo-placeholder")[0];
     if (!logoText) return;
-    const textSize = 0.85 * Math.min(initialOuterHeight / 2, initialOuterWidth / 3);
+    const textSize = 0.85 * Math.min(initialInnerHeight / 2, initialInnerWidth / 3);
     logoText.style.fontSize = textSize + "px";
     logoText.classList.add("visible");
-    if (initialOuterHeight / 2 == Math.min(initialOuterHeight / 2, initialOuterWidth / 3)) {
-        logoPlaceholder.style.height = initialOuterHeight + "px";
+    if (initialInnerHeight / 2 == Math.min(initialInnerHeight / 2, initialInnerWidth / 3)) {
+        logoPlaceholder.style.height = initialInnerHeight + "px";
     } else {
-        logoPlaceholder.style.height = (initialOuterWidth * 2) / 3 + "px";
+        logoPlaceholder.style.height = (initialInnerWidth * 2) / 3 + "px";
     }
 }
 
@@ -85,13 +85,13 @@ function fitSmallLogoTextToCell() {
     const logoText = document.getElementsByClassName("small-logo-text")[0];
     const logoPlaceholder = document.getElementsByClassName("small-logo-placeholder")[0];
     if (!logoText) return;
-    const textSize = 0.1 * Math.min(initialOuterHeight / 2, initialOuterWidth / 3);
+    const textSize = 0.1 * Math.min(initialInnerHeight / 2, initialInnerWidth / 3);
     logoText.style.fontSize = textSize + "px";
-    logoText.style.top = initialOuterHeight * 0.05 + "px";
-    if (initialOuterHeight / 2 == Math.min(initialOuterHeight / 2, initialOuterWidth / 3)) {
-        logoPlaceholder.style.height = initialOuterHeight * 0.1 + "px";
+    logoText.style.top = initialInnerHeight * 0.05 + "px";
+    if (initialInnerHeight / 2 == Math.min(initialInnerHeight / 2, initialInnerWidth / 3)) {
+        logoPlaceholder.style.height = initialInnerHeight * 0.1 + "px";
     } else {
-        logoPlaceholder.style.height = ((initialOuterWidth * 2) / 3) * 0.1 + "px";
+        logoPlaceholder.style.height = ((initialInnerWidth * 2) / 3) * 0.1 + "px";
     }
 }
 
@@ -216,7 +216,7 @@ if (largeLogo) {
 
 function resizeBackgroundCircle() {
     // Use 70% of the smaller viewport dimension for consistent scaling.
-    const circRad = 1.0 * initialOuterHeight;
+    const circRad = 1.0 * initialInnerHeight;
     const circleElem = document.getElementById("menu-background");
     if (circleElem) {
         circleElem.style.width = circRad + "px";
@@ -224,7 +224,7 @@ function resizeBackgroundCircle() {
 }
 
 function resizeNavIcon() {
-    const circRad = 0.1 * Math.min(initialOuterHeight, initialOuterWidth);
+    const circRad = 0.1 * Math.min(initialInnerHeight, initialInnerWidth);
     const navIcon = document.getElementById("nav-icon");
     const marginCells = document.getElementsByClassName("margin-cell");
     const contentCells = document.getElementsByClassName("background-container");
@@ -239,24 +239,24 @@ function resizeNavIcon() {
         }
         if (contentCells) {
             Array.from(contentCells).forEach((cell) => {
-                cell.style.width = initialOuterWidth - circRad * 3.5 + "px";
+                cell.style.width = initialInnerWidth - circRad * 3.5 + "px";
             });
         }
     }
 }
 
 function repositionNavIcon() {
-    const circRad = 0.1 * Math.min(initialOuterHeight, initialOuterWidth);
+    const circRad = 0.1 * Math.min(initialInnerHeight, initialInnerWidth);
     const menuContainer = document.getElementById("menu-container");
     if (menuContainer) {
-        menuContainer.style.left = circRad * 2.5 + initialOuterWidth - circRad * 3.5 + "px";
+        menuContainer.style.left = circRad * 2.5 + initialInnerWidth - circRad * 3.5 + "px";
     }
 }
 
 const clickArea = document.getElementById("click-area");
 if (clickArea) {
     const rect = clickArea.getBoundingClientRect();
-    const distanceFromRight = initialOuterWidth - rect.right;
+    const distanceFromRight = initialInnerWidth - rect.right;
     console.log("Distance from the right edge of the click-area to the right side of the screen:", distanceFromRight, "px");
 }
 
