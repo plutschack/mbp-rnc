@@ -11,7 +11,7 @@ resizeBackgroundContainer();
 resizeBackgroundCircle();
 resizeNavIcon();
 repositionNavIcon();
-adjustParagraphFontSizes();
+//adjustParagraphFontSizes();
 fitTextToCell();
 fitSmallLogoTextToCell();
 
@@ -27,7 +27,7 @@ function resizeHandler() {
         resizeBackgroundContainer();
         resizeNavIcon();
         repositionNavIcon();
-        adjustParagraphFontSizes();
+        //adjustParagraphFontSizes();
         fitTextToCell();
         fitSmallLogoTextToCell();
     }
@@ -61,7 +61,7 @@ window.addEventListener("orientationchange", () => {
         resizeBackgroundContainer();
         resizeNavIcon();
         repositionNavIcon();
-        adjustParagraphFontSizes();
+        //adjustParagraphFontSizes();
         fitTextToCell();
         fitSmallLogoTextToCell();
     }, 300);
@@ -109,138 +109,27 @@ function fitSmallLogoTextToCell() {
     }
 }
 
-function adjustParagraphFontSizes() {
-    // Helper function: Calculate polygon area using the shoelace formula.
-    function polygonArea(vertices) {
-        let area = 0;
-        const n = vertices.length;
-        for (let i = 0; i < n; i++) {
-            const [x_i, y_i] = vertices[i];
-            const [x_j, y_j] = vertices[(i + 1) % n]; // wrap-around
-            area += x_i * y_j - x_j * y_i;
+function setFloaterHeight() {
+    const lineArtBackground = document.querySelector(".line-art-background");
+    const lineArtPositionInfo = lineArtBackground.getBoundingClientRect();
+    const topFloaters = document.querySelectorAll(".floater-container-top");
+    const bottomFloaters = document.querySelectorAll(".floater-container-bottom");
+
+    console.log("lineArtBackground Height:", lineArtPositionInfo.height);
+
+    Array.from(topFloaters).forEach((floater) => {
+        if (lineArtBackground) {
+            floater.style.height = lineArtPositionInfo.height * 0.5 + "px";
         }
-        return Math.abs(area) / 2;
-    }
-
-    // Define two sets of normalized vertices (in 0–100 coordinate space)
-    // for the top and bottom floats.
-    const topPolygon = [
-        [50, 100],
-        [100, 100],
-        [62.61, 96],
-        [42.39, 83.67],
-        [26.24, 67.35],
-        [13.1, 48.94],
-        [4.03, 25.45],
-        [0, 0],
-        [0, 100]
-    ];
-    const bottomPolygon = [
-        [0, 0],
-        [41.36, 4],
-        [65.66, 22],
-        [81.83, 42],
-        [93.94, 68],
-        [100, 100],
-        [100, 0]
-    ];
-
-    // Process every background container independently.
-    const containers = document.querySelectorAll(".background-container");
-    containers.forEach((container, containerIndex) => {
-        // Get container dimensions in pixels.
-        const containerHeight = container.offsetHeight;
-        const containerWidth = container.offsetWidth;
-
-        // We assume a vertical division:
-        // Top half is the "region" for p.right elements,
-        // and bottom half for p.left elements.
-        const topRegionArea = containerWidth * (containerHeight / 2);
-        const bottomRegionArea = containerWidth * (containerHeight / 2);
-
-        // Convert each polygon’s normalized area (out of 100×100 = 10,000)
-        // into pixel areas for the corresponding region.
-        const topPolyArea = polygonArea(topPolygon) * (topRegionArea / 10000);
-        const bottomPolyArea = polygonArea(bottomPolygon) * (bottomRegionArea / 10000);
-
-        // Available empty area for each region.
-        const availableTopArea = topRegionArea - topPolyArea;
-        const availableBottomArea = bottomRegionArea - bottomPolyArea;
-
-        // Get the cell-text container within this background container.
-        const cellText = container.querySelector(".cell-text");
-        if (!cellText) return; // If not found, skip this container.
-
-        // Get all paragraphs with class "right" and "left" within this container.
-        const rightParagraphs = cellText.querySelectorAll("p.right");
-        const leftParagraphs = cellText.querySelectorAll("p.left");
-
-        // For each p.right, compute its candidate font size based on its own text length.
-        rightParagraphs.forEach((paragraph) => {
-            const text = paragraph.textContent;
-            const charCount = text.length;
-            // Assume that if there are multiple p.right elements in this container,
-            // they share the available top area equally.
-            const sharedArea = availableTopArea / rightParagraphs.length;
-            // Candidate font size formula; the divisor “2” is a heuristic.
-            const size = charCount > 0 ? Math.sqrt(sharedArea / charCount) : 0;
-            paragraph.style.fontSize = size + "px";
-            console.log(`Container ${containerIndex} - p.right: ${charCount} chars, size ${size}px`);
-        });
-
-        // For each p.left, compute its candidate font size using the available bottom area.
-        leftParagraphs.forEach((paragraph) => {
-            const text = paragraph.textContent;
-            const charCount = text.length;
-            const sharedArea = availableBottomArea / leftParagraphs.length;
-            const size = charCount > 0 ? Math.sqrt(sharedArea / charCount) : 0;
-            paragraph.style.fontSize = size + "px";
-            console.log(`Container ${containerIndex} - p.left: ${charCount} chars, size ${size}px`);
-        });
-
-        // Optionally, adjust neon-glow-buttons within this container.
-        // For example, you could set them to the average of the candidate sizes:
-        const neonButtons = cellText.querySelectorAll(".neon-glow-button");
-        if (neonButtons.length > 0) {
-            let totalSize = 0,
-                count = 0;
-            rightParagraphs.forEach((p) => {
-                totalSize += parseFloat(window.getComputedStyle(p).fontSize) || 0;
-                count++;
-            });
-            leftParagraphs.forEach((p) => {
-                totalSize += parseFloat(window.getComputedStyle(p).fontSize) || 0;
-                count++;
-            });
-            const avgSize = count > 0 ? totalSize / count : 0;
-            neonButtons.forEach((button) => {
-                button.style.fontSize = avgSize + "px";
-            });
+    });
+    Array.from(bottomFloaters).forEach((floater) => {
+        if (lineArtBackground) {
+            floater.style.height = lineArtPositionInfo.height * 0.5 + "px";
         }
-
-        // Log container-specific debug info.
-        console.log(
-            "Container",
-            containerIndex,
-            "Dimensions (W x H):",
-            containerWidth,
-            "x",
-            containerHeight,
-            "Top region area:",
-            topRegionArea,
-            "Top polygon area:",
-            topPolyArea,
-            "Available top area:",
-            availableTopArea,
-            "Bottom region area:",
-            bottomRegionArea,
-            "Bottom polygon area:",
-            bottomPolyArea,
-            "Available bottom area:",
-            availableBottomArea
-        );
     });
 }
+
+setFloaterHeight();
 
 // ============================================================
 // RESIZING & POSITIONING FUNCTIONS
