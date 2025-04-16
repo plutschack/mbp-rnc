@@ -89,8 +89,6 @@ table {
 
 .background-container {
     position: relative;
-    width: 85vw;
-    height: 170vw;
 }
 
 .line-art-background {
@@ -99,7 +97,7 @@ table {
     left: 50%; /* center horizontally inside container */
     transform: translate(-50%, -50%); /* exact centering */
     width: 100%;
-    height: 170vw;
+    height: 100%;
     z-index: 0;
     pointer-events: none;
     background: transparent;
@@ -116,7 +114,7 @@ table {
     float: left;
     width: 100%;
     height: 50%;
-    background: transparent;
+    background: white;
     opacity: 0.5;
     position: relative;
     z-index: 1;
@@ -130,7 +128,7 @@ table {
     float: right;
     width: 100%;
     height: 50%;
-    background: transparent;
+    background: white;
     opacity: 0.5;
     position: relative;
     z-index: 1;

@@ -7,6 +7,8 @@ let initialInnerHeight = window.innerHeight;
 let initialInnerWidth = window.innerWidth;
 const dimensionThreshold = 75; // Ignore changes smaller than 75px
 
+resizeBackgroundContainer();
+resizeBackgroundCircle();
 resizeNavIcon();
 repositionNavIcon();
 adjustParagraphFontSizes();
@@ -22,6 +24,7 @@ function resizeHandler() {
         initialInnerHeight = window.innerHeight;
         initialInnerWidth = window.innerWidth;
         // All functions which need recalculation
+        resizeBackgroundContainer();
         resizeNavIcon();
         repositionNavIcon();
         adjustParagraphFontSizes();
@@ -55,6 +58,7 @@ window.addEventListener("orientationchange", () => {
     setTimeout(() => {
         initialInnerHeight = window.innerHeight;
         initialInnerWidth = window.innerWidth;
+        resizeBackgroundContainer();
         resizeNavIcon();
         repositionNavIcon();
         adjustParagraphFontSizes();
@@ -62,6 +66,15 @@ window.addEventListener("orientationchange", () => {
         fitSmallLogoTextToCell();
     }, 300);
 });
+
+function resizeBackgroundContainer() {
+    const backgroundContainer = document.querySelector(".background-container");
+    if (backgroundContainer) {
+        backgroundContainer.style.height = initialInnerHeight * 1.7 + "px";
+        backgroundContainer.style.width = initialInnerWidth * 0.85 + "px";
+        backgroundContainer.style.position = "relative";
+    }
+}
 
 // ============================================================
 // TEXT FITTING FUNCTIONS
