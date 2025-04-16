@@ -68,12 +68,13 @@ window.addEventListener("orientationchange", () => {
 });
 
 function resizeBackgroundContainer() {
-    const backgroundContainer = document.querySelector(".background-container");
-    if (backgroundContainer) {
-        backgroundContainer.style.height = initialInnerHeight * 1.7 + "px";
-        backgroundContainer.style.width = initialInnerWidth * 0.85 + "px";
-        backgroundContainer.style.position = "relative";
-    }
+    const backgroundContainers = document.querySelectorAll(".background-container");
+    // Apply the unified font size to every p.right and p.left element…
+    backgroundContainers.forEach((el) => {
+        el.style.height = initialInnerHeight * 1.7 + "px";
+        el.style.width = initialInnerWidth * 0.85 + "px";
+        el.style.position = "relative";
+    });
 }
 
 // ============================================================
