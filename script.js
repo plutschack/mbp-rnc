@@ -122,15 +122,18 @@ function adjustParagraphFontSizes() {
     ];
 
     // Assume the container is 100 x 100 (percentage units)
-    const totalArea = 100 * 100; // 10,000 square units
+    const backgroundContainer = document.querySelector(".background-container");
+    const containerHeight = backgroundContainer.offsetHeight;
+    const containerWidth = backgroundContainer.offsetWidth;
+    const totalArea = containerHeight * containerWidth;
 
     // Calculate the polygon's area and the empty area
     const polyArea = polygonArea(vertices);
     const emptyArea = totalArea - polyArea;
 
     // Select all the elements you want to adjust
-    const rightParagraphs = document.querySelectorAll(".cell-text p.right");
-    const leftParagraphs = document.querySelectorAll(".cell-text p.left");
+    const rightParagraphs = document.querySelectorAll("p.right");
+    const leftParagraphs = document.querySelectorAll("p.left");
     const neonButtons = document.querySelectorAll(".neon-glow-button");
 
     if (rightParagraphs.length || leftParagraphs.length || neonButtons.length) {
@@ -142,10 +145,8 @@ function adjustParagraphFontSizes() {
         // Convert from the 100x100 system to pixels using a reference container.
         const cellText = document.querySelector(".cell-text");
         if (cellText) {
-            const containerWidthPx = cellText.offsetWidth;
-            const pixelConversionFactor = containerWidthPx / 100;
-            const correctionFactor = 0.8;
-            const pixelFontSize = result * pixelConversionFactor * correctionFactor;
+            const correctionFactor = 0.7;
+            const pixelFontSize = result * correctionFactor;
 
             // Apply the computed font size to all matching elements.
             rightParagraphs.forEach((el) => (el.style.fontSize = pixelFontSize + "px"));
@@ -167,7 +168,6 @@ function adjustParagraphFontSizes() {
 // Select the small-logo-text element.
 // Select the small-logo-text element.
 const largeLogo = document.querySelector(".logo-cell");
-const rightHeader = document.querySelector(".bread-crumb-cell");
 
 if (largeLogo) {
     // Create an observer instance with a callback
