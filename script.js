@@ -79,7 +79,6 @@ function resizeBackgroundContainer() {
     backgroundContainers.forEach((el) => {
         el.style.height = initialInnerHeight * 1.7 + "px";
         el.style.width = initialInnerWidth * 0.85 + "px";
-        el.style.position = "relative";
     });
 }
 
@@ -142,9 +141,9 @@ function setCellTextTop() {
     Array.from(topFloaters).forEach((floater) => {
         const floaterHeight = floater.offsetHeight;
         console.log("⭐floater height:", floaterHeight);
-        const cellText = floater.querySelector(".cell-text");
+        const cellText = floater.querySelector(".floater-container-top p");
         if (cellText) {
-            cellText.style.top = (floaterHeight - cellText.offsetHeight) / 2 + "px";
+            cellText.style.paddingTop = (floaterHeight - cellText.offsetHeight) / 2 + "px";
         }
     });
 
@@ -160,7 +159,7 @@ function setCellTextTop() {
 
 function adjustParagraphFontSizes() {
     let fontSizes = [];
-    const paragraphText = document.querySelectorAll(".cell-text p");
+    const paragraphText = document.querySelectorAll(".floater-container-top p");
     const buttons = document.querySelectorAll(".cell-text button");
 
     // Helper function: Calculate polygon area using the shoelace formula.
