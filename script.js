@@ -150,17 +150,17 @@ function setCellTextTop() {
     Array.from(bottomFloaters).forEach((floater) => {
         const floaterHeight = floater.offsetHeight;
         console.log("⭐floater height:", floaterHeight);
-        const cellText = floater.querySelector(".cell-text");
+        const cellText = floater.querySelector(".floater-container-bottom p");
         if (cellText) {
-            cellText.style.top = (floaterHeight - cellText.offsetHeight) / 2 + "px";
+            cellText.style.paddingTop = (floaterHeight - cellText.offsetHeight) / 2 + "px";
         }
     });
 }
 
 function adjustParagraphFontSizes() {
     let fontSizes = [];
-    const paragraphText = document.querySelectorAll(".floater-container-top p");
-    const buttons = document.querySelectorAll(".cell-text button");
+    const paragraphText = document.querySelectorAll("p");
+    const buttons = document.querySelectorAll("button");
 
     // Helper function: Calculate polygon area using the shoelace formula.
     function polygonArea(vertices) {
@@ -221,26 +221,26 @@ function adjustParagraphFontSizes() {
         const availableBottomArea = bottomRegionArea - bottomPolyArea;
         console.log("Top Area: ", availableTopArea, "Bottom Area: ", availableBottomArea);
 
-        // Get the cell-text container within this background container.
-        const cellText = container.querySelectorAll(".cell-text");
-        cellText.forEach((cell) => {
-            // Get all paragraphs with class "right" and "left" within this container.
-            const rightParagraph = cell.querySelector("p.right");
-            const leftParagraph = cell.querySelector("p.left");
+        // Get all paragraphs with class "right" and "left" within this container.
+        const rightParagraph = document.querySelectorAll("p.right");
+        const leftParagraph = document.querySelectorAll("p.left");
 
-            // For each p.right, compute its candidate font size based on its own text length.
-            if (rightParagraph) {
-                const rightText = rightParagraph.textContent;
+        // For each p.right, compute its candidate font size based on its own text length.
+        rightParagraph.forEach((cell) => {
+            if (cell) {
+                const rightText = cell.textContent;
                 const rightCharCount = rightText.length;
                 console.log("Char Count: ", rightCharCount);
                 const rightSharedArea = availableTopArea / rightCharCount;
                 const rightSize = rightCharCount > 0 ? Math.sqrt(rightSharedArea) : 0;
                 fontSizes.push(rightSize);
             }
+        });
 
-            // For each p.left, compute its candidate font size based on its own text length.
-            if (leftParagraph) {
-                const leftText = leftParagraph.textContent;
+        // For each p.left, compute its candidate font size based on its own text length.
+        leftParagraph.forEach((cell) => {
+            if (cell) {
+                const leftText = cell.textContent;
                 const leftCharCount = leftText.length;
                 console.log("Char Count: ", leftCharCount);
                 const leftSharedArea = availableBottomArea / leftCharCount;
