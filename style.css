@@ -15,10 +15,6 @@ table {
     height: 100%;
 }
 
-.margin-cell {
-    margin: 10vw;
-}
-
 .background {
     table-layout: fixed;
 }
