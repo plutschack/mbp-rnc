@@ -259,7 +259,7 @@ function adjustParagraphFontSizes() {
             el.style.fontSize = minFontSize + "px";
         });
         buttons.forEach((el) => {
-            el.style.fontSize = minFontSize + "px";
+            el.style.fontSize = minFontSize * 0.8 + "px";
         });
     }
 }
