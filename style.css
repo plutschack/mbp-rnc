@@ -21,6 +21,7 @@ table {
 
 .logo-wrapper {
     position: relative;
+    z-index: 10;
 }
 
 .logo-cell {
@@ -91,6 +92,7 @@ table {
 
 .background-container {
     position: relative;
+    background-color: transparent;
 }
 
 .line-art-background {
@@ -317,5 +319,6 @@ table {
 }
 
 #contact-form {
-    z-index: 10;
+    z-index: 5;
+    background-color: transparent;
 }
