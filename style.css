@@ -6,6 +6,7 @@ body {
     font-family: "Montserrat", sans-serif;
     background-color: black;
     color: #f58f1d;
+    scroll-behavior: smooth;
 }
 
 table {
@@ -54,6 +55,7 @@ table {
     text-align: center;
     vertical-align: middle;
     left: 1vw;
+    top: 5vh;
 }
 
 .bread-crumb-cell {
@@ -102,6 +104,11 @@ table {
     pointer-events: none;
     background: transparent;
     opacity: 1;
+}
+
+.line-art-background.embed {
+    opacity: 0.1;
+    z-index: 0;
 }
 
 .section-content {
@@ -307,4 +314,8 @@ table {
     100% {
         box-shadow: 0 0 1vw #f58f1d;
     }
+}
+
+#contact-form {
+    z-index: 10;
 }

@@ -16,6 +16,7 @@ adjustParagraphFontSizes();
 fitTextToCell();
 setCellTextTop();
 fitSmallLogoTextToCell();
+sizeIFrame();
 
 // Consolidated resizeHandler: Only recalc if the difference is significant.
 function resizeHandler() {
@@ -34,6 +35,7 @@ function resizeHandler() {
         fitTextToCell();
         setCellTextTop();
         fitSmallLogoTextToCell();
+        sizeIFrame();
     }
 }
 
@@ -70,6 +72,7 @@ window.addEventListener("orientationchange", () => {
         fitTextToCell();
         setCellTextTop();
         fitSmallLogoTextToCell();
+        sizeIFrame();
     }, 300);
 });
 
