@@ -144,6 +144,8 @@ function setCellTextTop() {
         const cellText = floater.querySelector(".floater-container-top p");
         if (cellText) {
             cellText.style.paddingTop = (floaterHeight - cellText.offsetHeight) / 2 + "px";
+            console.log("paragraph height:", cellText.offsetHeight);
+            console.log("padding-top:", (floaterHeight - cellText.offsetHeight) / 2 + "px");
         }
     });
 
