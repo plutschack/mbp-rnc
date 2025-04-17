@@ -347,6 +347,10 @@ function resizeNavIcon() {
                 cell.style.width = initialInnerWidth - circRad * 3.5 + "px";
             });
         }
+    } else {
+        Array.from(marginCells).forEach((cell) => {
+            cell.style.width = initialInnerWidth * 0.07 + "px";
+        });
     }
 }
 
