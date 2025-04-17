@@ -168,5 +168,84 @@
                 <td class="margin-cell"></td>
             </tr>
         </table>
+        <!--START SITE NAVIGATION SECTION-->
+        <div class="fixed-container" id="menu-container" viewBox="0 0 100 100">
+            <!--Menu Background-->
+            <div class="circle menu-background" id="menu-background-div">
+                <svg id="menu-background" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="50" fill="black" />
+                </svg>
+            </div>
+
+            <!-- Navigation icon -->
+            <div class="circle nav-icon">
+                <svg id="nav-icon" viewBox="0 0 100 100">
+                    <!-- Menu background area (slightly larger than menu) -->
+                    <!-- Click hit area (slightly larger than center dot, smaller than orbit circle) -->
+
+                    <circle id="click-area" cx="50" cy="50" r="50"></circle>
+                    <!-- Outer circle -->
+                    <circle id="outer-circle" cx="50" cy="50" r="48" ;></circle>
+                    <!-- Center dot -->
+                    <radialGradient id="grad3d" cx="50%" cy="50%" r="50%" fx="20%" fy="20%">
+                        <stop offset="0%" style="stop-color: #f58f1d; stop-opacity: 1" />
+                        <stop offset="100%" style="stop-color: #d14b00; stop-opacity: 1" />
+                    </radialGradient>
+                    <circle id="center-dot" cx="50" cy="50" r="10"></circle>
+                    <!-- Arc path for orbiting (hidden) -->
+                    <path id="orbit-path"></path>
+
+                    <!-- Orbiting dot in a group for rotation -->
+                    <g id="orbit-group" transform="rotate(0 50 50)" d="M50 2 A48 48 0 1 1 49.9 2">
+                        <circle cx="50" cy="2" r="3" fill="url(#grad3d)"></circle>
+                    </g>
+                </svg>
+            </div>
+
+            <div class="circle nav-menu" id="nav-menu">
+                <div class="menu-item">
+                    <a> Contact </a>
+                </div>
+                <div class="menu-item">
+                    <a> Newsletter </a>
+                </div>
+                <div class="menu-item">
+                    <a> Writing </a>
+                </div>
+                <div class="menu-item">
+                    <a> Grants </a>
+                </div>
+                <div class="menu-item">
+                    <a> Services </a>
+                </div>
+                <div class="menu-item">
+                    <a> News </a>
+                </div>
+                <div class="menu-item">
+                    <a>About</a>
+                </div>
+                <div class="menu-item">
+                    <a> Home </a>
+                </div>
+                <div class="menu-item">
+                    <a>
+                        <img src="images/linkedin-logo.png" alt="LinkedIn" />
+                    </a>
+                    <a>
+                        <img src="images/1690643591twitter-x-logo-white.png" alt="X" />
+                    </a>
+                    <a>
+                        <img src="images/Bluesky_Logo_sw.png" alt="Bluesky" />
+                    </a>
+                    <a>
+                        <img src="images/mastodon.png" alt="Mastodon" />
+                    </a>
+                    <a>
+                        <img src="images/Threads_(app).png" alt="Threads" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--END OF SITE NAVIGATION SECTION-->
     </body>
 </html>
